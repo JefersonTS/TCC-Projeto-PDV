@@ -72,6 +72,37 @@ public class DAOUsuario extends ConexaoMySql {
         }
         return modelUsuario;
     }
+    
+        public ModelUsuario getUsuarioDAO(String pLogin) {
+        ModelUsuario modelUsuario = new ModelUsuario();
+        try {
+            this.conectar();
+            this.executarSQL(
+                    "SELECT "
+                    + "pk_id_usuario,"
+                    + "us_nome,"
+                    + "us_login,"
+                    + "us_senha"
+                    + " FROM"
+                    + " tb_usuario"
+                    + " WHERE"
+                    + " us_login = '" + pLogin + "'"
+                    + ";"
+            );
+
+            while (this.getResultSet().next()) {
+                modelUsuario.setIdUsuario(this.getResultSet().getInt(1));
+                modelUsuario.setUsNome(this.getResultSet().getString(2));
+                modelUsuario.setUsLogin(this.getResultSet().getString(3));
+                modelUsuario.setUsSenha(this.getResultSet().getString(4));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            this.fecharConexao();
+        }
+        return modelUsuario;
+    }
 
     /**
      * recupera uma lista de Usuario return ArrayList

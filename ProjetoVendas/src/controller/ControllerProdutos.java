@@ -26,7 +26,8 @@ public class ControllerProdutos {
     public ModelProdutos retornarProdutoController(int pCodigo){
         return this.daoProdutos.retornarProdutoDAO(pCodigo);
     }
-    //Retornar Produto controller (Pelo Código)
+
+    //Retornar Produto controller (Pelo Nome)
     public ModelProdutos retornarProdutoController(String pNomeProduto){
         return this.daoProdutos.retornarProdutoDAO(pNomeProduto);
     }

@@ -30,6 +30,15 @@ public class ControllerUsuario {
         return this.daoUsuario.getUsuarioDAO(pIdUsuario);
     }
 
+        /**
+    * recupera Usuario
+    * @param pLogin
+    * return ModelUsuario
+    */
+    public ModelUsuario getUsuarioController(String pLogin){
+        return this.daoUsuario.getUsuarioDAO(pLogin);
+    }
+    
     /**
     * recupera uma lista deUsuario
     * @param pIdUsuario

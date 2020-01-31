@@ -99,7 +99,7 @@ public class BLDatas {
      */
     public String retornarDataHora(){
         Date date = new Date(); 
-        SimpleDateFormat teste = new SimpleDateFormat("dd/MM/yyyy hh:mm");	
+        SimpleDateFormat teste = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss");	
         return teste.format(date);
     }	
 

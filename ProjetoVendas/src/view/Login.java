@@ -7,6 +7,7 @@ package view;
 
 import controller.ControllerUsuario;
 import javax.swing.JOptionPane;
+import model.ModelSessaoUsuario;
 import model.ModelUsuario;
 
 /**
@@ -17,6 +18,8 @@ public class Login extends javax.swing.JFrame {
 
     ControllerUsuario controllerUsuario = new ControllerUsuario();
     ModelUsuario modelUsuario = new ModelUsuario();
+    ModelSessaoUsuario modelSessaoUsuario = new ModelSessaoUsuario();
+
     /**
      * Creates new form Login
      */
@@ -49,6 +52,12 @@ public class Login extends javax.swing.JFrame {
 
         jLabel2.setText("Senha: ");
 
+        jPasswordFieldLoginSenha.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jPasswordFieldLoginSenhaKeyPressed(evt);
+            }
+        });
+
         jLabel3.setFont(new java.awt.Font("Sylfaen", 0, 36)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(153, 0, 51));
         jLabel3.setText("Sistema de Vendas Com Controle Estoque");
@@ -57,6 +66,11 @@ public class Login extends javax.swing.JFrame {
         jButtonEntrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonEntrarActionPerformed(evt);
+            }
+        });
+        jButtonEntrar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jButtonEntrarKeyPressed(evt);
             }
         });
 
@@ -129,6 +143,20 @@ public class Login extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void fazerLogin() {
+        modelUsuario.setUsLogin(jTextFieldLoginUsuario.getText().toUpperCase());
+        modelUsuario.setUsSenha(String.valueOf(jPasswordFieldLoginSenha.getPassword()));
+        if (controllerUsuario.getValidarUsuarioController(modelUsuario)) {
+            modelUsuario = controllerUsuario.getUsuarioController(jTextFieldLoginUsuario.getText().toUpperCase());
+            modelSessaoUsuario.codigo = modelUsuario.getIdUsuario();
+            modelSessaoUsuario.nome = modelUsuario.getUsNome();
+            modelSessaoUsuario.login = modelUsuario.getUsLogin();
+            new Principal().setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(this, "Usuario e/ou Senha INCORRETO!", "Aviso", JOptionPane.WARNING_MESSAGE);
+        }
+    }
+
     private void jButtonSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSairActionPerformed
         // TODO add your handling code here:
         System.exit(0);
@@ -136,14 +164,19 @@ public class Login extends javax.swing.JFrame {
 
     private void jButtonEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEntrarActionPerformed
         // TODO add your handling code here:
-        modelUsuario.setUsLogin(jTextFieldLoginUsuario.getText().toUpperCase());
-        modelUsuario.setUsSenha(String.valueOf(jPasswordFieldLoginSenha.getPassword()));
-        if(controllerUsuario.getValidarUsuarioController(modelUsuario)){
-            new Principal().setVisible(true);
-        }else{
-            JOptionPane.showMessageDialog(this, "Usuario e/ou Senha INCORRETO!", "Aviso", JOptionPane.WARNING_MESSAGE);
-        }
+        fazerLogin();
     }//GEN-LAST:event_jButtonEntrarActionPerformed
+
+    private void jButtonEntrarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButtonEntrarKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonEntrarKeyPressed
+
+    private void jPasswordFieldLoginSenhaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPasswordFieldLoginSenhaKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
+            fazerLogin();
+        }
+    }//GEN-LAST:event_jPasswordFieldLoginSenhaKeyPressed
 
     /**
      * @param args the command line arguments
