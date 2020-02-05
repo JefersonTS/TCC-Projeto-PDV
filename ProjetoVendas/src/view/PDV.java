@@ -19,6 +19,7 @@ import model.ModelSessaoUsuario;
 import model.ModelVendas;
 import model.ModelVendasProdutos;
 import util.BLDatas;
+import util.BLMascaras;
 
 /**
  *
@@ -27,6 +28,7 @@ import util.BLDatas;
 public class PDV extends javax.swing.JFrame {
 
     BLDatas bLDatas = new BLDatas();
+    BLMascaras bLMascaras = new BLMascaras();
     ControllerProdutos controllerProdutos = new ControllerProdutos();
     ControllerVendas controllerVendas = new ControllerVendas();
     ControllerVendasProdutos controllerVendasProdutos = new ControllerVendasProdutos();
@@ -47,10 +49,11 @@ public class PDV extends javax.swing.JFrame {
         initComponents();
         setarOperador();
         setExtendedState(MAXIMIZED_BOTH);
-        jFormattedTextFieldDescontoVendaPDV.setText("0");
+        jTextFieldDescontoVendaPDV.setText("0");
         jTextFieldCodigoProdutoPDV.requestFocus();//inicia com o foco no jTextFieldCodigoProdutoPDV
         qtd = 1;
         this.viewPagamentoPDV = new PagamentoPDV(this, true);
+        jLabelStatus.setText("ABERTO");
     }
 
     /**
@@ -73,7 +76,7 @@ public class PDV extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
+        jLabelStatus = new javax.swing.JLabel();
         jLabelOperador = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
@@ -85,11 +88,11 @@ public class PDV extends javax.swing.JFrame {
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
-        jFormattedTextFieldDescontoVendaPDV = new javax.swing.JFormattedTextField();
         jFormattedTextFieldValorBrutoVendaPDV = new javax.swing.JFormattedTextField();
         jLabel17 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
         jFormattedTextFieldValorLiquidoVendaPDV = new javax.swing.JFormattedTextField();
+        jTextFieldDescontoVendaPDV = new javax.swing.JTextField();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenuSairPDV = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -202,14 +205,14 @@ public class PDV extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel2.setText("CAIXA: ");
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel5.setText("CAIXA: ");
+        jLabelStatus.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabelStatus.setText("STATUS");
 
         jLabelOperador.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabelOperador.setText("OPERADOR");
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel7.setText("CAIXA: ");
+        jLabel7.setText("01");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -224,7 +227,7 @@ public class PDV extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel7)
-                    .addComponent(jLabel5)
+                    .addComponent(jLabelStatus)
                     .addComponent(jLabelOperador))
                 .addContainerGap(31, Short.MAX_VALUE))
         );
@@ -242,7 +245,7 @@ public class PDV extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jLabel5))
+                    .addComponent(jLabelStatus))
                 .addGap(24, 24, 24))
         );
 
@@ -270,9 +273,6 @@ public class PDV extends javax.swing.JFrame {
         jLabel16.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         jLabel16.setText("F2 - Excluir Produto");
 
-        jFormattedTextFieldDescontoVendaPDV.setEditable(false);
-        jFormattedTextFieldDescontoVendaPDV.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
-
         jFormattedTextFieldValorBrutoVendaPDV.setEditable(false);
 
         jLabel17.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
@@ -282,6 +282,8 @@ public class PDV extends javax.swing.JFrame {
         jLabel18.setText("TOTAL A PAGAR");
 
         jFormattedTextFieldValorLiquidoVendaPDV.setEditable(false);
+
+        jTextFieldDescontoVendaPDV.setEditable(false);
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -301,7 +303,6 @@ public class PDV extends javax.swing.JFrame {
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jFormattedTextFieldDescontoVendaPDV, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jFormattedTextFieldValorBrutoVendaPDV)
                             .addComponent(jFormattedTextFieldValorLiquidoVendaPDV)
                             .addGroup(jPanel5Layout.createSequentialGroup()
@@ -321,6 +322,10 @@ public class PDV extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jLabel18)
                 .addGap(68, 68, 68))
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jTextFieldDescontoVendaPDV)
+                .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -328,7 +333,7 @@ public class PDV extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel14)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jFormattedTextFieldDescontoVendaPDV, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jTextFieldDescontoVendaPDV, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel15)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -460,19 +465,25 @@ public class PDV extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void somaValorTotal() {
-        double soma = 0, valor;
+        double soma = 0, valor, liquido, desconto;
         int cont = jTableListaProdutosPDV.getRowCount();
 
         for (int i = 0; i < cont; i++) {
             valor = (double) jTableListaProdutosPDV.getValueAt(i, 5);
             soma += valor;
         }
-        totalBrutoVendaPDV = soma;
+        totalBrutoVendaPDV = bLMascaras.arredondamentoComPontoDuasCasasDouble(soma);
+        desconto = Integer.parseInt(jTextFieldDescontoVendaPDV.getText());
+        System.err.println("Valor do Desconto :" + desconto);
+        liquido = soma - ((desconto / 100) * soma);
+        System.err.println("Valor do Liquido :" + liquido);
         DecimalFormat df = new DecimalFormat("#,###.00");//formata as casas decimais de um Double
         jFormattedTextFieldValorBrutoVendaPDV.setText("R$: " + String.valueOf(df.format(soma)));
+        jFormattedTextFieldValorLiquidoVendaPDV.setText("R$: " + String.valueOf(df.format(liquido)));
     }
 
     private void pegarCodigo(java.awt.event.KeyEvent e) {
+        jLabelStatus.setText("OCUPADO");
         DefaultTableModel modelo = (DefaultTableModel) jTableListaProdutosPDV.getModel();
         modelProdutos = new ModelProdutos();
         //modelo.setNumRows(0);
@@ -509,7 +520,7 @@ public class PDV extends javax.swing.JFrame {
         } catch (Exception ex) {
             Logger.getLogger(PDV.class.getName()).log(Level.SEVERE, null, ex);
         }
-        modelVendas.setVenDesconto(Double.parseDouble(jFormattedTextFieldDescontoVendaPDV.getText()));
+        modelVendas.setVenDesconto(Double.parseDouble(jTextFieldDescontoVendaPDV.getText()));
         modelVendas.setVenValorBruto(totalBrutoVendaPDV);
         modelVendas.setVenValorLiquido(totalLiquidoVendaPDV);
 
@@ -545,8 +556,9 @@ public class PDV extends javax.swing.JFrame {
 
     private void limparVendas() {
         jTextFieldCodigoProdutoPDV.setText("");
-        jTextFieldCodigoProdutoPDV.setText("0");
         jFormattedTextFieldValorBrutoVendaPDV.setText("");
+        jTextFieldDescontoVendaPDV.setText("0");
+        jFormattedTextFieldValorLiquidoVendaPDV.setText("");
         DefaultTableModel modelo = (DefaultTableModel) jTableListaProdutosPDV.getModel();
         modelo.setNumRows(0);
     }
@@ -573,17 +585,26 @@ public class PDV extends javax.swing.JFrame {
 
     private void jMenuItemFinalizarVendaPDVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemFinalizarVendaPDVActionPerformed
         // TODO add your handling code here:
-        viewPagamentoPDV.setValorTotal(Float.parseFloat(totalBrutoVendaPDV.toString()));
-        viewPagamentoPDV.preencherCampos();
-        viewPagamentoPDV.setVisible(true);
+        try {
+            viewPagamentoPDV.setValorTotal(Float.parseFloat(totalBrutoVendaPDV.toString()));
+            viewPagamentoPDV.preencherCampos();
+            viewPagamentoPDV.setVisible(true);
 
-        jFormattedTextFieldDescontoVendaPDV.setText(String.valueOf(viewPagamentoPDV.getDesconto()));//pega o valor do desconto na view PagamentoPDV
-        totalLiquidoVendaPDV = Double.parseDouble(String.valueOf(viewPagamentoPDV.getTotalPagar()));//pega o valor do total a pagar na view PagamentoPDV e seta na totalLiquidoVendaPDV
-        
-        if(viewPagamentoPDV.isPago()){
-            salvarVendas();
-        }else{
-            JOptionPane.showMessageDialog(this, "Você nao concluiu o Pagamento", "ERRO", JOptionPane.ERROR_MESSAGE);
+            jTextFieldDescontoVendaPDV.setText(String.valueOf(viewPagamentoPDV.getDesconto()));//pega o valor do desconto na view PagamentoPDV
+            totalLiquidoVendaPDV = bLMascaras.arredondamentoComPontoDuasCasasDouble(Double.parseDouble(String.valueOf(viewPagamentoPDV.getTotalPagar())));//pega o valor do total a pagar na view PagamentoPDV e seta na totalLiquidoVendaPDV
+
+            if (viewPagamentoPDV.isPago()) {
+                salvarVendas();
+                jLabelStatus.setText("ABERTO");
+                limparVendas();
+            } else {
+                jTextFieldDescontoVendaPDV.setText(String.valueOf(viewPagamentoPDV.getDesconto()));//pega o valor do desconto na view PagamentoPDV
+                DecimalFormat df = new DecimalFormat("#,###.00");//formata as casas decimais de um Double
+                jFormattedTextFieldValorBrutoVendaPDV.setText("R$: " + String.valueOf(df.format(totalBrutoVendaPDV)));//pega o valor do total na variavel global
+                jFormattedTextFieldValorLiquidoVendaPDV.setText("R$: " + String.valueOf(df.format(totalLiquidoVendaPDV)));//pega o valor do total A PAGAR na variavel global
+                JOptionPane.showMessageDialog(this, "Você nao concluiu o Pagamento", "ERRO", JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (Exception e) {
         }
     }//GEN-LAST:event_jMenuItemFinalizarVendaPDVActionPerformed
 
@@ -660,7 +681,6 @@ public class PDV extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JFormattedTextField jFormattedTextFieldDescontoVendaPDV;
     private javax.swing.JFormattedTextField jFormattedTextFieldValorBrutoVendaPDV;
     private javax.swing.JFormattedTextField jFormattedTextFieldValorLiquidoVendaPDV;
     private javax.swing.JLabel jLabel1;
@@ -676,10 +696,10 @@ public class PDV extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabelOperador;
+    private javax.swing.JLabel jLabelStatus;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenu jMenuComandosPDV;
     private javax.swing.JMenuItem jMenuItem1;
@@ -697,5 +717,6 @@ public class PDV extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTableListaProdutosPDV;
     private javax.swing.JTextField jTextFieldCodigoProdutoPDV;
+    private javax.swing.JTextField jTextFieldDescontoVendaPDV;
     // End of variables declaration//GEN-END:variables
 }

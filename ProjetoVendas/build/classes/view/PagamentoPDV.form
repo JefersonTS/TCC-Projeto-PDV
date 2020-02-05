@@ -136,7 +136,7 @@
                                   <Component id="jComboBoxFormaPagamento" pref="374" max="32767" attributes="0"/>
                                   <Component id="jTextFieldValorTotalPagamento" alignment="0" max="32767" attributes="0"/>
                                   <Component id="jTextFieldValorRecebidoPagamento" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="jTextFieldDesconto" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="jTextFieldDescontoPagamento" alignment="0" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -165,7 +165,7 @@
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextFieldDesconto" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jTextFieldDescontoPagamento" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
@@ -203,6 +203,10 @@
                   </StringArray>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jComboBoxFormaPagamentoActionPerformed"/>
+                <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jComboBoxFormaPagamentoKeyPressed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="jTextFieldValorTotalPagamento">
               <Properties>
@@ -220,6 +224,7 @@
               </Properties>
               <Events>
                 <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jTextFieldValorRecebidoPagamentoFocusLost"/>
+                <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTextFieldValorRecebidoPagamentoKeyPressed"/>
                 <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTextFieldValorRecebidoPagamentoKeyReleased"/>
               </Events>
             </Component>
@@ -231,15 +236,16 @@
                 <Property name="text" type="java.lang.String" value="Valor Total:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="jTextFieldDesconto">
+            <Component class="javax.swing.JTextField" name="jTextFieldDescontoPagamento">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="24" style="0"/>
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jTextFieldDescontoFocusLost"/>
-                <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTextFieldDescontoKeyReleased"/>
+                <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jTextFieldDescontoPagamentoFocusLost"/>
+                <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTextFieldDescontoPagamentoKeyPressed"/>
+                <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTextFieldDescontoPagamentoKeyReleased"/>
               </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel7">
@@ -308,7 +314,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="jTextFieldTroco" min="-2" pref="200" max="-2" attributes="0"/>
+                      <Component id="jTextFieldTrocoPagamento" min="-2" pref="200" max="-2" attributes="0"/>
                       <EmptySpace pref="83" max="32767" attributes="0"/>
                       <Component id="jButtonFinalizar" min="-2" pref="167" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
@@ -322,7 +328,7 @@
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Group type="103" alignment="0" groupAlignment="3" attributes="0">
                               <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jTextFieldTroco" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jTextFieldTrocoPagamento" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Component id="jButtonFinalizar" min="-2" pref="35" max="-2" attributes="0"/>
                       </Group>
@@ -332,7 +338,7 @@
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JTextField" name="jTextFieldTroco">
+            <Component class="javax.swing.JTextField" name="jTextFieldTrocoPagamento">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="24" style="1"/>

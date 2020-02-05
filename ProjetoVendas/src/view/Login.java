@@ -6,7 +6,14 @@
 package view;
 
 import controller.ControllerUsuario;
+import de.javasoft.plaf.synthetica.SyntheticaAluOxideLookAndFeel;
+import de.javasoft.plaf.synthetica.SyntheticaBlackStarLookAndFeel;
+import de.javasoft.plaf.synthetica.SyntheticaPlainLookAndFeel;
+import java.awt.Color;
 import javax.swing.JOptionPane;
+import javax.swing.LookAndFeel;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 import model.ModelSessaoUsuario;
 import model.ModelUsuario;
 
@@ -208,6 +215,19 @@ public class Login extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
+
+                //Aplicando LookAndFell
+                try {
+                    //Configurar se deve aplicar o look a borda do JFrame  
+                    // No caso esta programado para não aplicar (Boolean.FALSE)  
+                    UIManager.put("Synthetica.window.decoration", Boolean.TRUE);
+                    //Configura qual Look você quer usar no projeto  
+                    UIManager.setLookAndFeel(new SyntheticaPlainLookAndFeel());
+                } catch (Exception erro) {
+                    erro.printStackTrace();
+                }
+                //Termina o LookAndFeel
+
                 new Login().setVisible(true);
             }
         });

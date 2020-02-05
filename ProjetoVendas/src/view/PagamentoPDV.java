@@ -7,6 +7,7 @@ package view;
 
 import controller.ControllerFormaPagamento;
 import java.awt.event.KeyEvent;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import model.ModelFormaPagamento;
 
@@ -25,6 +26,7 @@ public class PagamentoPDV extends javax.swing.JDialog {
     private int desconto;
     private String formaPagamento;
     private boolean pago; //variavel usada para finalizar a venda clicando no botao ou nao finalizar fechando a janela
+    DecimalFormat df = new DecimalFormat("#,###.00");//formata as casas decimais de um Double
 
     /**
      * Creates new form PagamentoPDV
@@ -35,6 +37,7 @@ public class PagamentoPDV extends javax.swing.JDialog {
         setLocationRelativeTo(null);
         listaFormaPagamento();
         this.pago = false;
+        jComboBoxFormaPagamento.requestFocus();
     }
 
     /**
@@ -54,12 +57,12 @@ public class PagamentoPDV extends javax.swing.JDialog {
         jTextFieldValorTotalPagamento = new javax.swing.JTextField();
         jTextFieldValorRecebidoPagamento = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jTextFieldDesconto = new javax.swing.JTextField();
+        jTextFieldDescontoPagamento = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabelTotalPagar = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
-        jTextFieldTroco = new javax.swing.JTextField();
+        jTextFieldTrocoPagamento = new javax.swing.JTextField();
         jButtonFinalizar = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
@@ -79,6 +82,16 @@ public class PagamentoPDV extends javax.swing.JDialog {
 
         jComboBoxFormaPagamento.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jComboBoxFormaPagamento.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxFormaPagamento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxFormaPagamentoActionPerformed(evt);
+            }
+        });
+        jComboBoxFormaPagamento.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jComboBoxFormaPagamentoKeyPressed(evt);
+            }
+        });
 
         jTextFieldValorTotalPagamento.setEditable(false);
         jTextFieldValorTotalPagamento.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
@@ -90,6 +103,9 @@ public class PagamentoPDV extends javax.swing.JDialog {
             }
         });
         jTextFieldValorRecebidoPagamento.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTextFieldValorRecebidoPagamentoKeyPressed(evt);
+            }
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jTextFieldValorRecebidoPagamentoKeyReleased(evt);
             }
@@ -98,15 +114,18 @@ public class PagamentoPDV extends javax.swing.JDialog {
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel5.setText("Valor Total:");
 
-        jTextFieldDesconto.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jTextFieldDesconto.addFocusListener(new java.awt.event.FocusAdapter() {
+        jTextFieldDescontoPagamento.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jTextFieldDescontoPagamento.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
-                jTextFieldDescontoFocusLost(evt);
+                jTextFieldDescontoPagamentoFocusLost(evt);
             }
         });
-        jTextFieldDesconto.addKeyListener(new java.awt.event.KeyAdapter() {
+        jTextFieldDescontoPagamento.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTextFieldDescontoPagamentoKeyPressed(evt);
+            }
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTextFieldDescontoKeyReleased(evt);
+                jTextFieldDescontoPagamentoKeyReleased(evt);
             }
         });
 
@@ -139,7 +158,7 @@ public class PagamentoPDV extends javax.swing.JDialog {
                             .addComponent(jComboBoxFormaPagamento, 0, 374, Short.MAX_VALUE)
                             .addComponent(jTextFieldValorTotalPagamento)
                             .addComponent(jTextFieldValorRecebidoPagamento)
-                            .addComponent(jTextFieldDesconto))))
+                            .addComponent(jTextFieldDescontoPagamento))))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -160,7 +179,7 @@ public class PagamentoPDV extends javax.swing.JDialog {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jTextFieldDesconto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextFieldDescontoPagamento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -188,7 +207,7 @@ public class PagamentoPDV extends javax.swing.JDialog {
 
         jPanel4.setBackground(new java.awt.Color(204, 255, 153));
 
-        jTextFieldTroco.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jTextFieldTrocoPagamento.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
 
         jButtonFinalizar.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jButtonFinalizar.setText("OK");
@@ -209,7 +228,7 @@ public class PagamentoPDV extends javax.swing.JDialog {
                 .addContainerGap()
                 .addComponent(jLabel2)
                 .addGap(18, 18, 18)
-                .addComponent(jTextFieldTroco, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jTextFieldTrocoPagamento, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 83, Short.MAX_VALUE)
                 .addComponent(jButtonFinalizar, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -221,7 +240,7 @@ public class PagamentoPDV extends javax.swing.JDialog {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel2)
-                        .addComponent(jTextFieldTroco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jTextFieldTrocoPagamento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jButtonFinalizar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(21, Short.MAX_VALUE))
         );
@@ -292,67 +311,99 @@ public class PagamentoPDV extends javax.swing.JDialog {
 
     //usando esse método no view PDV
     public void preencherCampos() {
-        this.jTextFieldValorTotalPagamento.setText(String.valueOf(this.valorTotal));
-        this.jLabelTotalPagar.setText(String.valueOf(this.valorTotal));
+        this.jTextFieldValorTotalPagamento.setText("R$: " + String.valueOf(df.format(this.valorTotal)));
+        this.jLabelTotalPagar.setText("R$: " + String.valueOf(df.format(this.valorTotal)));
+        this.jTextFieldTrocoPagamento.setText("");
+        this.jTextFieldDescontoPagamento.setText("");
     }
 
     public void calcularTrocoPagamento() {
-        float desconto, pagar, troco, valTotal, valorRecebido;
-        valTotal = Float.parseFloat(jTextFieldValorTotalPagamento.getText());
+        try {
+            float troco, valorRecebido, desc;
+            //valTotal = this.valorTotal;
 
-        if (!jTextFieldDesconto.getText().equals("")) {
-            desconto = Integer.parseInt(jTextFieldDesconto.getText());
-        } else {
-            desconto = 0;
+            if (!jTextFieldDescontoPagamento.getText().equals("")) {
+                desc = Float.parseFloat(jTextFieldDescontoPagamento.getText());
+            } else {
+                desc = 0;
+            }
+            if (!jTextFieldValorRecebidoPagamento.getText().equals("")) {
+                valorRecebido = Float.parseFloat(jTextFieldValorRecebidoPagamento.getText());
+            } else {
+                valorRecebido = 0;
+            }
+            this.totalPagar = this.valorTotal - ((desc / 100) * this.valorTotal);//Valor Liquido da venda
+            jLabelTotalPagar.setText(String.valueOf("R$: " + df.format(this.totalPagar)));
+            troco = valorRecebido - this.totalPagar;
+            jTextFieldTrocoPagamento.setText(String.valueOf("R$: " + df.format(troco)));
+            this.desconto = Integer.parseInt(this.jTextFieldDescontoPagamento.getText());
+        } catch (Exception e) {
+
         }
-        if (!jTextFieldValorRecebidoPagamento.getText().equals("")) {
-            valorRecebido = Float.parseFloat(jTextFieldValorRecebidoPagamento.getText());
-        } else {
-            valorRecebido = 0;
-        }
-        pagar = valTotal - ((desconto / 100) * valTotal);
-        jLabelTotalPagar.setText(String.valueOf(pagar));
-        troco = valorRecebido - pagar;
-        jTextFieldTroco.setText(String.valueOf(troco));
     }
 
+    private void limparCampos() {
+        jTextFieldValorRecebidoPagamento.setText("");
+    }
 
     private void jTextFieldValorRecebidoPagamentoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldValorRecebidoPagamentoFocusLost
         // TODO add your handling code here:
         calcularTrocoPagamento();
     }//GEN-LAST:event_jTextFieldValorRecebidoPagamentoFocusLost
 
-    private void jTextFieldDescontoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldDescontoFocusLost
+    private void jTextFieldDescontoPagamentoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldDescontoPagamentoFocusLost
         // TODO add your handling code here:
         calcularTrocoPagamento();
-    }//GEN-LAST:event_jTextFieldDescontoFocusLost
+    }//GEN-LAST:event_jTextFieldDescontoPagamentoFocusLost
 
-    private void jTextFieldDescontoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldDescontoKeyReleased
+    private void jTextFieldDescontoPagamentoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldDescontoPagamentoKeyReleased
         // TODO add your handling code here:
         calcularTrocoPagamento();
-    }//GEN-LAST:event_jTextFieldDescontoKeyReleased
+    }//GEN-LAST:event_jTextFieldDescontoPagamentoKeyReleased
 
     private void jTextFieldValorRecebidoPagamentoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldValorRecebidoPagamentoKeyReleased
         // TODO add your handling code here:
         calcularTrocoPagamento();
     }//GEN-LAST:event_jTextFieldValorRecebidoPagamentoKeyReleased
 
-    private void jButtonFinalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFinalizarActionPerformed
-        // TODO add your handling code here:
-        this.desconto = Integer.parseInt(this.jTextFieldDesconto.getText());
-        this.valorRecebido = Float.parseFloat(this.jTextFieldValorRecebidoPagamento.getText());
-        this.troco = Float.parseFloat(this.jTextFieldTroco.getText());
-        this.valorTotal = Float.parseFloat(this.jTextFieldValorTotalPagamento.getText());
-        this.formaPagamento = jComboBoxFormaPagamento.getSelectedItem().toString();
-        this.totalPagar = Float.parseFloat(this.jLabelTotalPagar.getText());
-        this.pago = true;
-        dispose();
-    }//GEN-LAST:event_jButtonFinalizarActionPerformed
-
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         // TODO add your handling code here:
         dispose();
     }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void jButtonFinalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFinalizarActionPerformed
+        // TODO add your handling code here:
+        this.pago = true;
+        limparCampos();
+        dispose();
+    }//GEN-LAST:event_jButtonFinalizarActionPerformed
+
+    private void jComboBoxFormaPagamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxFormaPagamentoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBoxFormaPagamentoActionPerformed
+
+    private void jComboBoxFormaPagamentoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jComboBoxFormaPagamentoKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
+            jTextFieldValorRecebidoPagamento.requestFocus();
+        }
+    }//GEN-LAST:event_jComboBoxFormaPagamentoKeyPressed
+
+    private void jTextFieldValorRecebidoPagamentoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldValorRecebidoPagamentoKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
+            jTextFieldDescontoPagamento.requestFocus();
+        }
+    }//GEN-LAST:event_jTextFieldValorRecebidoPagamentoKeyPressed
+
+    private void jTextFieldDescontoPagamentoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldDescontoPagamentoKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
+            this.pago = true;
+            limparCampos();
+            dispose();
+        }
+    }//GEN-LAST:event_jTextFieldDescontoPagamentoKeyPressed
 
     /**
      * @param args the command line arguments
@@ -413,8 +464,8 @@ public class PagamentoPDV extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JTextField jTextFieldDesconto;
-    private javax.swing.JTextField jTextFieldTroco;
+    private javax.swing.JTextField jTextFieldDescontoPagamento;
+    private javax.swing.JTextField jTextFieldTrocoPagamento;
     private javax.swing.JTextField jTextFieldValorRecebidoPagamento;
     private javax.swing.JTextField jTextFieldValorTotalPagamento;
     // End of variables declaration//GEN-END:variables

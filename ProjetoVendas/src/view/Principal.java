@@ -84,7 +84,6 @@ public class Principal extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Sistema de Vendas - Painel Principal");
         setIconImages(null);
-        setResizable(false);
 
         uJPanelImagem1.setImagem(new java.io.File("C:\\Users\\jefer\\Desktop\\Jefin\\Projetos Java\\TCC-Projeto-PDV\\ProjetoVendas\\src\\imagens\\fundo.jpg"));
 
