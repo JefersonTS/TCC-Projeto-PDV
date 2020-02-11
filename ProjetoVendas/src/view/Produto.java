@@ -659,7 +659,7 @@ public class Produto extends javax.swing.JFrame {
     private void jButtonPesquisarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPesquisarProdutoActionPerformed
         // TODO add your handling code here:
         DefaultTableModel modelo = (DefaultTableModel) this.jTableProduto.getModel();
-        final TableRowSorter<TableModel> classificador = new TableRowSorter<>(modelo);
+        final TableRowSorter<DefaultTableModel> classificador = new TableRowSorter<>(modelo);
         this.jTableProduto.setRowSorter(classificador);
         String texto = jTextFieldPesquisarProduto.getText();
         classificador.setRowFilter(RowFilter.regexFilter(texto, 1));

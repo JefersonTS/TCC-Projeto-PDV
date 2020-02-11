@@ -634,7 +634,7 @@ public class Vendas extends javax.swing.JFrame {
     private void jButtonPesquisarVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPesquisarVendaActionPerformed
         // TODO add your handling code here:
         DefaultTableModel modelo = (DefaultTableModel) this.jTableVendas.getModel();
-        final TableRowSorter<TableModel> classificador = new TableRowSorter<>(modelo);
+        final TableRowSorter<DefaultTableModel> classificador = new TableRowSorter<>(modelo);
         this.jTableVendas.setRowSorter(classificador);
         String texto = jTextFieldPesquisarVendas.getText().toUpperCase();
         classificador.setRowFilter(RowFilter.regexFilter(texto, 1));

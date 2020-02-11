@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="RelatorioTodosClientes" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="373ef3d2-d68c-4269-b56d-bec9888990a7">
+	<property name="ireport.zoom" value="1.1000000000000005"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[SELECT
+pk_id_cliente,
+cli_nome,
+cli_endereco,
+cli_bairro,
+cli_cidade,
+cli_uf,
+cli_cep,
+cli_telefone
+FROM
+tb_cliente]]>
+	</queryString>
+	<field name="pk_id_cliente" class="java.math.BigInteger">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cli_nome" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cli_endereco" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cli_bairro" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cli_cidade" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cli_uf" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cli_cep" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cli_telefone" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<image>
+				<reportElement x="324" y="0" width="152" height="79" uuid="7aae21ca-4d5a-4fd6-af46-a5d1e570e2c9"/>
+				<imageExpression><![CDATA["C:\\Users\\jefer\\Desktop\\Jefin\\Projetos Java\\TCC-Projeto-PDV\\ProjetoVendas\\src\\imagens\\Panfleto PC.png"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="22" splitType="Stretch">
+			<staticText>
+				<reportElement x="21" y="1" width="100" height="20" uuid="96ff8ac0-1f98-478b-bf21-fa902f695223"/>
+				<text><![CDATA[pk_id_cliente]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="124" y="1" width="100" height="20" uuid="98624f92-1563-4d84-ad5c-f5f9942a7024"/>
+				<text><![CDATA[cli_nome]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="229" y="1" width="100" height="20" uuid="203a30f4-9d2d-434a-8eca-cc92077b284e"/>
+				<text><![CDATA[cli_endereco]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="23" splitType="Stretch">
+			<textField>
+				<reportElement x="21" y="3" width="100" height="20" uuid="9e8fff8b-a944-4adc-abc1-716ecd262132"/>
+				<textFieldExpression><![CDATA[$F{pk_id_cliente}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="124" y="3" width="100" height="20" uuid="2bdf429d-d0b7-4409-8bc2-b0b363a70230"/>
+				<textFieldExpression><![CDATA[$F{cli_nome}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="229" y="3" width="100" height="20" uuid="aae727b8-e990-4549-89fa-29330a03afc7"/>
+				<textFieldExpression><![CDATA[$F{cli_endereco}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch">
+			<textField>
+				<reportElement x="681" y="22" width="80" height="20" uuid="4f0879ad-23be-48a8-a387-8022e64dca9a"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="761" y="22" width="40" height="20" uuid="653d5bb2-bae5-426a-8d37-cd76e5f32b1c"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="0" y="22" width="260" height="20" uuid="9d7aeef7-6892-4190-9797-5da4f171d9de"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="RelatorioTodasVendas" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="bffb8c95-59ec-4251-a156-dbee785dd84f">
+	<property name="ireport.zoom" value="2.357947691000002"/>
+	<property name="ireport.x" value="396"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[SELECT
+pk_id_vendas,
+fk_cliente,
+ven_data_venda,
+ven_valor_liquido,
+ven_valor_bruto,
+ven_desconto
+ FROM tb_vendas]]>
+	</queryString>
+	<field name="pk_id_vendas" class="java.math.BigInteger">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="fk_cliente" class="java.math.BigInteger">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ven_data_venda" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ven_valor_liquido" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ven_valor_bruto" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ven_desconto" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="279" y="17" width="261" height="35" uuid="44f43786-7ff7-4e72-acf8-41f8167f92a1"/>
+				<textElement>
+					<font size="24"/>
+				</textElement>
+				<text><![CDATA[TODAS AS VENDAS]]></text>
+			</staticText>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="24" splitType="Stretch">
+			<staticText>
+				<reportElement x="10" y="2" width="100" height="20" uuid="6f1f3e0c-6d94-4296-bb46-a8483f919be0"/>
+				<text><![CDATA[pk_id_vendas]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="117" y="2" width="100" height="20" uuid="605a76c0-723d-4cfa-9718-adbf3e29fa7f"/>
+				<text><![CDATA[ven_data_venda]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="221" y="2" width="100" height="20" uuid="00116b3f-020b-4078-bbc6-f71561e9f778"/>
+				<text><![CDATA[ven_valor_liquido]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="333" y="1" width="100" height="20" uuid="6c75dfa3-7e00-4e61-a6b3-445b4a200513"/>
+				<text><![CDATA[ven_valor_bruto]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="440" y="1" width="100" height="20" uuid="95951857-9e29-4e2c-9dae-110f8700dfeb"/>
+				<text><![CDATA[ven_desconto]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="35" splitType="Stretch">
+			<textField>
+				<reportElement x="10" y="11" width="100" height="20" uuid="2c3a987e-6913-48be-92e4-12936892fda9"/>
+				<textFieldExpression><![CDATA[$F{pk_id_vendas}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="117" y="11" width="100" height="20" uuid="8ed4c69d-b29d-4b4d-bae6-195776d83137"/>
+				<textFieldExpression><![CDATA[$F{ven_data_venda}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="221" y="11" width="100" height="20" uuid="b79c09fa-d11c-4cc0-86e0-e5f132ef6930"/>
+				<textFieldExpression><![CDATA[$F{ven_valor_liquido}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="333" y="11" width="100" height="20" uuid="f4dde600-8549-4c38-afc7-a8ea30eac39f"/>
+				<textFieldExpression><![CDATA[$F{ven_valor_bruto}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="440" y="11" width="100" height="20" uuid="f94b6a47-4647-4958-9e8f-69f145e9719a"/>
+				<textFieldExpression><![CDATA[$F{ven_desconto}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
