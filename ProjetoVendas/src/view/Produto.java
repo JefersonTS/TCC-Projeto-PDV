@@ -6,11 +6,16 @@
 package view;
 
 import controller.ControllerProdutos;
+import java.awt.Font;
+import java.awt.Toolkit;
 import static java.lang.reflect.Array.set;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.RowFilter;
+import javax.swing.UIManager;
+import javax.swing.plaf.FontUIResource;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 import model.ModelProdutos;
@@ -35,8 +40,13 @@ public class Produto extends javax.swing.JFrame {
         initComponents();
         carregarProdutos();
         setLocationRelativeTo(null);
+        setExtendedState(MAXIMIZED_BOTH);
         habilitarDesabilitarProdutos(false);
         habilitarDesabilitarSalvar(false);
+        jButtonExcluirProduto.setEnabled(false);
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("../imagens/carrinho-de-compras.png")));
+        UIManager.put("OptionPane.messageFont", new FontUIResource(new Font("Maiandra GD", Font.PLAIN, 35)));
+        jTextFieldPesquisarProduto.requestFocus();
     }
 
     /**
@@ -354,16 +364,22 @@ public class Produto extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Sistema de Vendas - Cadastro e Busca de Produtos");
+        setPreferredSize(new java.awt.Dimension(1241, 860));
 
-        jLabel3.setText("Código");
+        jLabel3.setFont(new java.awt.Font("Maiandra GD", 0, 24)); // NOI18N
+        jLabel3.setText("Código:");
 
-        jLabel10.setText("Valor");
+        jLabel10.setFont(new java.awt.Font("Maiandra GD", 0, 24)); // NOI18N
+        jLabel10.setText("Valor:");
 
-        jLabel11.setText("Estoque");
+        jLabel11.setFont(new java.awt.Font("Maiandra GD", 0, 24)); // NOI18N
+        jLabel11.setText("Estoque:");
 
-        jLabel12.setText("Nome");
+        jLabel12.setFont(new java.awt.Font("Maiandra GD", 0, 24)); // NOI18N
+        jLabel12.setText("Nome:");
 
         jTextFieldCodigoProduto.setEditable(false);
+        jTextFieldCodigoProduto.setFont(new java.awt.Font("Maiandra GD", 0, 24)); // NOI18N
         jTextFieldCodigoProduto.setEnabled(false);
         jTextFieldCodigoProduto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -371,6 +387,7 @@ public class Produto extends javax.swing.JFrame {
             }
         });
 
+        jTableProduto.setFont(new java.awt.Font("Maiandra GD", 0, 24)); // NOI18N
         jTableProduto.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -394,15 +411,32 @@ public class Produto extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        jTableProduto.setRowHeight(30);
         jScrollPane2.setViewportView(jTableProduto);
         if (jTableProduto.getColumnModel().getColumnCount() > 0) {
-            jTableProduto.getColumnModel().getColumn(0).setPreferredWidth(60);
+            jTableProduto.getColumnModel().getColumn(0).setMinWidth(100);
+            jTableProduto.getColumnModel().getColumn(0).setPreferredWidth(100);
+            jTableProduto.getColumnModel().getColumn(0).setMaxWidth(100);
             jTableProduto.getColumnModel().getColumn(1).setPreferredWidth(280);
-            jTableProduto.getColumnModel().getColumn(3).setPreferredWidth(60);
+            jTableProduto.getColumnModel().getColumn(2).setMinWidth(150);
+            jTableProduto.getColumnModel().getColumn(2).setPreferredWidth(150);
+            jTableProduto.getColumnModel().getColumn(2).setMaxWidth(150);
+            jTableProduto.getColumnModel().getColumn(3).setMinWidth(200);
+            jTableProduto.getColumnModel().getColumn(3).setPreferredWidth(200);
+            jTableProduto.getColumnModel().getColumn(3).setMaxWidth(200);
         }
 
-        jLabel13.setText("Pesquisar");
+        jLabel13.setFont(new java.awt.Font("Maiandra GD", 0, 24)); // NOI18N
+        jLabel13.setText("Pesquisar:");
 
+        jTextFieldPesquisarProduto.setFont(new java.awt.Font("Maiandra GD", 0, 24)); // NOI18N
+        jTextFieldPesquisarProduto.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTextFieldPesquisarProdutoKeyPressed(evt);
+            }
+        });
+
+        jButtonCancelarProduto.setFont(new java.awt.Font("Maiandra GD", 0, 24)); // NOI18N
         jButtonCancelarProduto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/24x24/proibido.png"))); // NOI18N
         jButtonCancelarProduto.setText("Cancelar");
         jButtonCancelarProduto.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -415,6 +449,7 @@ public class Produto extends javax.swing.JFrame {
             }
         });
 
+        jButtonSalvarProduto.setFont(new java.awt.Font("Maiandra GD", 0, 24)); // NOI18N
         jButtonSalvarProduto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/24x24/disquete.png"))); // NOI18N
         jButtonSalvarProduto.setText("Salvar");
         jButtonSalvarProduto.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -427,6 +462,7 @@ public class Produto extends javax.swing.JFrame {
             }
         });
 
+        jButtonAlterarProduto.setFont(new java.awt.Font("Maiandra GD", 0, 24)); // NOI18N
         jButtonAlterarProduto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/24x24/editar.png"))); // NOI18N
         jButtonAlterarProduto.setText("Alterar");
         jButtonAlterarProduto.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -439,6 +475,7 @@ public class Produto extends javax.swing.JFrame {
             }
         });
 
+        jButtonNovoProduto.setFont(new java.awt.Font("Maiandra GD", 0, 24)); // NOI18N
         jButtonNovoProduto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/24x24/papel-de-texto.png"))); // NOI18N
         jButtonNovoProduto.setText("Novo");
         jButtonNovoProduto.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -451,6 +488,7 @@ public class Produto extends javax.swing.JFrame {
             }
         });
 
+        jButtonExcluirProduto.setFont(new java.awt.Font("Maiandra GD", 0, 24)); // NOI18N
         jButtonExcluirProduto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/24x24/cancelar.png"))); // NOI18N
         jButtonExcluirProduto.setText("Excluir");
         jButtonExcluirProduto.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -463,6 +501,7 @@ public class Produto extends javax.swing.JFrame {
             }
         });
 
+        jButtonPesquisarProduto.setFont(new java.awt.Font("Maiandra GD", 0, 24)); // NOI18N
         jButtonPesquisarProduto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/24x24/pesquisa.png"))); // NOI18N
         jButtonPesquisarProduto.setText("Pesquisar");
         jButtonPesquisarProduto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -473,6 +512,7 @@ public class Produto extends javax.swing.JFrame {
         });
 
         jTextFieldEstoqueProduto.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
+        jTextFieldEstoqueProduto.setFont(new java.awt.Font("Maiandra GD", 0, 24)); // NOI18N
         jTextFieldEstoqueProduto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextFieldEstoqueProdutoActionPerformed(evt);
@@ -480,7 +520,9 @@ public class Produto extends javax.swing.JFrame {
         });
 
         jTextFieldValorProduto.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
+        jTextFieldValorProduto.setFont(new java.awt.Font("Maiandra GD", 0, 24)); // NOI18N
 
+        jTextFieldNomeProduto.setFont(new java.awt.Font("Maiandra GD", 0, 24)); // NOI18N
         jTextFieldNomeProduto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextFieldNomeProdutoActionPerformed(evt);
@@ -494,46 +536,43 @@ public class Produto extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel11)
-                            .addComponent(jTextFieldCodigoProduto, javax.swing.GroupLayout.DEFAULT_SIZE, 69, Short.MAX_VALUE)
-                            .addComponent(jTextFieldEstoqueProduto))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jTextFieldValorProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButtonPesquisarProduto))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextFieldNomeProduto)
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel12)
-                                            .addComponent(jLabel10))
-                                        .addGap(0, 0, Short.MAX_VALUE)))
-                                .addContainerGap())))
                     .addComponent(jScrollPane2)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel11))
+                        .addGap(5, 5, 5)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(14, 14, 14)
-                                .addComponent(jButtonNovoProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jTextFieldEstoqueProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButtonAlterarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel10)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButtonSalvarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButtonCancelarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButtonExcluirProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jTextFieldValorProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
                                 .addComponent(jLabel13)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jTextFieldPesquisarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 14, Short.MAX_VALUE))))
+                                .addComponent(jTextFieldPesquisarProduto)
+                                .addGap(18, 18, 18)
+                                .addComponent(jButtonPesquisarProduto))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jTextFieldCodigoProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel12)
+                                .addGap(18, 18, 18)
+                                .addComponent(jTextFieldNomeProduto))))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jButtonNovoProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButtonAlterarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButtonSalvarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButtonCancelarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButtonExcluirProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 412, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -541,54 +580,39 @@ public class Produto extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jLabel12))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel12)
                     .addComponent(jTextFieldCodigoProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextFieldNomeProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(15, 15, 15)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11)
-                    .addComponent(jLabel10))
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextFieldEstoqueProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextFieldValorProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextFieldPesquisarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel13))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButtonPesquisarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)))
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(jTextFieldEstoqueProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel10)
+                    .addComponent(jTextFieldValorProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextFieldPesquisarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel13)
+                    .addComponent(jButtonPesquisarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 644, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonNovoProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonAlterarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonSalvarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonCancelarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonExcluirProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jButtonExcluirProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonNovoProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonAlterarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonSalvarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonCancelarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 8, Short.MAX_VALUE))
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -650,6 +674,7 @@ public class Produto extends javax.swing.JFrame {
         this.habilitarDesabilitarSalvar(true);
         habilitarDesabilitarProdutos(true);
         salvarAlterar = "salvar";
+        jTextFieldNomeProduto.requestFocus();
     }//GEN-LAST:event_jButtonNovoProdutoActionPerformed
 
     private void jTextFieldCodigoProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldCodigoProdutoActionPerformed
@@ -658,27 +683,31 @@ public class Produto extends javax.swing.JFrame {
 
     private void jButtonPesquisarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPesquisarProdutoActionPerformed
         // TODO add your handling code here:
-        DefaultTableModel modelo = (DefaultTableModel) this.jTableProduto.getModel();
-        final TableRowSorter<DefaultTableModel> classificador = new TableRowSorter<>(modelo);
-        this.jTableProduto.setRowSorter(classificador);
-        String texto = jTextFieldPesquisarProduto.getText();
-        classificador.setRowFilter(RowFilter.regexFilter(texto, 1));
+        pesquisarProduto();
     }//GEN-LAST:event_jButtonPesquisarProdutoActionPerformed
 
     private void jButtonSalvarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarProdutoActionPerformed
-        if (salvarAlterar.equals("salvar")) {
-            this.salvarProduto();
-            this.habilitarDesabilitarSalvar(false);
-        } else if (salvarAlterar.equals("alterar")) {
-            this.alterarProduto();
-            this.habilitarDesabilitarSalvar(false);
+        if (!jTextFieldNomeProduto.getText().isEmpty() && !jTextFieldEstoqueProduto.getText().isEmpty()
+                && !jTextFieldValorProduto.getText().isEmpty()) {
+            if (salvarAlterar.equals("salvar")) {
+                this.salvarProduto();
+                this.habilitarDesabilitarSalvar(false);
+            } else if (salvarAlterar.equals("alterar")) {
+                this.alterarProduto();
+                this.habilitarDesabilitarSalvar(false);
+            }
+        }else{
+            JOptionPane.showMessageDialog(this, "Erro ao "+salvarAlterar+" o Produto!\nAlgum campo Vazio", "ERRO", JOptionPane.ERROR_MESSAGE);
         }
+        jTextFieldPesquisarProduto.setEnabled(true);
+        jButtonPesquisarProduto.setEnabled(true);
     }//GEN-LAST:event_jButtonSalvarProdutoActionPerformed
 
     private void jButtonCancelarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarProdutoActionPerformed
         // Desabilita os campos de nome, valor e estoque
         habilitarDesabilitarProdutos(false);
         limparCampos();
+        jTextFieldPesquisarProduto.requestFocus();
     }//GEN-LAST:event_jButtonCancelarProdutoActionPerformed
 
     private void jButtonAlterarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlterarProdutoActionPerformed
@@ -687,6 +716,8 @@ public class Produto extends javax.swing.JFrame {
         salvarAlterar = "alterar";
 
         try {
+            jTextFieldPesquisarProduto.setEnabled(false);
+            jButtonPesquisarProduto.setEnabled(false);
             int codigoProduto = (int) jTableProduto.getValueAt(linha, 0);
             this.habilitarDesabilitarProdutos(true);
 
@@ -702,6 +733,8 @@ public class Produto extends javax.swing.JFrame {
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Erro ao Alterar o Produto, Selecione um Registro na tabela", "AVISO", JOptionPane.ERROR_MESSAGE);
+            jTextFieldPesquisarProduto.setEnabled(true);
+            jButtonPesquisarProduto.setEnabled(true);
         }
     }//GEN-LAST:event_jButtonAlterarProdutoActionPerformed
 
@@ -712,6 +745,13 @@ public class Produto extends javax.swing.JFrame {
     private void jTextFieldNomeProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNomeProdutoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldNomeProdutoActionPerformed
+
+    private void jTextFieldPesquisarProdutoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldPesquisarProdutoKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
+            pesquisarProduto();
+        }
+    }//GEN-LAST:event_jTextFieldPesquisarProdutoKeyPressed
 
     /**
      * @param args the command line arguments
@@ -750,7 +790,7 @@ public class Produto extends javax.swing.JFrame {
 
     private void salvarProduto() {
         // Salva um novo produto no banco e mostra na tabela
-        modelProdutos.setProdNome(this.jTextFieldNomeProduto.getText());
+        modelProdutos.setProdNome(this.jTextFieldNomeProduto.getText().toUpperCase());
         modelProdutos.setProdEstoque(Integer.parseInt(this.jTextFieldEstoqueProduto.getText()));
         modelProdutos.setProdValor(formatador.converterVirgulaParaPonto(this.jTextFieldValorProduto.getText()));
 
@@ -767,7 +807,7 @@ public class Produto extends javax.swing.JFrame {
 
     private void alterarProduto() {
         // Altera um produto selecionado na tabela
-        modelProdutos.setProdNome(this.jTextFieldNomeProduto.getText());
+        modelProdutos.setProdNome(this.jTextFieldNomeProduto.getText().toUpperCase());
         modelProdutos.setProdEstoque(Integer.parseInt(this.jTextFieldEstoqueProduto.getText()));
         modelProdutos.setProdValor(formatador.converterVirgulaParaPonto(this.jTextFieldValorProduto.getText()));
 
@@ -818,6 +858,16 @@ public class Produto extends javax.swing.JFrame {
                 listaModelProdutos.get(i).getProdValor()
             });
         }
+        JTableHeader cabecalho = jTableProduto.getTableHeader();
+        cabecalho.setFont(new Font("Maiandra GD", Font.PLAIN, 24));
+    }
+
+    private void pesquisarProduto() {
+        DefaultTableModel modelo = (DefaultTableModel) this.jTableProduto.getModel();
+        final TableRowSorter<DefaultTableModel> classificador = new TableRowSorter<>(modelo);
+        this.jTableProduto.setRowSorter(classificador);
+        String texto = jTextFieldPesquisarProduto.getText().toUpperCase();
+        classificador.setRowFilter(RowFilter.regexFilter(texto, 1));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -11,8 +11,12 @@ import controller.ControllerVendas;
 import controllerRelatorios.ControllerRelatorioCliente;
 import controllerRelatorios.ControllerRelatorioProduto;
 import controllerRelatorios.ControllerRelatorioVenda;
+import java.awt.Font;
+import java.awt.Toolkit;
 import java.util.ArrayList;
 import javax.swing.JFrame;
+import javax.swing.UIManager;
+import javax.swing.plaf.FontUIResource;
 import model.ModelCliente;
 import model.ModelProdutos;
 import model.ModelVendas;
@@ -46,6 +50,8 @@ public class Relatorios extends javax.swing.JFrame {
         listarVendasPorCliente();
         listarProdutos();
         setExtendedState(JFrame.MAXIMIZED_BOTH);
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("../imagens/carrinho-de-compras.png")));
+        UIManager.put("OptionPane.messageFont", new FontUIResource(new Font("Maiandra GD", Font.PLAIN, 35)));
     }
 
     /**
@@ -58,10 +64,10 @@ public class Relatorios extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel3 = new javax.swing.JPanel();
-        jPanel8 = new javax.swing.JPanel();
+        jPanel10 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         jButtonRelatorioTodosProdutos = new javax.swing.JButton();
-        jPanel9 = new javax.swing.JPanel();
+        jPanel8 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         uJComboBoxListarProdutos = new componentes.UJComboBox();
         jButtonRelatorioUmProduto = new javax.swing.JButton();
@@ -74,30 +80,76 @@ public class Relatorios extends javax.swing.JFrame {
         uJComboBoxListarClientes = new componentes.UJComboBox();
         jButtonRelatorioUmCliente = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
-        jPanel10 = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
         jButtonRelatorioTodosVendas = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        jPanel11 = new javax.swing.JPanel();
+        jPanel5 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         uJComboBoxListarClientesVendas = new componentes.UJComboBox();
         jButtonRelatorioVendaPorCliente = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Sistema de Vendas - Emissão de Relatórios");
+        setResizable(false);
+        setSize(new java.awt.Dimension(1500, 800));
 
-        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "PRODUTO", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
-        jPanel3.setPreferredSize(new java.awt.Dimension(400, 758));
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "PRODUTO", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Maiandra GD", 1, 24))); // NOI18N
+        jPanel3.setPreferredSize(new java.awt.Dimension(400, 306));
 
-        jPanel8.setBackground(new java.awt.Color(204, 255, 204));
+        jPanel10.setBackground(new java.awt.Color(204, 255, 204));
 
-        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Maiandra GD", 0, 24)); // NOI18N
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setText("Todos os Produtos");
 
-        jButtonRelatorioTodosProdutos.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jButtonRelatorioTodosProdutos.setFont(new java.awt.Font("Maiandra GD", 0, 24)); // NOI18N
         jButtonRelatorioTodosProdutos.setText("Gerar");
         jButtonRelatorioTodosProdutos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonRelatorioTodosProdutosActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
+        jPanel10.setLayout(jPanel10Layout);
+        jPanel10Layout.setHorizontalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel10Layout.createSequentialGroup()
+                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel10Layout.createSequentialGroup()
+                        .addGap(122, 122, 122)
+                        .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel10Layout.createSequentialGroup()
+                        .addGap(156, 156, 156)
+                        .addComponent(jButtonRelatorioTodosProdutos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(39, 39, 39)))
+                .addGap(117, 117, 117))
+        );
+        jPanel10Layout.setVerticalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel10Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel6)
+                .addGap(18, 18, 18)
+                .addComponent(jButtonRelatorioTodosProdutos)
+                .addContainerGap())
+        );
+
+        jPanel8.setBackground(new java.awt.Color(204, 255, 204));
+
+        jLabel7.setFont(new java.awt.Font("Maiandra GD", 0, 24)); // NOI18N
+        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel7.setText("Apenas um Produto");
+
+        uJComboBoxListarProdutos.setMaximumRowCount(20);
+        uJComboBoxListarProdutos.setAutocompletar(true);
+        uJComboBoxListarProdutos.setFont(new java.awt.Font("Maiandra GD", 0, 24)); // NOI18N
+
+        jButtonRelatorioUmProduto.setFont(new java.awt.Font("Maiandra GD", 0, 24)); // NOI18N
+        jButtonRelatorioUmProduto.setText("Gerar");
+        jButtonRelatorioUmProduto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRelatorioUmProdutoActionPerformed(evt);
             }
         });
 
@@ -106,63 +158,23 @@ public class Relatorios extends javax.swing.JFrame {
         jPanel8Layout.setHorizontalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
-                .addGap(115, 115, 115)
-                .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(108, 108, 108)
+                .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(124, 124, 124))
-            .addGroup(jPanel8Layout.createSequentialGroup()
-                .addGap(156, 156, 156)
-                .addComponent(jButtonRelatorioTodosProdutos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(157, 157, 157))
+            .addComponent(uJComboBoxListarProdutos, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
+                .addGap(157, 157, 157)
+                .addComponent(jButtonRelatorioUmProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addGap(156, 156, 156))
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
-                .addComponent(jButtonRelatorioTodosProdutos)
-                .addContainerGap())
-        );
-
-        jPanel9.setBackground(new java.awt.Color(204, 255, 204));
-
-        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel7.setText("Apenas um Produto");
-
-        uJComboBoxListarProdutos.setFocusable(false);
-        uJComboBoxListarProdutos.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-
-        jButtonRelatorioUmProduto.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jButtonRelatorioUmProduto.setText("Gerar");
-        jButtonRelatorioUmProduto.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonRelatorioUmProdutoActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
-        jPanel9.setLayout(jPanel9Layout);
-        jPanel9Layout.setHorizontalGroup(
-            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel9Layout.createSequentialGroup()
-                .addGap(108, 108, 108)
-                .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(124, 124, 124))
-            .addComponent(uJComboBoxListarProdutos, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
-                .addGap(161, 161, 161)
-                .addComponent(jButtonRelatorioUmProduto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(152, 152, 152))
-        );
-        jPanel9Layout.setVerticalGroup(
-            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel9Layout.createSequentialGroup()
-                .addContainerGap()
                 .addComponent(jLabel7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(uJComboBoxListarProdutos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButtonRelatorioUmProduto)
                 .addContainerGap())
         );
@@ -171,24 +183,24 @@ public class Relatorios extends javax.swing.JFrame {
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(486, Short.MAX_VALUE))
+                .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "CLIENTE", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "CLIENTE", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Maiandra GD", 1, 24))); // NOI18N
         jPanel2.setPreferredSize(new java.awt.Dimension(400, 306));
 
         jPanel6.setBackground(new java.awt.Color(204, 255, 204));
 
-        jButtonRelatorioTodosClientes.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jButtonRelatorioTodosClientes.setFont(new java.awt.Font("Maiandra GD", 0, 24)); // NOI18N
         jButtonRelatorioTodosClientes.setText("Gerar");
         jButtonRelatorioTodosClientes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -196,7 +208,7 @@ public class Relatorios extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Maiandra GD", 0, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Todos os Clientes");
         jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -226,14 +238,16 @@ public class Relatorios extends javax.swing.JFrame {
 
         jPanel7.setBackground(new java.awt.Color(204, 255, 204));
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Maiandra GD", 0, 24)); // NOI18N
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("Apenas um Cliente");
         jLabel5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
-        uJComboBoxListarClientes.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        uJComboBoxListarClientes.setMaximumRowCount(20);
+        uJComboBoxListarClientes.setAutocompletar(true);
+        uJComboBoxListarClientes.setFont(new java.awt.Font("Maiandra GD", 0, 24)); // NOI18N
 
-        jButtonRelatorioUmCliente.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jButtonRelatorioUmCliente.setFont(new java.awt.Font("Maiandra GD", 0, 24)); // NOI18N
         jButtonRelatorioUmCliente.setText("Gerar");
         jButtonRelatorioUmCliente.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButtonRelatorioUmCliente.addActionListener(new java.awt.event.ActionListener() {
@@ -263,7 +277,7 @@ public class Relatorios extends javax.swing.JFrame {
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(uJComboBoxListarClientes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButtonRelatorioUmCliente)
                 .addContainerGap())
         );
@@ -284,12 +298,13 @@ public class Relatorios extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "VENDAS", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
+        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "VENDAS", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Maiandra GD", 1, 24))); // NOI18N
         jPanel4.setPreferredSize(new java.awt.Dimension(400, 306));
 
-        jPanel10.setBackground(new java.awt.Color(204, 255, 204));
+        jPanel1.setBackground(new java.awt.Color(204, 255, 204));
+        jPanel1.setPreferredSize(new java.awt.Dimension(429, 113));
 
-        jButtonRelatorioTodosVendas.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jButtonRelatorioTodosVendas.setFont(new java.awt.Font("Maiandra GD", 0, 24)); // NOI18N
         jButtonRelatorioTodosVendas.setText("Gerar");
         jButtonRelatorioTodosVendas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -297,44 +312,46 @@ public class Relatorios extends javax.swing.JFrame {
             }
         });
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Maiandra GD", 0, 24)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Todos as Vendas");
         jLabel2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
-        javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
-        jPanel10.setLayout(jPanel10Layout);
-        jPanel10Layout.setHorizontalGroup(
-            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel10Layout.createSequentialGroup()
-                .addGap(115, 115, 115)
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(122, 122, 122)
                 .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(133, 133, 133))
-            .addGroup(jPanel10Layout.createSequentialGroup()
-                .addGap(151, 151, 151)
+                .addGap(122, 122, 122))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(158, 158, 158)
                 .addComponent(jButtonRelatorioTodosVendas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(162, 162, 162))
+                .addGap(154, 154, 154))
         );
-        jPanel10Layout.setVerticalGroup(
-            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel10Layout.createSequentialGroup()
-                .addGap(13, 13, 13)
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(jLabel2)
                 .addGap(18, 18, 18)
                 .addComponent(jButtonRelatorioTodosVendas)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel11.setBackground(new java.awt.Color(204, 255, 204));
+        jPanel5.setBackground(new java.awt.Color(204, 255, 204));
 
-        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("Maiandra GD", 0, 24)); // NOI18N
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel8.setText("Filtrar por Cliente");
         jLabel8.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
-        uJComboBoxListarClientesVendas.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        uJComboBoxListarClientesVendas.setMaximumRowCount(20);
+        uJComboBoxListarClientesVendas.setAutocompletar(true);
+        uJComboBoxListarClientesVendas.setFont(new java.awt.Font("Maiandra GD", 0, 24)); // NOI18N
 
-        jButtonRelatorioVendaPorCliente.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jButtonRelatorioVendaPorCliente.setFont(new java.awt.Font("Maiandra GD", 0, 24)); // NOI18N
         jButtonRelatorioVendaPorCliente.setText("Gerar");
         jButtonRelatorioVendaPorCliente.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButtonRelatorioVendaPorCliente.addActionListener(new java.awt.event.ActionListener() {
@@ -343,25 +360,23 @@ public class Relatorios extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
-        jPanel11.setLayout(jPanel11Layout);
-        jPanel11Layout.setHorizontalGroup(
-            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(uJComboBoxListarClientesVendas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(jPanel11Layout.createSequentialGroup()
-                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel11Layout.createSequentialGroup()
-                        .addGap(126, 126, 126)
-                        .addComponent(jLabel8))
-                    .addGroup(jPanel11Layout.createSequentialGroup()
-                        .addGap(157, 157, 157)
-                        .addComponent(jButtonRelatorioVendaPorCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(29, 29, 29)))
-                .addGap(127, 127, 127))
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(126, 126, 126)
+                .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(123, 123, 123))
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(166, 166, 166)
+                .addComponent(jButtonRelatorioVendaPorCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(146, 146, 146))
         );
-        jPanel11Layout.setVerticalGroup(
-            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel11Layout.createSequentialGroup()
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel8)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -375,16 +390,16 @@ public class Relatorios extends javax.swing.JFrame {
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 436, Short.MAX_VALUE)
+            .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(437, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -392,15 +407,15 @@ public class Relatorios extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 448, Short.MAX_VALUE)
                 .addGap(20, 20, 20)
-                .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 448, Short.MAX_VALUE)
                 .addGap(20, 20, 20)
-                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 448, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 758, Short.MAX_VALUE)
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 758, Short.MAX_VALUE)
             .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 758, Short.MAX_VALUE)
         );
@@ -467,7 +482,6 @@ public class Relatorios extends javax.swing.JFrame {
         // TODO add your handling code here:
         modelCliente = controllerCliente.getClienteController(uJComboBoxListarClientesVendas.getSelectedItem().toString());
         codigo = modelCliente.getIdCliente();
-        System.err.println(codigo);
         controllerRelatorioVenda.gerarRelatorioVendasPorClienteController(codigo);
     }//GEN-LAST:event_jButtonRelatorioVendaPorClienteActionPerformed
 
@@ -519,15 +533,15 @@ public class Relatorios extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
-    private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
-    private javax.swing.JPanel jPanel9;
     private componentes.UJComboBox uJComboBoxListarClientes;
     private componentes.UJComboBox uJComboBoxListarClientesVendas;
     private componentes.UJComboBox uJComboBoxListarProdutos;

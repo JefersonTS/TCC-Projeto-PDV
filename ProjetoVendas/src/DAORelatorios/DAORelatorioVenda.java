@@ -41,8 +41,8 @@ public class DAORelatorioVenda extends ConexaoMySql {
             JRResultSetDataSource jrRS = new JRResultSetDataSource(getResultSet());
             InputStream caminhoRelatorio = this.getClass().getClassLoader().getResourceAsStream("relatorios/RelatorioTodasVendas.jasper");
             JasperPrint jasperPrint = JasperFillManager.fillReport(caminhoRelatorio, hashMap, jrRS);
-            JasperExportManager.exportReportToPdfFile(jasperPrint, "C:/Users/jefer/Desktop/teste/RelatorioTodasVendas.pdf");
-            File file = new File("C:/Users/jefer/Desktop/teste/RelatorioTodasVendas.pdf");
+            JasperExportManager.exportReportToPdfFile(jasperPrint, "C:/Users/jefer/Desktop/Jefin/Projetos-Java/TCC-Projeto-PDV/ProjetoVendas/src/relatorios/RelatorioTodasVendas.pdf");
+            File file = new File("C:/Users/jefer/Desktop/Jefin/Projetos-Java/TCC-Projeto-PDV/ProjetoVendas/src/relatorios/RelatorioTodasVendas.pdf");
             try {
                 Desktop.getDesktop().open(file);
             } catch (Exception e) {
@@ -82,8 +82,8 @@ public class DAORelatorioVenda extends ConexaoMySql {
             JRResultSetDataSource jrRS = new JRResultSetDataSource(getResultSet());
             InputStream caminhoRelatorio = this.getClass().getClassLoader().getResourceAsStream("relatorios/RelatorioVendaPorCliente.jasper");
             JasperPrint jasperPrint = JasperFillManager.fillReport(caminhoRelatorio, hashMap, jrRS);
-            JasperExportManager.exportReportToPdfFile(jasperPrint, "C:/Users/jefer/Desktop/teste/RelatorioVendaPorCliente.pdf");
-            File file = new File("C:/Users/jefer/Desktop/teste/RelatorioVendaPorCliente.pdf");
+            JasperExportManager.exportReportToPdfFile(jasperPrint, "C:/Users/jefer/Desktop/Jefin/Projetos-Java/TCC-Projeto-PDV/ProjetoVendas/src/relatorios/RelatorioVendaPorCliente.pdf");
+            File file = new File("C:/Users/jefer/Desktop/Jefin/Projetos-Java/TCC-Projeto-PDV/ProjetoVendas/src/relatorios/RelatorioVendaPorCliente.pdf");
             try {
                 Desktop.getDesktop().open(file);
             } catch (Exception e) {

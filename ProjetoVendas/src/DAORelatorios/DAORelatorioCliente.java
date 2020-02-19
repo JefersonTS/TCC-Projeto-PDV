@@ -40,10 +40,10 @@ public class DAORelatorioCliente extends ConexaoMySql {
             );
             HashMap hashMap = new HashMap();
             JRResultSetDataSource jrRS = new JRResultSetDataSource(getResultSet());
-            InputStream caminhoRelatorio = this.getClass().getClassLoader().getResourceAsStream("relatorios/RelatorioTeste.jasper");
+            InputStream caminhoRelatorio = this.getClass().getClassLoader().getResourceAsStream("relatorios/RelatorioTodosClientes.jasper");
             JasperPrint jasperPrint = JasperFillManager.fillReport(caminhoRelatorio, hashMap, jrRS);
-            JasperExportManager.exportReportToPdfFile(jasperPrint, "C:/Users/jefer/Desktop/teste/RelatorioTeste.pdf");
-            File file = new File("C:/Users/jefer/Desktop/teste/RelatorioTeste.pdf");
+            JasperExportManager.exportReportToPdfFile(jasperPrint, "C:/Users/jefer/Desktop/Jefin/Projetos-Java/TCC-Projeto-PDV/ProjetoVendas/src/relatorios/RelatorioTodosClientes.pdf");
+            File file = new File("C:/Users/jefer/Desktop/Jefin/Projetos-Java/TCC-Projeto-PDV/ProjetoVendas/src/relatorios/RelatorioTodosClientes.pdf");
             try {
                 Desktop.getDesktop().open(file);
             } catch (Exception e) {
@@ -89,8 +89,8 @@ public class DAORelatorioCliente extends ConexaoMySql {
             JRResultSetDataSource jrRS = new JRResultSetDataSource(getResultSet());
             InputStream caminhoRelatorio = this.getClass().getClassLoader().getResourceAsStream("relatorios/RelatorioUmCliente.jasper");
             JasperPrint jasperPrint = JasperFillManager.fillReport(caminhoRelatorio, hashMap, jrRS);
-            JasperExportManager.exportReportToPdfFile(jasperPrint, "C:/Users/jefer/Desktop/teste/RelatorioUmCliente.pdf");
-            File file = new File("C:/Users/jefer/Desktop/teste/RelatorioUmCliente.pdf");
+            JasperExportManager.exportReportToPdfFile(jasperPrint, "C:/Users/jefer/Desktop/Jefin/Projetos-Java/TCC-Projeto-PDV/ProjetoVendas/src/relatorios/RelatorioUmCliente.pdf");
+            File file = new File("C:/Users/jefer/Desktop/Jefin/Projetos-Java/TCC-Projeto-PDV/ProjetoVendas/src/relatorios/RelatorioUmCliente.pdf");
             try {
                 Desktop.getDesktop().open(file);
             } catch (Exception e) {

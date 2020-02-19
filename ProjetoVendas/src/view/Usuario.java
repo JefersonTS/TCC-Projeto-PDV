@@ -6,9 +6,14 @@
 package view;
 
 import controller.ControllerUsuario;
+import java.awt.Font;
+import java.awt.Toolkit;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import javax.swing.UIManager;
+import javax.swing.plaf.FontUIResource;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
 import model.ModelUsuario;
 
 /**
@@ -30,6 +35,8 @@ public class Usuario extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         carregarUsuarios();
         habilitarDesabilitar(false);
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("../imagens/carrinho-de-compras.png")));
+        UIManager.put("OptionPane.messageFont", new FontUIResource(new Font("Maiandra GD", Font.PLAIN, 35)));
     }
 
     /**
@@ -62,11 +69,14 @@ public class Usuario extends javax.swing.JFrame {
         setTitle("Sistema de Vendas - Cadastro e Busca de Usuarios");
         setResizable(false);
 
+        jLabel3.setFont(new java.awt.Font("Maiandra GD", 0, 24)); // NOI18N
         jLabel3.setText("Código");
 
+        jLabel12.setFont(new java.awt.Font("Maiandra GD", 0, 24)); // NOI18N
         jLabel12.setText("Nome");
 
         jTextFieldCodigoUsuario.setEditable(false);
+        jTextFieldCodigoUsuario.setFont(new java.awt.Font("Maiandra GD", 0, 24)); // NOI18N
         jTextFieldCodigoUsuario.setEnabled(false);
         jTextFieldCodigoUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -74,16 +84,20 @@ public class Usuario extends javax.swing.JFrame {
             }
         });
 
+        jTextFieldNomeUsuario.setFont(new java.awt.Font("Maiandra GD", 0, 24)); // NOI18N
         jTextFieldNomeUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextFieldNomeUsuarioActionPerformed(evt);
             }
         });
 
+        jLabel11.setFont(new java.awt.Font("Maiandra GD", 0, 24)); // NOI18N
         jLabel11.setText("Login");
 
+        jLabel10.setFont(new java.awt.Font("Maiandra GD", 0, 24)); // NOI18N
         jLabel10.setText("Senha");
 
+        jTableUsuario.setFont(new java.awt.Font("Maiandra GD", 0, 24)); // NOI18N
         jTableUsuario.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -100,6 +114,7 @@ public class Usuario extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        jTableUsuario.setRowHeight(30);
         jScrollPane1.setViewportView(jTableUsuario);
         if (jTableUsuario.getColumnModel().getColumnCount() > 0) {
             jTableUsuario.getColumnModel().getColumn(0).setMinWidth(90);
@@ -107,6 +122,7 @@ public class Usuario extends javax.swing.JFrame {
             jTableUsuario.getColumnModel().getColumn(0).setMaxWidth(90);
         }
 
+        jButtonNovoUsuario.setFont(new java.awt.Font("Maiandra GD", 0, 24)); // NOI18N
         jButtonNovoUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/24x24/papel-de-texto.png"))); // NOI18N
         jButtonNovoUsuario.setText("Novo");
         jButtonNovoUsuario.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -119,6 +135,7 @@ public class Usuario extends javax.swing.JFrame {
             }
         });
 
+        jButtonAlterarUsuario.setFont(new java.awt.Font("Maiandra GD", 0, 24)); // NOI18N
         jButtonAlterarUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/24x24/editar.png"))); // NOI18N
         jButtonAlterarUsuario.setText("Alterar");
         jButtonAlterarUsuario.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -131,6 +148,7 @@ public class Usuario extends javax.swing.JFrame {
             }
         });
 
+        jButtonSalvarUsuario.setFont(new java.awt.Font("Maiandra GD", 0, 24)); // NOI18N
         jButtonSalvarUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/24x24/disquete.png"))); // NOI18N
         jButtonSalvarUsuario.setText("Salvar");
         jButtonSalvarUsuario.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -143,6 +161,7 @@ public class Usuario extends javax.swing.JFrame {
             }
         });
 
+        jButtonCancelarUsuario.setFont(new java.awt.Font("Maiandra GD", 0, 24)); // NOI18N
         jButtonCancelarUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/24x24/proibido.png"))); // NOI18N
         jButtonCancelarUsuario.setText("Cancelar");
         jButtonCancelarUsuario.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -155,6 +174,7 @@ public class Usuario extends javax.swing.JFrame {
             }
         });
 
+        jButtonExcluirUsuario.setFont(new java.awt.Font("Maiandra GD", 0, 24)); // NOI18N
         jButtonExcluirUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/24x24/cancelar.png"))); // NOI18N
         jButtonExcluirUsuario.setText("Excluir");
         jButtonExcluirUsuario.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -167,11 +187,14 @@ public class Usuario extends javax.swing.JFrame {
             }
         });
 
+        jTextFieldLoginUsuario.setFont(new java.awt.Font("Maiandra GD", 0, 24)); // NOI18N
         jTextFieldLoginUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextFieldLoginUsuarioActionPerformed(evt);
             }
         });
+
+        jTextFieldSenhaUsuario.setFont(new java.awt.Font("Maiandra GD", 0, 24)); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -180,7 +203,7 @@ public class Usuario extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1217, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
@@ -202,20 +225,19 @@ public class Usuario extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel10)
                                 .addGap(145, 145, 145))
-                            .addComponent(jTextFieldSenhaUsuario))))
+                            .addComponent(jTextFieldSenhaUsuario)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jButtonNovoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButtonAlterarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButtonSalvarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButtonCancelarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButtonExcluirUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(68, Short.MAX_VALUE)
-                .addComponent(jButtonNovoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButtonAlterarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButtonSalvarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButtonCancelarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButtonExcluirUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(67, 67, 67))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -238,15 +260,15 @@ public class Usuario extends javax.swing.JFrame {
                             .addComponent(jTextFieldSenhaUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jLabel10))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 584, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonNovoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonAlterarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonSalvarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonCancelarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonExcluirUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(19, Short.MAX_VALUE))
+                    .addComponent(jButtonNovoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonAlterarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonSalvarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonCancelarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonExcluirUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -276,8 +298,9 @@ public class Usuario extends javax.swing.JFrame {
                 listaModelUsuario.get(i).getUsNome(),
                 listaModelUsuario.get(i).getUsLogin()
             });
-
         }
+        JTableHeader cabecalho = jTableUsuario.getTableHeader();
+        cabecalho.setFont(new Font("Maiandra GD", Font.PLAIN, 24));
     }
 
 //Limpar os campos do Formulario
@@ -290,7 +313,6 @@ public class Usuario extends javax.swing.JFrame {
 
     //Habilitar e desabilitar os campos e botoes do Formulario
     private void habilitarDesabilitar(boolean condicao) {
-        jTextFieldCodigoUsuario.setEnabled(condicao);
         jTextFieldNomeUsuario.setEnabled(condicao);
         jTextFieldLoginUsuario.setEnabled(condicao);
         jTextFieldSenhaUsuario.setEnabled(condicao);
@@ -309,14 +331,17 @@ public class Usuario extends javax.swing.JFrame {
         salvarAlterar = "salvar";
         habilitarDesabilitar(true);
         limparCampos();
+        jTextFieldNomeUsuario.requestFocus();
     }//GEN-LAST:event_jButtonNovoUsuarioActionPerformed
 
     private void jButtonAlterarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlterarUsuarioActionPerformed
         int linha = jTableUsuario.getSelectedRow(); /* pega o valor da linha selecionada*/
+
         salvarAlterar = "alterar";
-        
+
         try {
             int codigoUsuario = (int) jTableUsuario.getValueAt(linha, 0); /* Pega o valor da coluna da linha selecionada*/
+
             habilitarDesabilitar(true);
 
             // Recupera os dados do banco
@@ -332,34 +357,39 @@ public class Usuario extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonAlterarUsuarioActionPerformed
 
     private void jButtonSalvarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarUsuarioActionPerformed
-        try{
+        try {
             modelUsuario.setIdUsuario(Integer.parseInt(jTextFieldCodigoUsuario.getText()));
-        }catch(NumberFormatException e){}
-        
-        modelUsuario.setUsNome(jTextFieldNomeUsuario.getText().toUpperCase());
-        modelUsuario.setUsLogin(jTextFieldLoginUsuario.getText().toUpperCase());
-        modelUsuario.setUsSenha(jTextFieldSenhaUsuario.getText().toUpperCase());
-
-        if (salvarAlterar.equals("salvar")){
-            if (controllerUsuario.salvarUsuarioController(modelUsuario) > 0) {
-            JOptionPane.showMessageDialog(this, "Usuario Salvo com Sucesso!", "ATENÇÃO", JOptionPane.WARNING_MESSAGE);
-            carregarUsuarios();
-            limparCampos();
-            habilitarDesabilitar(false);
-        } else {
-            JOptionPane.showMessageDialog(this, "Erro ao Salvar o Usuario!", "ERRO", JOptionPane.ERROR_MESSAGE);
-        }
-        }else{
-            if (controllerUsuario.atualizarUsuarioController(modelUsuario)) {
-            JOptionPane.showMessageDialog(this, "Usuario Alterado com Sucesso!", "ATENÇÃO", JOptionPane.WARNING_MESSAGE);
-            carregarUsuarios();
-            limparCampos();
-            habilitarDesabilitar(false);
-        } else {
-            JOptionPane.showMessageDialog(this, "Erro ao Alterar o Usuario!", "ERRO", JOptionPane.ERROR_MESSAGE);
-        }
+        } catch (NumberFormatException e) {
         }
 
+        if (!jTextFieldNomeUsuario.getText().isEmpty() && !jTextFieldLoginUsuario.getText().isEmpty()
+                && !jTextFieldSenhaUsuario.getText().isEmpty()) {
+            modelUsuario.setUsNome(jTextFieldNomeUsuario.getText().toUpperCase());
+            modelUsuario.setUsLogin(jTextFieldLoginUsuario.getText().toUpperCase());
+            modelUsuario.setUsSenha(jTextFieldSenhaUsuario.getText().toUpperCase());
+
+            if (salvarAlterar.equals("salvar")) {
+                if (controllerUsuario.salvarUsuarioController(modelUsuario) > 0) {
+                    JOptionPane.showMessageDialog(this, "Usuario Salvo com Sucesso!", "ATENÇÃO", JOptionPane.WARNING_MESSAGE);
+                    carregarUsuarios();
+                    limparCampos();
+                    habilitarDesabilitar(false);
+                } else {
+                    JOptionPane.showMessageDialog(this, "Erro ao Salvar o Usuario!", "ERRO", JOptionPane.ERROR_MESSAGE);
+                }
+            } else {
+                if (controllerUsuario.atualizarUsuarioController(modelUsuario)) {
+                    JOptionPane.showMessageDialog(this, "Usuario Alterado com Sucesso!", "ATENÇÃO", JOptionPane.WARNING_MESSAGE);
+                    carregarUsuarios();
+                    limparCampos();
+                    habilitarDesabilitar(false);
+                } else {
+                    JOptionPane.showMessageDialog(this, "Erro ao Alterar o Usuario!", "ERRO", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Erro ao " + salvarAlterar + " o Usuario!\nAlgum campo VAZIO", "ERRO", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_jButtonSalvarUsuarioActionPerformed
 
     private void jButtonCancelarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarUsuarioActionPerformed

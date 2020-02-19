@@ -19,7 +19,6 @@ public class DAOCliente extends ConexaoMySql {
             this.conectar();
             return this.insertSQL(
                 "INSERT INTO tb_cliente ("
-                    + "pk_id_cliente,"
                     + "cli_nome,"
                     + "cli_endereco,"
                     + "cli_bairro,"
@@ -28,7 +27,6 @@ public class DAOCliente extends ConexaoMySql {
                     + "cli_cep,"
                     + "cli_telefone"
                 + ") VALUES ("
-                    + "'" + pModelCliente.getIdCliente() + "',"
                     + "'" + pModelCliente.getCliNome() + "',"
                     + "'" + pModelCliente.getCliEndereco() + "',"
                     + "'" + pModelCliente.getCliBairro() + "',"

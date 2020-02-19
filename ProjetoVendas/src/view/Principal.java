@@ -5,8 +5,12 @@
  */
 package view;
 
+import java.awt.Font;
+import java.awt.Toolkit;
 import java.text.SimpleDateFormat;
 import javax.swing.JFrame;
+import javax.swing.UIManager;
+import javax.swing.plaf.FontUIResource;
 import model.ModelSessaoUsuario;
 import util.BLDatas;
 
@@ -27,6 +31,8 @@ public class Principal extends javax.swing.JFrame {
         setarUsuarioDataHora();
         timer1.start();
         setExtendedState(JFrame.MAXIMIZED_BOTH);
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("../imagens/carrinho-de-compras.png")));
+        UIManager.put("OptionPane.messageFont", new FontUIResource(new Font("Maiandra GD",Font.PLAIN,35)));
     }
 
     /**
@@ -79,12 +85,13 @@ public class Principal extends javax.swing.JFrame {
         setTitle("Sistema de Vendas - Painel Principal");
         setIconImages(null);
 
-        uJPanelImagem1.setImagem(new java.io.File("C:\\Users\\jefer\\Desktop\\Jefin\\Projetos Java\\TCC-Projeto-PDV\\ProjetoVendas\\src\\imagens\\fundo.jpg"));
+        uJPanelImagem1.setImagem(new java.io.File("C:\\Users\\jefer\\Desktop\\Jefin\\Projetos-Java\\TCC-Projeto-PDV\\ProjetoVendas\\src\\imagens\\fundo.jpg"));
 
         jPanel2.setBackground(new java.awt.Color(204, 255, 153));
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED), "MENU", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 24))); // NOI18N
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED), "MENU", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Maiandra GD", 1, 24))); // NOI18N
+        jPanel2.setFont(new java.awt.Font("Maiandra GD", 0, 13)); // NOI18N
 
-        jButtonCliente.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jButtonCliente.setFont(new java.awt.Font("Maiandra GD", 1, 24)); // NOI18N
         jButtonCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/24x24/alvo.png"))); // NOI18N
         jButtonCliente.setText("Cliente");
         jButtonCliente.addActionListener(new java.awt.event.ActionListener() {
@@ -93,7 +100,7 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
-        jButtonProduto.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jButtonProduto.setFont(new java.awt.Font("Maiandra GD", 1, 24)); // NOI18N
         jButtonProduto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/24x24/codigo-de-barras-do-supermercado.png"))); // NOI18N
         jButtonProduto.setText("Produto");
         jButtonProduto.addActionListener(new java.awt.event.ActionListener() {
@@ -102,7 +109,7 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
-        jButtonUsuario.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jButtonUsuario.setFont(new java.awt.Font("Maiandra GD", 1, 24)); // NOI18N
         jButtonUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/24x24/adicionar-usuario.png"))); // NOI18N
         jButtonUsuario.setText("Usuario");
         jButtonUsuario.addActionListener(new java.awt.event.ActionListener() {
@@ -111,7 +118,7 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
-        jButtonVenda.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jButtonVenda.setFont(new java.awt.Font("Maiandra GD", 1, 24)); // NOI18N
         jButtonVenda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/24x24/carrinho-de-compras.png"))); // NOI18N
         jButtonVenda.setText("Venda");
         jButtonVenda.addActionListener(new java.awt.event.ActionListener() {
@@ -120,7 +127,7 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
-        jButtonPDV.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jButtonPDV.setFont(new java.awt.Font("Maiandra GD", 1, 24)); // NOI18N
         jButtonPDV.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/24x24/carrinho-de-compras.png"))); // NOI18N
         jButtonPDV.setText("PDV");
         jButtonPDV.addActionListener(new java.awt.event.ActionListener() {
@@ -129,8 +136,8 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
-        jButtonRelatorios.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jButtonRelatorios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/24x24/adicionar-usuario.png"))); // NOI18N
+        jButtonRelatorios.setFont(new java.awt.Font("Maiandra GD", 1, 24)); // NOI18N
+        jButtonRelatorios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/24x24/impressao.png"))); // NOI18N
         jButtonRelatorios.setText("Relatorios");
         jButtonRelatorios.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -168,7 +175,7 @@ public class Principal extends javax.swing.JFrame {
                 .addComponent(jButtonVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButtonPDV, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(308, Short.MAX_VALUE))
+                .addContainerGap(309, Short.MAX_VALUE))
         );
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -306,7 +313,7 @@ public class Principal extends javax.swing.JFrame {
 
         jMenuArquivos.setText("Arquivos");
         jMenuArquivos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jMenuArquivos.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jMenuArquivos.setFont(new java.awt.Font("Maiandra GD", 0, 24)); // NOI18N
         jMenuArquivos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuArquivosActionPerformed(evt);
@@ -329,7 +336,7 @@ public class Principal extends javax.swing.JFrame {
 
         jMenuCadastros.setText("Cadastros");
         jMenuCadastros.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jMenuCadastros.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jMenuCadastros.setFont(new java.awt.Font("Maiandra GD", 0, 24)); // NOI18N
 
         jMenuItemCliente.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.ALT_MASK));
         jMenuItemCliente.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -371,7 +378,7 @@ public class Principal extends javax.swing.JFrame {
 
         jMenu3.setText("Vendas");
         jMenu3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jMenu3.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jMenu3.setFont(new java.awt.Font("Maiandra GD", 0, 24)); // NOI18N
 
         jMenuItemVendas.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_V, java.awt.event.InputEvent.ALT_MASK));
         jMenuItemVendas.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
