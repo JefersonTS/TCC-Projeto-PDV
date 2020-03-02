@@ -5,14 +5,22 @@
  */
 package view;
 
+import conexoes.ConexaoBackup;
 import java.awt.Font;
+import java.awt.HeadlessException;
 import java.awt.Toolkit;
+import java.io.File;
+import java.io.IOException;
+import java.sql.Connection;
 import java.text.SimpleDateFormat;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.plaf.FontUIResource;
 import model.ModelSessaoUsuario;
 import util.BLDatas;
+import view.Cliente;
 
 /**
  *
@@ -22,17 +30,27 @@ public class Principal extends javax.swing.JFrame {
 
     ModelSessaoUsuario modelSessaoUsuario = new ModelSessaoUsuario();
     BLDatas bLDatas = new BLDatas();
+    Connection con = null; //variável para usar em conexão de banco de dados.
+    Process proc;
 
     /**
      * Creates new form Principal
      */
     public Principal() {
         initComponents();
-        setarUsuarioDataHora();
-        timer1.start();
         setExtendedState(JFrame.MAXIMIZED_BOTH);
+        setarUsuarioDataHora();
+        habilitarDesabilitarBackup();
+        timer1.start();
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("../imagens/carrinho-de-compras.png")));
-        UIManager.put("OptionPane.messageFont", new FontUIResource(new Font("Maiandra GD",Font.PLAIN,35)));
+        UIManager.put("OptionPane.messageFont", new FontUIResource(new Font("Maiandra GD", Font.PLAIN, 35)));
+        //Conexao com o banco para fazer o backup
+        try {
+            con = ConexaoBackup.conectar();//Conecta ao banco de dados 
+            JFC_Salvar_Backup.setVisible(false);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e, "Erro!", 2);
+        }
     }
 
     /**
@@ -54,6 +72,8 @@ public class Principal extends javax.swing.JFrame {
         jButtonVenda = new javax.swing.JButton();
         jButtonPDV = new javax.swing.JButton();
         jButtonRelatorios = new javax.swing.JButton();
+        jButtonBackup = new javax.swing.JButton();
+        jButtonRestore = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -64,6 +84,7 @@ public class Principal extends javax.swing.JFrame {
         jPanel6 = new javax.swing.JPanel();
         jLabelHoraAtual = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        JFC_Salvar_Backup = new javax.swing.JFileChooser();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenuArquivos = new javax.swing.JMenu();
         jMenuItemSair = new javax.swing.JMenuItem();
@@ -145,6 +166,24 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
+        jButtonBackup.setFont(new java.awt.Font("Maiandra GD", 1, 24)); // NOI18N
+        jButtonBackup.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/download_database_21022.png"))); // NOI18N
+        jButtonBackup.setText("Backup");
+        jButtonBackup.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonBackupActionPerformed(evt);
+            }
+        });
+
+        jButtonRestore.setFont(new java.awt.Font("Maiandra GD", 1, 24)); // NOI18N
+        jButtonRestore.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/upload_database_21015.png"))); // NOI18N
+        jButtonRestore.setText("Restore");
+        jButtonRestore.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRestoreActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -157,7 +196,9 @@ public class Principal extends javax.swing.JFrame {
                     .addComponent(jButtonUsuario, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButtonVenda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButtonPDV, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButtonRelatorios, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jButtonRelatorios, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButtonBackup, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButtonRestore, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -175,7 +216,11 @@ public class Principal extends javax.swing.JFrame {
                 .addComponent(jButtonVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButtonPDV, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(309, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jButtonBackup, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jButtonRestore, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(173, Short.MAX_VALUE))
         );
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -277,6 +322,8 @@ public class Principal extends javax.swing.JFrame {
             .addComponent(jPanel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
+        JFC_Salvar_Backup.setDialogType(javax.swing.JFileChooser.SAVE_DIALOG);
+
         javax.swing.GroupLayout uJPanelImagem1Layout = new javax.swing.GroupLayout(uJPanelImagem1);
         uJPanelImagem1.setLayout(uJPanelImagem1Layout);
         uJPanelImagem1Layout.setHorizontalGroup(
@@ -284,14 +331,22 @@ public class Principal extends javax.swing.JFrame {
             .addGroup(uJPanelImagem1Layout.createSequentialGroup()
                 .addGap(41, 41, 41)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(JFC_Salvar_Backup, javax.swing.GroupLayout.PREFERRED_SIZE, 507, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         uJPanelImagem1Layout.setVerticalGroup(
             uJPanelImagem1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(uJPanelImagem1Layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(15, 15, 15)
+                .addGroup(uJPanelImagem1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(uJPanelImagem1Layout.createSequentialGroup()
+                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(15, 15, 15))
+                    .addGroup(uJPanelImagem1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(JFC_Salvar_Backup, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -420,15 +475,26 @@ public class Principal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    public String dataHoraSistema(){
-        java.util.Date date = new java.util.Date(); 
-        SimpleDateFormat teste = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss");	
+    public String dataHoraSistema() {
+        java.util.Date date = new java.util.Date();
+        SimpleDateFormat teste = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss");
         return teste.format(date);
     }
 
     private void setarUsuarioDataHora() {
         jLabelUsuario.setText(modelSessaoUsuario.nome);
         jLabelHoraLogin.setText(bLDatas.retornarDataHora());
+    }
+
+    private void habilitarDesabilitarBackup() {
+        String nome = modelSessaoUsuario.nome;
+        if (nome.equals("ADMINISTRADOR")) {
+            jButtonBackup.setVisible(true);
+            jButtonRestore.setVisible(true);
+        } else {
+            jButtonBackup.setVisible(false);
+            jButtonRestore.setVisible(false);
+        }
     }
 
     private void jMenuItemSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemSairActionPerformed
@@ -500,6 +566,85 @@ public class Principal extends javax.swing.JFrame {
         new Relatorios().setVisible(true);
     }//GEN-LAST:event_jButtonRelatoriosActionPerformed
 
+    private void jButtonBackupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBackupActionPerformed
+        // Criar um Backup
+        try {
+            String arquivo = null;
+
+            JFC_Salvar_Backup.setVisible(true);
+
+            int result = JFC_Salvar_Backup.showSaveDialog(null);
+
+            if (result == JFileChooser.APPROVE_OPTION) {
+                arquivo = JFC_Salvar_Backup.getSelectedFile().toString().concat(".sql");
+
+                File file = new File(arquivo);
+
+                if (file.exists()) {
+                    Object[] options = {"Sim", "Não"};
+                    int opcao = JOptionPane.showOptionDialog(null, "Este arquivo já existe. Quer sobreescrever este arquivo?", "Atenção!!!",
+                            JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
+                    if (opcao == JOptionPane.YES_OPTION) {
+                        Runtime bck = Runtime.getRuntime();
+                        bck.exec("C:/xampp/mysql/bin/mysqldump.exe -v -v -v --host=localhost --user=root --port=3306 --protocol=tcp --force --allow-keywords --compress  --add-drop-table --default-character-set=latin1 --hex-blob  --result-file=" + arquivo + " --databases dbprojetovendas");
+                        JOptionPane.showMessageDialog(null, "Backup realizado com sucesso.", "Tudo OK!", 1);
+                    } else {
+                        jButtonBackupActionPerformed(evt);
+                    }
+                } else {
+
+                    Runtime bck = Runtime.getRuntime();
+                    bck.exec("C:/xampp/mysql/bin/mysqldump.exe -v -v -v --host=localhost --user=root --port=3306 --protocol=tcp --force --allow-keywords --compress  --add-drop-table --default-character-set=latin1 --hex-blob  --result-file=" + arquivo + " --databases dbprojetovendas");
+                    JOptionPane.showMessageDialog(null, "Backup realizado com sucesso.", "Tudo OK!", 1);
+                }
+
+            }
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e, "Erro!", 2);
+        }
+    }//GEN-LAST:event_jButtonBackupActionPerformed
+
+    private void jButtonRestoreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRestoreActionPerformed
+        // Restaurar um Backup
+        JFC_Salvar_Backup.setDialogType(1);
+        String dbUserName = "root";// username
+        String dbPassword = "";//Password
+        try {
+            JFC_Salvar_Backup.setVisible(true);
+            String bd = "dbprojetovendas";
+            int result = JFC_Salvar_Backup.showOpenDialog(null);
+
+            if (result == JFileChooser.OPEN_DIALOG) {
+
+                File bkp;
+                bkp = JFC_Salvar_Backup.getSelectedFile();
+                String arq = bkp.getPath();
+                System.out.println("bd " + bd);
+                System.out.println("arq " + arq);
+
+                String[] restoreCmd = new String[]{"C:/xampp/mysql/bin/mysql.exe", "--user=" + dbUserName, "--password=" + dbPassword, "-e", "source " + arq};
+                Process runtimProcess;
+
+                runtimProcess = Runtime.getRuntime().exec(restoreCmd);
+                int proceCom = runtimProcess.waitFor();
+
+                if (proceCom == 0) {
+                    JOptionPane.showMessageDialog(null, "Backup Restaurado com sucesso !");
+                } else {
+                    JOptionPane.showMessageDialog(null, "Falha ao restaurar backup. \n Verifique as configurações ou entre em contato com o suporte !");
+                }
+            }
+
+        } catch (HeadlessException e) {
+            JOptionPane.showMessageDialog(null, e, "Erro!", 2);
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(null, e, "Erro!", 2);
+        } catch (InterruptedException e) {
+            JOptionPane.showMessageDialog(null, e, "Erro!", 2);
+        }
+    }//GEN-LAST:event_jButtonRestoreActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -536,10 +681,13 @@ public class Principal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JFileChooser JFC_Salvar_Backup;
+    private javax.swing.JButton jButtonBackup;
     private javax.swing.JButton jButtonCliente;
     private javax.swing.JButton jButtonPDV;
     private javax.swing.JButton jButtonProduto;
     private javax.swing.JButton jButtonRelatorios;
+    private javax.swing.JButton jButtonRestore;
     private javax.swing.JButton jButtonUsuario;
     private javax.swing.JButton jButtonVenda;
     private javax.swing.JLabel jLabel1;

@@ -8,12 +8,17 @@ package view;
 import controller.ControllerProdutos;
 import controller.ControllerVendas;
 import controller.ControllerVendasProdutos;
+import java.awt.Font;
+import java.awt.Toolkit;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.UIManager;
+import javax.swing.plaf.FontUIResource;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
 import model.ModelProdutos;
 import model.ModelSessaoUsuario;
 import model.ModelVendas;
@@ -38,7 +43,7 @@ public class PDV extends javax.swing.JFrame {
     ModelSessaoUsuario modelSessaoUsuario = new ModelSessaoUsuario();
     ArrayList<ModelVendasProdutos> listaModelVendasProdutoses = new ArrayList<>();
     ArrayList<ModelProdutos> listaModelProdutos = new ArrayList<>();
-    private PagamentoPDV viewPagamentoPDV;
+    private final PagamentoPDV viewPagamentoPDV;
     int qtd;
     Double totalLiquidoVendaPDV, totalBrutoVendaPDV;
 
@@ -54,6 +59,9 @@ public class PDV extends javax.swing.JFrame {
         qtd = 1;
         this.viewPagamentoPDV = new PagamentoPDV(this, true);
         jLabelStatus.setText("ABERTO");
+        mudarFonteTabela();
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("../imagens/carrinho-de-compras.png")));
+        UIManager.put("OptionPane.messageFont", new FontUIResource(new Font("Maiandra GD", Font.PLAIN, 35)));
     }
 
     /**
@@ -103,7 +111,8 @@ public class PDV extends javax.swing.JFrame {
         jMenuItemFinalizarVendaPDV = new javax.swing.JMenuItem();
         jMenuItemPesquisarProdutosPDV = new javax.swing.JMenuItem();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Sistema de Vendas - Vendas PDV");
 
         jPanel1.setBackground(new java.awt.Color(204, 255, 153));
 
@@ -128,6 +137,7 @@ public class PDV extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(204, 255, 153));
 
+        jTableListaProdutosPDV.setFont(new java.awt.Font("Maiandra GD", 0, 24)); // NOI18N
         jTableListaProdutosPDV.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -144,6 +154,7 @@ public class PDV extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        jTableListaProdutosPDV.setRowHeight(30);
         jTableListaProdutosPDV.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTableListaProdutosPDVMouseClicked(evt);
@@ -151,23 +162,24 @@ public class PDV extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jTableListaProdutosPDV);
         if (jTableListaProdutosPDV.getColumnModel().getColumnCount() > 0) {
-            jTableListaProdutosPDV.getColumnModel().getColumn(0).setMinWidth(50);
-            jTableListaProdutosPDV.getColumnModel().getColumn(0).setPreferredWidth(50);
-            jTableListaProdutosPDV.getColumnModel().getColumn(0).setMaxWidth(50);
-            jTableListaProdutosPDV.getColumnModel().getColumn(1).setMinWidth(100);
-            jTableListaProdutosPDV.getColumnModel().getColumn(1).setPreferredWidth(100);
-            jTableListaProdutosPDV.getColumnModel().getColumn(1).setMaxWidth(100);
-            jTableListaProdutosPDV.getColumnModel().getColumn(3).setMinWidth(100);
-            jTableListaProdutosPDV.getColumnModel().getColumn(3).setPreferredWidth(100);
-            jTableListaProdutosPDV.getColumnModel().getColumn(3).setMaxWidth(100);
-            jTableListaProdutosPDV.getColumnModel().getColumn(4).setMinWidth(100);
-            jTableListaProdutosPDV.getColumnModel().getColumn(4).setPreferredWidth(100);
-            jTableListaProdutosPDV.getColumnModel().getColumn(4).setMaxWidth(100);
-            jTableListaProdutosPDV.getColumnModel().getColumn(5).setMinWidth(100);
-            jTableListaProdutosPDV.getColumnModel().getColumn(5).setPreferredWidth(100);
-            jTableListaProdutosPDV.getColumnModel().getColumn(5).setMaxWidth(100);
+            jTableListaProdutosPDV.getColumnModel().getColumn(0).setMinWidth(100);
+            jTableListaProdutosPDV.getColumnModel().getColumn(0).setPreferredWidth(100);
+            jTableListaProdutosPDV.getColumnModel().getColumn(0).setMaxWidth(100);
+            jTableListaProdutosPDV.getColumnModel().getColumn(1).setMinWidth(150);
+            jTableListaProdutosPDV.getColumnModel().getColumn(1).setPreferredWidth(150);
+            jTableListaProdutosPDV.getColumnModel().getColumn(1).setMaxWidth(150);
+            jTableListaProdutosPDV.getColumnModel().getColumn(3).setMinWidth(150);
+            jTableListaProdutosPDV.getColumnModel().getColumn(3).setPreferredWidth(150);
+            jTableListaProdutosPDV.getColumnModel().getColumn(3).setMaxWidth(150);
+            jTableListaProdutosPDV.getColumnModel().getColumn(4).setMinWidth(150);
+            jTableListaProdutosPDV.getColumnModel().getColumn(4).setPreferredWidth(150);
+            jTableListaProdutosPDV.getColumnModel().getColumn(4).setMaxWidth(150);
+            jTableListaProdutosPDV.getColumnModel().getColumn(5).setMinWidth(150);
+            jTableListaProdutosPDV.getColumnModel().getColumn(5).setPreferredWidth(150);
+            jTableListaProdutosPDV.getColumnModel().getColumn(5).setMaxWidth(150);
         }
 
+        jTextFieldCodigoProdutoPDV.setFont(new java.awt.Font("Maiandra GD", 0, 24)); // NOI18N
         jTextFieldCodigoProdutoPDV.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jTextFieldCodigoProdutoPDVKeyReleased(evt);
@@ -188,7 +200,8 @@ public class PDV extends javax.swing.JFrame {
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 509, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(jScrollPane1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTextFieldCodigoProdutoPDV, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -196,22 +209,22 @@ public class PDV extends javax.swing.JFrame {
 
         jPanel3.setBackground(new java.awt.Color(204, 255, 153));
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Maiandra GD", 1, 24)); // NOI18N
         jLabel4.setText("OPERADOR: ");
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Maiandra GD", 1, 24)); // NOI18N
         jLabel3.setText("STATUS: ");
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Maiandra GD", 1, 24)); // NOI18N
         jLabel2.setText("CAIXA: ");
 
-        jLabelStatus.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabelStatus.setFont(new java.awt.Font("Maiandra GD", 1, 24)); // NOI18N
         jLabelStatus.setText("STATUS");
 
-        jLabelOperador.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabelOperador.setFont(new java.awt.Font("Maiandra GD", 1, 24)); // NOI18N
         jLabelOperador.setText("OPERADOR");
 
-        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Maiandra GD", 1, 24)); // NOI18N
         jLabel7.setText("01");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -229,7 +242,7 @@ public class PDV extends javax.swing.JFrame {
                     .addComponent(jLabel7)
                     .addComponent(jLabelStatus)
                     .addComponent(jLabelOperador))
-                .addContainerGap(31, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -249,82 +262,73 @@ public class PDV extends javax.swing.JFrame {
                 .addGap(24, 24, 24))
         );
 
-        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("Maiandra GD", 1, 24)); // NOI18N
         jLabel8.setText("COMANDOS");
 
-        jLabel10.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        jLabel10.setFont(new java.awt.Font("Maiandra GD", 0, 18)); // NOI18N
         jLabel10.setText("F4 - Finalizar Venda");
 
-        jLabel11.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        jLabel11.setFont(new java.awt.Font("Maiandra GD", 0, 18)); // NOI18N
         jLabel11.setText("F3 - Alterar Quantidade");
 
-        jLabel12.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        jLabel12.setFont(new java.awt.Font("Maiandra GD", 0, 18)); // NOI18N
         jLabel12.setText("F5 - Pesquisar Produto");
 
-        jLabel13.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        jLabel13.setFont(new java.awt.Font("Maiandra GD", 0, 18)); // NOI18N
         jLabel13.setText("F9 - Sair");
 
-        jLabel14.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel14.setFont(new java.awt.Font("Maiandra GD", 1, 24)); // NOI18N
+        jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel14.setText("DESCONTO (em %)");
 
-        jLabel15.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel15.setFont(new java.awt.Font("Maiandra GD", 1, 24)); // NOI18N
+        jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel15.setText("VALOR TOTAL");
 
-        jLabel16.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        jLabel16.setFont(new java.awt.Font("Maiandra GD", 0, 18)); // NOI18N
         jLabel16.setText("F2 - Excluir Produto");
 
         jFormattedTextFieldValorBrutoVendaPDV.setEditable(false);
+        jFormattedTextFieldValorBrutoVendaPDV.setFont(new java.awt.Font("Maiandra GD", 0, 24)); // NOI18N
 
-        jLabel17.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        jLabel17.setFont(new java.awt.Font("Maiandra GD", 0, 18)); // NOI18N
         jLabel17.setText("F1 - Incluir Produto");
 
-        jLabel18.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel18.setFont(new java.awt.Font("Maiandra GD", 1, 24)); // NOI18N
+        jLabel18.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel18.setText("TOTAL A PAGAR");
 
         jFormattedTextFieldValorLiquidoVendaPDV.setEditable(false);
+        jFormattedTextFieldValorLiquidoVendaPDV.setFont(new java.awt.Font("Maiandra GD", 0, 24)); // NOI18N
 
         jTextFieldDescontoVendaPDV.setEditable(false);
+        jTextFieldDescontoVendaPDV.setFont(new java.awt.Font("Maiandra GD", 0, 24)); // NOI18N
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel5Layout.createSequentialGroup()
-                                .addGap(76, 76, 76)
-                                .addComponent(jLabel15))
-                            .addGroup(jPanel5Layout.createSequentialGroup()
-                                .addGap(42, 42, 42)
-                                .addComponent(jLabel14)))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jFormattedTextFieldValorBrutoVendaPDV)
-                            .addComponent(jFormattedTextFieldValorLiquidoVendaPDV)
-                            .addGroup(jPanel5Layout.createSequentialGroup()
-                                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel5Layout.createSequentialGroup()
-                                        .addGap(61, 61, 61)
-                                        .addComponent(jLabel8))
-                                    .addComponent(jLabel11)
-                                    .addComponent(jLabel10)
-                                    .addComponent(jLabel12)
-                                    .addComponent(jLabel13)
-                                    .addComponent(jLabel16)
-                                    .addComponent(jLabel17))
-                                .addGap(0, 0, Short.MAX_VALUE)))))
-                .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel18)
-                .addGap(68, 68, 68))
-            .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTextFieldDescontoVendaPDV)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel18, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jFormattedTextFieldValorBrutoVendaPDV, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jFormattedTextFieldValorLiquidoVendaPDV, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTextFieldDescontoVendaPDV, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel14, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel5Layout.createSequentialGroup()
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel5Layout.createSequentialGroup()
+                                .addGap(61, 61, 61)
+                                .addComponent(jLabel8))
+                            .addComponent(jLabel11)
+                            .addComponent(jLabel10)
+                            .addComponent(jLabel12)
+                            .addComponent(jLabel13)
+                            .addComponent(jLabel16)
+                            .addComponent(jLabel17))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jLabel15, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
@@ -356,7 +360,7 @@ public class PDV extends javax.swing.JFrame {
                 .addComponent(jLabel12)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel13)
-                .addContainerGap(43, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -382,9 +386,14 @@ public class PDV extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        jMenuBar1.setFont(new java.awt.Font("Maiandra GD", 0, 24)); // NOI18N
+
         jMenuSairPDV.setText("Arquivos");
+        jMenuSairPDV.setFont(new java.awt.Font("Maiandra GD", 0, 24)); // NOI18N
 
         jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F9, 0));
+        jMenuItem1.setFont(new java.awt.Font("Maiandra GD", 0, 18)); // NOI18N
+        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/24x24/saida.png"))); // NOI18N
         jMenuItem1.setText("Sair");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -396,8 +405,11 @@ public class PDV extends javax.swing.JFrame {
         jMenuBar1.add(jMenuSairPDV);
 
         jMenuComandosPDV.setText("Comandos");
+        jMenuComandosPDV.setFont(new java.awt.Font("Maiandra GD", 0, 24)); // NOI18N
 
         jMenuItemIncluirProduto.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F1, 0));
+        jMenuItemIncluirProduto.setFont(new java.awt.Font("Maiandra GD", 0, 18)); // NOI18N
+        jMenuItemIncluirProduto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/24x24/carrinho-de-compras.png"))); // NOI18N
         jMenuItemIncluirProduto.setText("Incluir Produto");
         jMenuItemIncluirProduto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -407,6 +419,8 @@ public class PDV extends javax.swing.JFrame {
         jMenuComandosPDV.add(jMenuItemIncluirProduto);
 
         jMenuItemExcluirProduto.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F2, 0));
+        jMenuItemExcluirProduto.setFont(new java.awt.Font("Maiandra GD", 0, 18)); // NOI18N
+        jMenuItemExcluirProduto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/24x24/carrinho-de-compras-remover.png"))); // NOI18N
         jMenuItemExcluirProduto.setText("Excluir Produto");
         jMenuItemExcluirProduto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -416,6 +430,8 @@ public class PDV extends javax.swing.JFrame {
         jMenuComandosPDV.add(jMenuItemExcluirProduto);
 
         jMenuItemAlterarQuantidadePDV.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F3, 0));
+        jMenuItemAlterarQuantidadePDV.setFont(new java.awt.Font("Maiandra GD", 0, 18)); // NOI18N
+        jMenuItemAlterarQuantidadePDV.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/24x24/seta.png"))); // NOI18N
         jMenuItemAlterarQuantidadePDV.setText("Alterar Quantidade");
         jMenuItemAlterarQuantidadePDV.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -425,6 +441,8 @@ public class PDV extends javax.swing.JFrame {
         jMenuComandosPDV.add(jMenuItemAlterarQuantidadePDV);
 
         jMenuItemFinalizarVendaPDV.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F4, 0));
+        jMenuItemFinalizarVendaPDV.setFont(new java.awt.Font("Maiandra GD", 0, 18)); // NOI18N
+        jMenuItemFinalizarVendaPDV.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/24x24/final.png"))); // NOI18N
         jMenuItemFinalizarVendaPDV.setText("Finalizar Venda");
         jMenuItemFinalizarVendaPDV.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -434,6 +452,8 @@ public class PDV extends javax.swing.JFrame {
         jMenuComandosPDV.add(jMenuItemFinalizarVendaPDV);
 
         jMenuItemPesquisarProdutosPDV.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F5, 0));
+        jMenuItemPesquisarProdutosPDV.setFont(new java.awt.Font("Maiandra GD", 0, 18)); // NOI18N
+        jMenuItemPesquisarProdutosPDV.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/24x24/pesquisa.png"))); // NOI18N
         jMenuItemPesquisarProdutosPDV.setText("Pesquisar Produtos");
         jMenuComandosPDV.add(jMenuItemPesquisarProdutosPDV);
 
@@ -463,6 +483,11 @@ public class PDV extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void mudarFonteTabela() {// muda a fonte da tabela de vendas
+        JTableHeader cabecalho = jTableListaProdutosPDV.getTableHeader();
+        cabecalho.setFont(new Font("Maiandra GD", Font.PLAIN, 24));
+    }
 
     private void somaValorTotal() {
         double soma = 0, valor, liquido, desconto;

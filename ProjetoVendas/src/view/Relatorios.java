@@ -90,6 +90,7 @@ public class Relatorios extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Sistema de Vendas - Emissão de Relatórios");
+        setPreferredSize(new java.awt.Dimension(1500, 758));
         setResizable(false);
         setSize(new java.awt.Dimension(1500, 800));
 
@@ -164,7 +165,7 @@ public class Relatorios extends javax.swing.JFrame {
             .addComponent(uJComboBoxListarProdutos, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
                 .addGap(157, 157, 157)
-                .addComponent(jButtonRelatorioUmProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addComponent(jButtonRelatorioUmProduto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(156, 156, 156))
         );
         jPanel8Layout.setVerticalGroup(
@@ -263,7 +264,7 @@ public class Relatorios extends javax.swing.JFrame {
             .addComponent(uJComboBoxListarClientes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addGap(101, 101, 101)
-                .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 197, Short.MAX_VALUE)
                 .addGap(140, 140, 140))
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addGap(144, 144, 144)
@@ -367,7 +368,7 @@ public class Relatorios extends javax.swing.JFrame {
             .addComponent(uJComboBoxListarClientesVendas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGap(126, 126, 126)
-                .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, 189, Short.MAX_VALUE)
                 .addGap(123, 123, 123))
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGap(166, 166, 166)
@@ -390,7 +391,7 @@ public class Relatorios extends javax.swing.JFrame {
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 436, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 438, Short.MAX_VALUE)
             .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel4Layout.setVerticalGroup(
@@ -407,11 +408,11 @@ public class Relatorios extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 448, Short.MAX_VALUE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 450, Short.MAX_VALUE)
                 .addGap(20, 20, 20)
-                .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 448, Short.MAX_VALUE)
+                .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 450, Short.MAX_VALUE)
                 .addGap(20, 20, 20)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 448, Short.MAX_VALUE))
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 450, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -422,6 +423,7 @@ public class Relatorios extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
 
     //Lista os clientes para preencher o uJComboBoxNomeClienteProdutosVenda
     private void listarClientes() {

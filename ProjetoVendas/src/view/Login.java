@@ -6,17 +6,13 @@
 package view;
 
 import controller.ControllerUsuario;
-import de.javasoft.plaf.synthetica.SyntheticaAluOxideLookAndFeel;
-import de.javasoft.plaf.synthetica.SyntheticaBlackStarLookAndFeel;
 import de.javasoft.plaf.synthetica.SyntheticaPlainLookAndFeel;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Toolkit;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.LookAndFeel;
 import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.plaf.FontUIResource;
 import model.ModelSessaoUsuario;
 import model.ModelUsuario;
@@ -66,6 +62,7 @@ public class Login extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Sistema de Vendas com Controle de Estoque e PDV");
+        setResizable(false);
 
         uJPanelImagem2.setImagem(new java.io.File("C:\\Users\\jefer\\Desktop\\Jefin\\Projetos-Java\\TCC-Projeto-PDV\\ProjetoVendas\\src\\imagens\\background-login.jpg"));
         uJPanelImagem2.setPreferredSize(new java.awt.Dimension(1000, 600));
@@ -231,6 +228,7 @@ public class Login extends javax.swing.JFrame {
             modelSessaoUsuario.nome = modelUsuario.getUsNome();
             modelSessaoUsuario.login = modelUsuario.getUsLogin();
             new Principal().setVisible(true);
+            setExtendedState(JFrame.ICONIFIED);
         } else {
             JOptionPane.showMessageDialog(this, "Usuario e/ou Senha INCORRETO!", "Aviso", JOptionPane.WARNING_MESSAGE);
         }

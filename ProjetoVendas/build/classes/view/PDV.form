@@ -3,16 +3,30 @@
 <Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <NonVisualComponents>
     <Menu class="javax.swing.JMenuBar" name="jMenuBar1">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Maiandra GD" size="24" style="0"/>
+        </Property>
+      </Properties>
       <SubComponents>
         <Menu class="javax.swing.JMenu" name="jMenuSairPDV">
           <Properties>
             <Property name="text" type="java.lang.String" value="Arquivos"/>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Maiandra GD" size="24" style="0"/>
+            </Property>
           </Properties>
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem1">
               <Properties>
                 <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
                   <KeyStroke key="F9"/>
+                </Property>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Maiandra GD" size="18" style="0"/>
+                </Property>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/imagens/24x24/saida.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Sair"/>
               </Properties>
@@ -25,12 +39,21 @@
         <Menu class="javax.swing.JMenu" name="jMenuComandosPDV">
           <Properties>
             <Property name="text" type="java.lang.String" value="Comandos"/>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Maiandra GD" size="24" style="0"/>
+            </Property>
           </Properties>
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItemIncluirProduto">
               <Properties>
                 <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
                   <KeyStroke key="F1"/>
+                </Property>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Maiandra GD" size="18" style="0"/>
+                </Property>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/imagens/24x24/carrinho-de-compras.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Incluir Produto"/>
               </Properties>
@@ -43,6 +66,12 @@
                 <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
                   <KeyStroke key="F2"/>
                 </Property>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Maiandra GD" size="18" style="0"/>
+                </Property>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/imagens/24x24/carrinho-de-compras-remover.png"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Excluir Produto"/>
               </Properties>
               <Events>
@@ -53,6 +82,12 @@
               <Properties>
                 <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
                   <KeyStroke key="F3"/>
+                </Property>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Maiandra GD" size="18" style="0"/>
+                </Property>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/imagens/24x24/seta.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Alterar Quantidade"/>
               </Properties>
@@ -65,6 +100,12 @@
                 <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
                   <KeyStroke key="F4"/>
                 </Property>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Maiandra GD" size="18" style="0"/>
+                </Property>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/imagens/24x24/final.png"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Finalizar Venda"/>
               </Properties>
               <Events>
@@ -76,6 +117,12 @@
                 <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
                   <KeyStroke key="F5"/>
                 </Property>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Maiandra GD" size="18" style="0"/>
+                </Property>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/imagens/24x24/pesquisa.png"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Pesquisar Produtos"/>
               </Properties>
             </MenuItem>
@@ -85,7 +132,8 @@
     </Menu>
   </NonVisualComponents>
   <Properties>
-    <Property name="defaultCloseOperation" type="int" value="3"/>
+    <Property name="defaultCloseOperation" type="int" value="2"/>
+    <Property name="title" type="java.lang.String" value="Sistema de Vendas - Vendas PDV"/>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="menuBar" type="java.lang.String" value="jMenuBar1"/>
@@ -189,7 +237,8 @@
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <Component id="jScrollPane1" pref="509" max="32767" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="jScrollPane1" max="32767" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jTextFieldCodigoProdutoPDV" min="-2" pref="76" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
@@ -207,6 +256,9 @@
           <SubComponents>
             <Component class="javax.swing.JTable" name="jTableListaProdutosPDV">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Maiandra GD" size="24" style="0"/>
+                </Property>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                   <Table columnCount="6" rowCount="0">
                     <Column editable="false" title="Item" type="java.lang.Object"/>
@@ -219,12 +271,12 @@
                 </Property>
                 <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                   <TableColumnModel selectionModel="0">
-                    <Column maxWidth="50" minWidth="50" prefWidth="50" resizable="true">
+                    <Column maxWidth="100" minWidth="100" prefWidth="100" resizable="true">
                       <Title/>
                       <Editor/>
                       <Renderer/>
                     </Column>
-                    <Column maxWidth="100" minWidth="100" prefWidth="100" resizable="true">
+                    <Column maxWidth="150" minWidth="150" prefWidth="150" resizable="true">
                       <Title/>
                       <Editor/>
                       <Renderer/>
@@ -234,23 +286,24 @@
                       <Editor/>
                       <Renderer/>
                     </Column>
-                    <Column maxWidth="100" minWidth="100" prefWidth="100" resizable="true">
+                    <Column maxWidth="150" minWidth="150" prefWidth="150" resizable="true">
                       <Title/>
                       <Editor/>
                       <Renderer/>
                     </Column>
-                    <Column maxWidth="100" minWidth="100" prefWidth="100" resizable="true">
+                    <Column maxWidth="150" minWidth="150" prefWidth="150" resizable="true">
                       <Title/>
                       <Editor/>
                       <Renderer/>
                     </Column>
-                    <Column maxWidth="100" minWidth="100" prefWidth="100" resizable="true">
+                    <Column maxWidth="150" minWidth="150" prefWidth="150" resizable="true">
                       <Title/>
                       <Editor/>
                       <Renderer/>
                     </Column>
                   </TableColumnModel>
                 </Property>
+                <Property name="rowHeight" type="int" value="30"/>
                 <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
                   <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                 </Property>
@@ -262,6 +315,11 @@
           </SubComponents>
         </Container>
         <Component class="javax.swing.JTextField" name="jTextFieldCodigoProdutoPDV">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Maiandra GD" size="24" style="0"/>
+            </Property>
+          </Properties>
           <Events>
             <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTextFieldCodigoProdutoPDVKeyReleased"/>
           </Events>
@@ -322,7 +380,7 @@
                           <Component id="jLabelStatus" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabelOperador" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="31" max="32767" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -353,7 +411,7 @@
             <Component class="javax.swing.JLabel" name="jLabel4">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Tahoma" size="18" style="1"/>
+                  <Font name="Maiandra GD" size="24" style="1"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="OPERADOR: "/>
               </Properties>
@@ -361,7 +419,7 @@
             <Component class="javax.swing.JLabel" name="jLabel3">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Tahoma" size="18" style="1"/>
+                  <Font name="Maiandra GD" size="24" style="1"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="STATUS: "/>
               </Properties>
@@ -369,7 +427,7 @@
             <Component class="javax.swing.JLabel" name="jLabel2">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Tahoma" size="18" style="1"/>
+                  <Font name="Maiandra GD" size="24" style="1"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="CAIXA: "/>
               </Properties>
@@ -377,7 +435,7 @@
             <Component class="javax.swing.JLabel" name="jLabelStatus">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Tahoma" size="18" style="1"/>
+                  <Font name="Maiandra GD" size="24" style="1"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="STATUS"/>
               </Properties>
@@ -385,7 +443,7 @@
             <Component class="javax.swing.JLabel" name="jLabelOperador">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Tahoma" size="18" style="1"/>
+                  <Font name="Maiandra GD" size="24" style="1"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="OPERADOR"/>
               </Properties>
@@ -393,7 +451,7 @@
             <Component class="javax.swing.JLabel" name="jLabel7">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Tahoma" size="18" style="1"/>
+                  <Font name="Maiandra GD" size="24" style="1"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="01"/>
               </Properties>
@@ -405,54 +463,31 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Component id="jLabel18" max="32767" attributes="0"/>
+                          <Component id="jFormattedTextFieldValorBrutoVendaPDV" alignment="0" max="32767" attributes="0"/>
+                          <Component id="jFormattedTextFieldValorLiquidoVendaPDV" alignment="0" max="32767" attributes="0"/>
+                          <Component id="jTextFieldDescontoVendaPDV" alignment="0" max="32767" attributes="0"/>
+                          <Component id="jLabel14" alignment="0" max="32767" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace min="-2" pref="76" max="-2" attributes="0"/>
-                                      <Component id="jLabel15" min="-2" max="-2" attributes="0"/>
+                                  <Group type="102" attributes="0">
+                                      <EmptySpace min="-2" pref="61" max="-2" attributes="0"/>
+                                      <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
-                                      <Component id="jLabel14" min="-2" max="-2" attributes="0"/>
-                                  </Group>
+                                  <Component id="jLabel11" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel10" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel12" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel13" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel16" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel17" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
-                          <Group type="102" attributes="0">
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jFormattedTextFieldValorBrutoVendaPDV" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="jFormattedTextFieldValorLiquidoVendaPDV" alignment="0" max="32767" attributes="0"/>
-                                  <Group type="102" attributes="0">
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Group type="102" attributes="0">
-                                              <EmptySpace min="-2" pref="61" max="-2" attributes="0"/>
-                                              <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
-                                          </Group>
-                                          <Component id="jLabel11" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jLabel10" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jLabel12" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jLabel13" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jLabel16" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jLabel17" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                                  </Group>
-                              </Group>
-                          </Group>
+                          <Component id="jLabel15" alignment="0" max="32767" attributes="0"/>
                       </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                      <Component id="jLabel18" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="68" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jTextFieldDescontoVendaPDV" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -486,7 +521,7 @@
                       <Component id="jLabel12" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="jLabel13" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="43" max="32767" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -495,7 +530,7 @@
             <Component class="javax.swing.JLabel" name="jLabel8">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Tahoma" size="18" style="1"/>
+                  <Font name="Maiandra GD" size="24" style="1"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="COMANDOS"/>
               </Properties>
@@ -503,7 +538,7 @@
             <Component class="javax.swing.JLabel" name="jLabel10">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Tahoma" size="15" style="0"/>
+                  <Font name="Maiandra GD" size="18" style="0"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="F4 - Finalizar Venda"/>
               </Properties>
@@ -511,7 +546,7 @@
             <Component class="javax.swing.JLabel" name="jLabel11">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Tahoma" size="15" style="0"/>
+                  <Font name="Maiandra GD" size="18" style="0"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="F3 - Alterar Quantidade"/>
               </Properties>
@@ -519,7 +554,7 @@
             <Component class="javax.swing.JLabel" name="jLabel12">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Tahoma" size="15" style="0"/>
+                  <Font name="Maiandra GD" size="18" style="0"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="F5 - Pesquisar Produto"/>
               </Properties>
@@ -527,7 +562,7 @@
             <Component class="javax.swing.JLabel" name="jLabel13">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Tahoma" size="15" style="0"/>
+                  <Font name="Maiandra GD" size="18" style="0"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="F9 - Sair"/>
               </Properties>
@@ -535,23 +570,25 @@
             <Component class="javax.swing.JLabel" name="jLabel14">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Tahoma" size="18" style="1"/>
+                  <Font name="Maiandra GD" size="24" style="1"/>
                 </Property>
+                <Property name="horizontalAlignment" type="int" value="0"/>
                 <Property name="text" type="java.lang.String" value="DESCONTO (em %)"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel15">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Tahoma" size="18" style="1"/>
+                  <Font name="Maiandra GD" size="24" style="1"/>
                 </Property>
+                <Property name="horizontalAlignment" type="int" value="0"/>
                 <Property name="text" type="java.lang.String" value="VALOR TOTAL"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel16">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Tahoma" size="15" style="0"/>
+                  <Font name="Maiandra GD" size="18" style="0"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="F2 - Excluir Produto"/>
               </Properties>
@@ -559,12 +596,15 @@
             <Component class="javax.swing.JFormattedTextField" name="jFormattedTextFieldValorBrutoVendaPDV">
               <Properties>
                 <Property name="editable" type="boolean" value="false"/>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Maiandra GD" size="24" style="0"/>
+                </Property>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel17">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Tahoma" size="15" style="0"/>
+                  <Font name="Maiandra GD" size="18" style="0"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="F1 - Incluir Produto"/>
               </Properties>
@@ -572,19 +612,26 @@
             <Component class="javax.swing.JLabel" name="jLabel18">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Tahoma" size="18" style="1"/>
+                  <Font name="Maiandra GD" size="24" style="1"/>
                 </Property>
+                <Property name="horizontalAlignment" type="int" value="0"/>
                 <Property name="text" type="java.lang.String" value="TOTAL A PAGAR"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JFormattedTextField" name="jFormattedTextFieldValorLiquidoVendaPDV">
               <Properties>
                 <Property name="editable" type="boolean" value="false"/>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Maiandra GD" size="24" style="0"/>
+                </Property>
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="jTextFieldDescontoVendaPDV">
               <Properties>
                 <Property name="editable" type="boolean" value="false"/>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Maiandra GD" size="24" style="0"/>
+                </Property>
               </Properties>
             </Component>
           </SubComponents>

@@ -245,6 +245,8 @@
                       <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
                       <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
+                      <Component id="JFC_Salvar_Backup" min="-2" pref="507" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
                   <Component id="jPanel3" alignment="0" max="32767" attributes="0"/>
               </Group>
@@ -252,8 +254,17 @@
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <Component id="jPanel2" max="32767" attributes="0"/>
-                      <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Component id="jPanel2" max="32767" attributes="0"/>
+                              <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="JFC_Salvar_Backup" min="-2" pref="335" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                          </Group>
+                      </Group>
                       <Component id="jPanel3" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -292,6 +303,8 @@
                               <Component id="jButtonVenda" alignment="0" max="32767" attributes="0"/>
                               <Component id="jButtonPDV" alignment="0" max="32767" attributes="0"/>
                               <Component id="jButtonRelatorios" alignment="0" max="32767" attributes="0"/>
+                              <Component id="jButtonBackup" alignment="1" max="32767" attributes="0"/>
+                              <Component id="jButtonRestore" alignment="0" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
@@ -312,7 +325,11 @@
                           <Component id="jButtonVenda" min="-2" pref="50" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="jButtonPDV" min="-2" pref="50" max="-2" attributes="0"/>
-                          <EmptySpace pref="309" max="32767" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="jButtonBackup" min="-2" pref="50" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="jButtonRestore" min="-2" pref="50" max="-2" attributes="0"/>
+                          <EmptySpace pref="173" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -400,6 +417,34 @@
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonRelatoriosActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="javax.swing.JButton" name="jButtonBackup">
+                  <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Maiandra GD" size="24" style="1"/>
+                    </Property>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/imagens/download_database_21022.png"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="Backup"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonBackupActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="javax.swing.JButton" name="jButtonRestore">
+                  <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Maiandra GD" size="24" style="1"/>
+                    </Property>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/imagens/upload_database_21015.png"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="Restore"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonRestoreActionPerformed"/>
                   </Events>
                 </Component>
               </SubComponents>
@@ -567,6 +612,11 @@
                 </Container>
               </SubComponents>
             </Container>
+            <Component class="javax.swing.JFileChooser" name="JFC_Salvar_Backup">
+              <Properties>
+                <Property name="dialogType" type="int" value="1"/>
+              </Properties>
+            </Component>
           </SubComponents>
         </Container>
       </SubComponents>

@@ -8,7 +8,6 @@ package view;
 import controller.ControllerProdutos;
 import java.awt.Font;
 import java.awt.Toolkit;
-import static java.lang.reflect.Array.set;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.RowFilter;
@@ -16,7 +15,6 @@ import javax.swing.UIManager;
 import javax.swing.plaf.FontUIResource;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
-import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 import model.ModelProdutos;
 import util.Formatador;
@@ -434,6 +432,9 @@ public class Produto extends javax.swing.JFrame {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jTextFieldPesquisarProdutoKeyPressed(evt);
             }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldPesquisarProdutoKeyReleased(evt);
+            }
         });
 
         jButtonCancelarProduto.setFont(new java.awt.Font("Maiandra GD", 0, 24)); // NOI18N
@@ -548,10 +549,10 @@ public class Produto extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jLabel10)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jTextFieldValorProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jTextFieldValorProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(jLabel13)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGap(18, 18, 18)
                                 .addComponent(jTextFieldPesquisarProduto)
                                 .addGap(18, 18, 18)
                                 .addComponent(jButtonPesquisarProduto))
@@ -696,8 +697,8 @@ public class Produto extends javax.swing.JFrame {
                 this.alterarProduto();
                 this.habilitarDesabilitarSalvar(false);
             }
-        }else{
-            JOptionPane.showMessageDialog(this, "Erro ao "+salvarAlterar+" o Produto!\nAlgum campo Vazio", "ERRO", JOptionPane.ERROR_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(this, "Erro ao " + salvarAlterar + " o Produto!\nAlgum campo Vazio", "ERRO", JOptionPane.ERROR_MESSAGE);
         }
         jTextFieldPesquisarProduto.setEnabled(true);
         jButtonPesquisarProduto.setEnabled(true);
@@ -708,6 +709,8 @@ public class Produto extends javax.swing.JFrame {
         habilitarDesabilitarProdutos(false);
         limparCampos();
         jTextFieldPesquisarProduto.requestFocus();
+        jTextFieldPesquisarProduto.setEnabled(true);
+        jButtonPesquisarProduto.setEnabled(true);
     }//GEN-LAST:event_jButtonCancelarProdutoActionPerformed
 
     private void jButtonAlterarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlterarProdutoActionPerformed
@@ -752,6 +755,11 @@ public class Produto extends javax.swing.JFrame {
             pesquisarProduto();
         }
     }//GEN-LAST:event_jTextFieldPesquisarProdutoKeyPressed
+
+    private void jTextFieldPesquisarProdutoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldPesquisarProdutoKeyReleased
+        // TODO add your handling code here:
+        pesquisarProduto();
+    }//GEN-LAST:event_jTextFieldPesquisarProdutoKeyReleased
 
     /**
      * @param args the command line arguments

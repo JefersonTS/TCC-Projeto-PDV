@@ -39,8 +39,12 @@ public class Cliente extends javax.swing.JFrame {
         setAlwaysOnTop(true);
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("../imagens/carrinho-de-compras.png")));
-        UIManager.put("OptionPane.messageFont", new FontUIResource(new Font("Maiandra GD",Font.PLAIN,35)));
+        UIManager.put("OptionPane.messageFont", new FontUIResource(new Font("Maiandra GD", Font.PLAIN, 35)));
         jTextFieldPesquisarCliente.requestFocus();
+    }
+
+    Cliente(Principal aThis) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     /**
@@ -294,6 +298,9 @@ public class Cliente extends javax.swing.JFrame {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jTextFieldPesquisarClienteKeyPressed(evt);
             }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldPesquisarClienteKeyReleased(evt);
+            }
         });
 
         jLabel13.setFont(new java.awt.Font("Maiandra GD", 0, 24)); // NOI18N
@@ -468,6 +475,8 @@ public class Cliente extends javax.swing.JFrame {
         this.habilitaDesabilita(false);
         this.limparCampos();
         jTextFieldPesquisarCliente.requestFocus();
+        jTextFieldPesquisarCliente.setEnabled(true);
+        jButtonPesquisarCliente.setEnabled(true);
     }//GEN-LAST:event_jButtonCancelarClienteActionPerformed
 
     private void jButtonSalvarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarClienteActionPerformed
@@ -506,7 +515,7 @@ public class Cliente extends javax.swing.JFrame {
                 }
             }
         } else {
-            JOptionPane.showMessageDialog(this, "Erro ao "+salvarAlterar+" o Cliente!\nNome ou Algum campo de endereço VAZIO", "ERRO", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Erro ao " + salvarAlterar + " o Cliente!\nNome ou Algum campo de endereço VAZIO", "ERRO", JOptionPane.ERROR_MESSAGE);
 
         }
         jTextFieldPesquisarCliente.setEnabled(true);
@@ -582,6 +591,11 @@ public class Cliente extends javax.swing.JFrame {
             pesquisarCliente();
         }
     }//GEN-LAST:event_jTextFieldPesquisarClienteKeyPressed
+
+    private void jTextFieldPesquisarClienteKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldPesquisarClienteKeyReleased
+        // TODO add your handling code here:
+        pesquisarCliente();
+    }//GEN-LAST:event_jTextFieldPesquisarClienteKeyReleased
 
     //Método para carregar os clientes na tabela
     private void carregarCliente() {
