@@ -14,13 +14,11 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.text.SimpleDateFormat;
 import javax.swing.JFileChooser;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.plaf.FontUIResource;
 import model.ModelSessaoUsuario;
 import util.BLDatas;
-import view.Cliente;
 
 /**
  *
@@ -38,9 +36,10 @@ public class Principal extends javax.swing.JFrame {
      */
     public Principal() {
         initComponents();
-        setExtendedState(JFrame.MAXIMIZED_BOTH);
-        setarUsuarioDataHora();
+        setLocationRelativeTo(null);
+        setExtendedState(MAXIMIZED_BOTH);
         habilitarDesabilitarBackup();
+        setarUsuarioDataHora();
         timer1.start();
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("../imagens/carrinho-de-compras.png")));
         UIManager.put("OptionPane.messageFont", new FontUIResource(new Font("Maiandra GD", Font.PLAIN, 35)));
@@ -331,9 +330,9 @@ public class Principal extends javax.swing.JFrame {
             .addGroup(uJPanelImagem1Layout.createSequentialGroup()
                 .addGap(41, 41, 41)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(69, 69, 69)
                 .addComponent(JFC_Salvar_Backup, javax.swing.GroupLayout.PREFERRED_SIZE, 507, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         uJPanelImagem1Layout.setVerticalGroup(
@@ -344,7 +343,7 @@ public class Principal extends javax.swing.JFrame {
                         .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(15, 15, 15))
                     .addGroup(uJPanelImagem1Layout.createSequentialGroup()
-                        .addContainerGap()
+                        .addGap(199, 199, 199)
                         .addComponent(JFC_Salvar_Backup, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -474,6 +473,16 @@ public class Principal extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+    private void habilitarDesabilitarBackup() {
+        String nome = modelSessaoUsuario.nome;
+        if (nome.equals("ADMINISTRADOR")) {
+            jButtonBackup.setVisible(true);
+            jButtonRestore.setVisible(true);
+        } else {
+            jButtonBackup.setVisible(false);
+            jButtonRestore.setVisible(false);
+        }
+    }
 
     public String dataHoraSistema() {
         java.util.Date date = new java.util.Date();
@@ -484,17 +493,6 @@ public class Principal extends javax.swing.JFrame {
     private void setarUsuarioDataHora() {
         jLabelUsuario.setText(modelSessaoUsuario.nome);
         jLabelHoraLogin.setText(bLDatas.retornarDataHora());
-    }
-
-    private void habilitarDesabilitarBackup() {
-        String nome = modelSessaoUsuario.nome;
-        if (nome.equals("ADMINISTRADOR")) {
-            jButtonBackup.setVisible(true);
-            jButtonRestore.setVisible(true);
-        } else {
-            jButtonBackup.setVisible(false);
-            jButtonRestore.setVisible(false);
-        }
     }
 
     private void jMenuItemSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemSairActionPerformed

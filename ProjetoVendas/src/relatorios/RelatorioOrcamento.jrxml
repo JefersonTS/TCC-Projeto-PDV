@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="RelatorioOrcamento" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="cf3b4d29-608d-4dbc-8312-c758a11b4dff">
+	<property name="ireport.zoom" value="1.948717100000004"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Alternar Cores da Linha">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style backcolor="#D7D7D7"/>
+		</conditionalStyle>
+	</style>
+	<queryString>
+		<![CDATA[SELECT
+     tb_produto.`pk_id_produto` AS tb_produto_pk_id_produto,
+     tb_produto.`prod_nome` AS tb_produto_prod_nome,
+     tb_produto.`prod_valor` AS tb_produto_prod_valor,
+     tb_orcamento_produtos.`pk_id_orcamento_produto` AS tb_orcamento_produtos_pk_id_orcamento_produto,
+     tb_orcamento_produtos.`fk_produto` AS tb_orcamento_produtos_fk_produto,
+     tb_orcamento_produtos.`fk_orcamento` AS tb_orcamento_produtos_fk_orcamento,
+     tb_orcamento_produtos.`orc_pro_valor` AS tb_orcamento_produtos_orc_pro_valor,
+     tb_orcamento_produtos.`orc_pro_qtd` AS tb_orcamento_produtos_orc_pro_qtd,
+     tb_orcamento.`pk_id_orcamento` AS tb_orcamento_pk_id_orcamento,
+     tb_orcamento.`fk_cliente` AS tb_orcamento_fk_cliente,
+     tb_orcamento.`data_orcamento` AS tb_orcamento_data_orcamento,
+     tb_orcamento.`valor_liquido_orcamento` AS tb_orcamento_valor_liquido_orcamento,
+     tb_orcamento.`valor_bruto_orcamento` AS tb_orcamento_valor_bruto_orcamento,
+     tb_orcamento.`desconto_orcamento` AS tb_orcamento_desconto_orcamento,
+     tb_cliente.`pk_id_cliente` AS tb_cliente_pk_id_cliente,
+     tb_cliente.`cli_nome` AS tb_cliente_cli_nome,
+     tb_cliente.`cli_telefone` AS tb_cliente_cli_telefone
+FROM
+     `tb_produto` tb_produto INNER JOIN `tb_orcamento_produtos` tb_orcamento_produtos ON tb_produto.`pk_id_produto` = tb_orcamento_produtos.`fk_produto`
+     INNER JOIN `tb_orcamento` tb_orcamento ON tb_orcamento_produtos.`fk_orcamento` = tb_orcamento.`pk_id_orcamento`
+     INNER JOIN `tb_cliente` tb_cliente ON tb_orcamento.`fk_cliente` = tb_cliente.`pk_id_cliente`
+WHERE pk_id_orcamento = fk_orcamento]]>
+	</queryString>
+	<field name="tb_produto_pk_id_produto" class="java.math.BigInteger"/>
+	<field name="tb_produto_prod_nome" class="java.lang.String"/>
+	<field name="tb_produto_prod_valor" class="java.lang.Double"/>
+	<field name="tb_orcamento_produtos_pk_id_orcamento_produto" class="java.math.BigInteger"/>
+	<field name="tb_orcamento_produtos_fk_produto" class="java.math.BigInteger"/>
+	<field name="tb_orcamento_produtos_fk_orcamento" class="java.math.BigInteger"/>
+	<field name="tb_orcamento_produtos_orc_pro_valor" class="java.lang.Double"/>
+	<field name="tb_orcamento_produtos_orc_pro_qtd" class="java.lang.Integer"/>
+	<field name="tb_orcamento_pk_id_orcamento" class="java.math.BigInteger"/>
+	<field name="tb_orcamento_fk_cliente" class="java.math.BigInteger"/>
+	<field name="tb_orcamento_data_orcamento" class="java.sql.Date"/>
+	<field name="tb_orcamento_valor_liquido_orcamento" class="java.lang.Double"/>
+	<field name="tb_orcamento_valor_bruto_orcamento" class="java.lang.Double"/>
+	<field name="tb_orcamento_desconto_orcamento" class="java.lang.Integer"/>
+	<field name="tb_cliente_pk_id_cliente" class="java.math.BigInteger"/>
+	<field name="tb_cliente_cli_nome" class="java.lang.String"/>
+	<field name="tb_cliente_cli_telefone" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="60" width="187" height="18" uuid="9156173e-c4c7-4e5a-9a6c-6f417a727ae9"/>
+				<textElement>
+					<font size="12" isBold="false" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[RUA: Alfonso Sanches Simon, 181]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="25" width="147" height="17" uuid="2e722d02-5304-4080-bd2b-c8c49fec3986"/>
+				<textElement>
+					<font size="12" isBold="false" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[contato@infosolutions.com]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="153" y="0" width="158" height="30" uuid="6a35dd91-8134-4cf3-8ef9-d06866315d40"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="18" isBold="true" isUnderline="true" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[ORÇAMENTO Nº: ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="42" width="177" height="19" uuid="af613a60-94cf-4b62-8947-147f4faf2796"/>
+				<textElement>
+					<font size="12" isBold="false" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[CNPJ: 16993010049/0001]]></text>
+			</staticText>
+			<image>
+				<reportElement x="420" y="0" width="135" height="75" uuid="8f90d042-ea62-4ed9-8ede-4379f9c35609"/>
+				<imageExpression><![CDATA["C:\\Users\\jefer\\Desktop\\Jefin\\Projetos-Java\\TCC-Projeto-PDV\\ProjetoVendas\\src\\imagens\\Panfleto PC.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="186" y="60" width="100" height="18" uuid="2800235c-821f-4d0b-a0b9-103e1ae03203"/>
+				<box topPadding="0" leftPadding="0">
+					<pen lineStyle="Double"/>
+					<topPen lineStyle="Double"/>
+					<leftPen lineStyle="Double"/>
+					<bottomPen lineStyle="Double"/>
+					<rightPen lineStyle="Double"/>
+				</box>
+				<textElement>
+					<font size="12" isBold="false" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[    (16) 3701 0001]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="0" width="120" height="25" uuid="3b69b813-1358-4f3d-ae62-8c1d7de92710"/>
+				<textElement>
+					<font size="16" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[INFO Solutions]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="78" width="555" height="1" uuid="d3b49355-8088-401f-a624-2c19d98e4bcd"/>
+				<graphicElement>
+					<pen lineStyle="Double"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement x="311" y="0" width="100" height="30" uuid="82103e06-c8d2-4e0a-9d48-b7121b6792e8"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font size="18" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tb_orcamento_pk_id_orcamento}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="164">
+			<staticText>
+				<reportElement mode="Opaque" x="2" y="123" width="550" height="20" backcolor="#CCCCCC" uuid="ca6c14e3-e417-4956-9060-55433cecfb3c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[PRODUTOS À SEREM VENDIDOS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="450" y="143" width="102" height="20" backcolor="#DFDFDF" uuid="74f389f9-4350-433b-aaa9-e728b82e9d47"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Quantiade]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="350" y="143" width="100" height="20" backcolor="#DFDFDF" uuid="61c464c0-ec1d-49b9-a5cd-15b0b15e0c0d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Preço]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="2" y="143" width="83" height="20" backcolor="#DFDFDF" uuid="28338c0f-c035-4a99-8919-eab55335cd7b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[CODIGO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="85" y="143" width="265" height="20" backcolor="#DFDFDF" uuid="9a7afd36-db01-4687-a6e3-110299692c41"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Nome]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="467" y="103" width="85" height="20" uuid="4fd38b86-78f6-4b7a-b8f5-abc929188355"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{tb_orcamento_desconto_orcamento}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="307" y="103" width="160" height="20" uuid="fc93a9c6-59c7-4049-97cf-bc926c97b30b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{tb_orcamento_valor_bruto_orcamento}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="147" y="103" width="160" height="20" uuid="1a5a1909-fc29-454b-acd8-2bba38b54e41"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{tb_orcamento_valor_liquido_orcamento}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="2" y="103" width="145" height="20" uuid="9a3c23a4-847e-420b-bc84-f1d28b18f36c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{tb_orcamento_data_orcamento}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Opaque" x="147" y="83" width="160" height="20" backcolor="#DFDFDF" uuid="4e0fbe98-1af9-4b3e-a893-870b4b7ef5f2"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Valor Liquido]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="2" y="83" width="145" height="20" backcolor="#DFDFDF" uuid="9c913e3a-b2dd-4fe7-9cd0-207cd9c52466"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Data do Orçamento]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="307" y="83" width="160" height="20" backcolor="#DFDFDF" uuid="4ca882ac-635d-485f-8c03-cf04b48bf739"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Valor Bruto]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="467" y="83" width="85" height="20" backcolor="#DFDFDF" uuid="3c30e25b-3bc5-4340-867e-3856ba03617d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Desconto (em %)]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="195" y="43" width="155" height="20" uuid="833cd804-2ea5-4f7c-b43d-c1ac8851d98d"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{tb_cliente_cli_telefone}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="121" y="23" width="431" height="20" uuid="5a7662a9-e58f-4dbf-8187-fc93d905fe94"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{tb_cliente_cli_nome}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Opaque" x="2" y="23" width="83" height="40" backcolor="#DFDFDF" uuid="46b6fbc9-4c40-485b-9239-bca22c3267db"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{tb_cliente_pk_id_cliente}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Opaque" x="2" y="63" width="550" height="20" backcolor="#CCCCCC" uuid="c1787d42-2cc2-4513-9b05-d152c41b3637"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[DADOS DO ORÇAMENTO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="85" y="43" width="110" height="20" uuid="602b1904-0d42-43b6-90d3-2f9477a2fc25"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[TELEFONE/CELULAR:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="85" y="23" width="36" height="20" uuid="f02f5045-1a2c-4f5a-b6e8-6c1ced95cbfd"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[NOME:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="85" y="2" width="467" height="20" backcolor="#CCCCCC" uuid="f0edc113-5875-4b60-85ba-89b4a40751cd"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[DADOS DO CLIENTE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="2" y="2" width="83" height="20" backcolor="#CCCCCC" uuid="6f7660e5-5541-49ee-b28b-4df33bd319dd"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[CODIGO]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="24" splitType="Stretch">
+			<frame>
+				<reportElement style="Alternar Cores da Linha" mode="Opaque" x="2" y="0" width="550" height="24" uuid="6483e777-b5fa-4eaf-bffe-da57af42bcf6"/>
+				<textField>
+					<reportElement x="0" y="2" width="83" height="20" uuid="58460550-c17c-4881-9a63-f302eb3895f7"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$F{tb_produto_pk_id_produto}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="83" y="2" width="265" height="20" uuid="f838a952-1e07-4c31-9b21-0f46a0f2e2c9"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$F{tb_produto_prod_nome}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="448" y="2" width="100" height="20" uuid="b2112965-efea-4311-a1ac-c6e6ce0386bc"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$F{tb_orcamento_produtos_orc_pro_qtd}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement mode="Transparent" x="348" y="2" width="23" height="20" uuid="2c9c51f5-db55-4034-8aaf-1285491510d4"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle"/>
+					<text><![CDATA[R$:]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="348" y="2" width="100" height="20" uuid="f970d06a-df99-4a06-81b8-c79bd3f3016d"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$F{tb_produto_prod_valor}]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="27" splitType="Stretch">
+			<textField evaluationTime="Report">
+				<reportElement x="517" y="4" width="40" height="20" uuid="77bcd86b-6126-4ca8-9c81-f14565f91519"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="437" y="4" width="80" height="20" uuid="45f07312-b4b6-45dc-b74a-f83464840b6a"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField pattern="h.mm a">
+				<reportElement x="158" y="4" width="45" height="20" uuid="37a7a888-04fa-437e-832e-256ff56d92fa"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="2" y="4" width="156" height="20" uuid="1d310440-86b0-445c-a2d9-a357d3c1d1a5"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>

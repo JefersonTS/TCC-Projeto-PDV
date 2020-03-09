@@ -6,11 +6,16 @@
 package view;
 
 import controller.ControllerCliente;
+import controller.ControllerOrcamento;
+import controller.ControllerOrcamentoCliente;
+import controller.ControllerOrcamentoProdutos;
 import controller.ControllerProdutos;
 import controller.ControllerProdutosVendasProdutos;
 import controller.ControllerVendas;
 import controller.ControllerVendasCliente;
 import controller.ControllerVendasProdutos;
+import controllerRelatorios.ControllerRelatorioOrcamento;
+import controllerRelatorios.ControllerRelatorioVenda;
 import java.awt.Font;
 import java.awt.Toolkit;
 import java.util.ArrayList;
@@ -23,12 +28,16 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableRowSorter;
 import model.ModelCliente;
+import model.ModelOrcamento;
+import model.ModelOrcamentoCliente;
+import model.ModelOrcamentoProdutos;
 import model.ModelProdutos;
 import model.ModelProdutosVendasProdutos;
 import model.ModelVendas;
 import model.ModelVendasCliente;
 import model.ModelVendasProdutos;
 import util.BLDatas;
+import util.BLMascaras;
 
 /**
  *
@@ -36,6 +45,8 @@ import util.BLDatas;
  */
 public class Vendas extends javax.swing.JFrame {
 
+    BLDatas bLDatas = new BLDatas();
+    BLMascaras bLMascaras = new BLMascaras();
     ControllerCliente controllerCliente = new ControllerCliente();
     ModelCliente modelCliente = new ModelCliente();
     ArrayList<ModelCliente> listaModelClientes = new ArrayList<>();
@@ -46,14 +57,22 @@ public class Vendas extends javax.swing.JFrame {
     ControllerVendasCliente controllerVendasCliente = new ControllerVendasCliente();
     ControllerVendas controllerVendas = new ControllerVendas();
     ModelVendas modelVendas = new ModelVendas();
-    BLDatas bLDatas = new BLDatas();
     ControllerVendasProdutos controllerVendasProdutos = new ControllerVendasProdutos();
     ModelVendasProdutos modelVendasProdutos = new ModelVendasProdutos();
     ArrayList<ModelVendasProdutos> listaModelVendasProdutoses = new ArrayList<>();
     ControllerProdutosVendasProdutos controllerProdutosVendasProdutos = new ControllerProdutosVendasProdutos();
     ModelProdutosVendasProdutos modelProdutosVendasProdutos = new ModelProdutosVendasProdutos();
     ArrayList<ModelProdutosVendasProdutos> listaModelProdutosVendasProdutoses = new ArrayList<>();
-    int alterarSalvar = 0;
+    ControllerOrcamento controllerOrcamento = new ControllerOrcamento();
+    ModelOrcamento modelOrcamento = new ModelOrcamento();
+    ControllerOrcamentoProdutos controllerOrcamentoProdutos = new ControllerOrcamentoProdutos();
+    ModelOrcamentoProdutos modelOrcamentoProdutos = new ModelOrcamentoProdutos();
+    ArrayList<ModelOrcamentoProdutos> listaModelOrcamentoProdutoses = new ArrayList<>();
+    ControllerOrcamentoCliente controllerOrcamentoCliente = new ControllerOrcamentoCliente();
+    ArrayList<ModelOrcamentoCliente> listaModelOrcamentoClientes = new ArrayList<>();
+    ControllerRelatorioOrcamento controllerRelatorioOrcamento = new ControllerRelatorioOrcamento();
+    ControllerRelatorioVenda controllerRelatorioVenda = new ControllerRelatorioVenda();
+    String alterarSalvar;
 
     /**
      * Creates new form Vendas
@@ -64,10 +83,12 @@ public class Vendas extends javax.swing.JFrame {
         listarProdutos();
         setLocationRelativeTo(null);
         carregarVendas();
+        carregarOrçamentos();
         carregarCodigoDoProduto();
         carregarCodigoDoCliente();
         carregarValorProduto();
         mudarFonteTabela();
+        habilitaDesabilitaCampos(false);
         jTextFieldDescontoVenda.setText("0");
         jTextFieldNumeroVenda.setText("0");
         setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -121,10 +142,16 @@ public class Vendas extends javax.swing.JFrame {
         jTableVendas = new javax.swing.JTable();
         jButtonExcluirVenda = new javax.swing.JButton();
         jButtonAlterarVenda = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel12 = new javax.swing.JLabel();
+        jTextFieldPesquisarOrcamento = new javax.swing.JTextField();
+        jButtonPesquisarOrcamento = new javax.swing.JButton();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTableOrcamento = new javax.swing.JTable();
+        jButtonPesquisarOrcamento1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Sistema de Vendas - Cadastro e Busca de Vendas");
-        setPreferredSize(new java.awt.Dimension(1241, 860));
         setResizable(false);
 
         jTabbedPane1.setFont(new java.awt.Font("Maiandra GD", 0, 24)); // NOI18N
@@ -215,9 +242,9 @@ public class Vendas extends javax.swing.JFrame {
         jTableProdutosVenda.setRowHeight(30);
         jScrollPane1.setViewportView(jTableProdutosVenda);
         if (jTableProdutosVenda.getColumnModel().getColumnCount() > 0) {
-            jTableProdutosVenda.getColumnModel().getColumn(0).setMinWidth(90);
-            jTableProdutosVenda.getColumnModel().getColumn(0).setPreferredWidth(90);
-            jTableProdutosVenda.getColumnModel().getColumn(0).setMaxWidth(90);
+            jTableProdutosVenda.getColumnModel().getColumn(0).setMinWidth(150);
+            jTableProdutosVenda.getColumnModel().getColumn(0).setPreferredWidth(150);
+            jTableProdutosVenda.getColumnModel().getColumn(0).setMaxWidth(150);
             jTableProdutosVenda.getColumnModel().getColumn(2).setMinWidth(200);
             jTableProdutosVenda.getColumnModel().getColumn(2).setPreferredWidth(200);
             jTableProdutosVenda.getColumnModel().getColumn(2).setMaxWidth(200);
@@ -369,7 +396,7 @@ public class Vendas extends javax.swing.JFrame {
                         .addComponent(jButtonRemoverProdutoVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jButtonSalvarVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jTextFieldDescontoVenda))
@@ -476,9 +503,6 @@ public class Vendas extends javax.swing.JFrame {
 
         jTextFieldPesquisarVendas.setFont(new java.awt.Font("Maiandra GD", 0, 24)); // NOI18N
         jTextFieldPesquisarVendas.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                jTextFieldPesquisarVendasKeyPressed(evt);
-            }
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jTextFieldPesquisarVendasKeyReleased(evt);
             }
@@ -514,9 +538,9 @@ public class Vendas extends javax.swing.JFrame {
         jTableVendas.setRowHeight(30);
         jScrollPane2.setViewportView(jTableVendas);
         if (jTableVendas.getColumnModel().getColumnCount() > 0) {
-            jTableVendas.getColumnModel().getColumn(0).setMinWidth(200);
-            jTableVendas.getColumnModel().getColumn(0).setPreferredWidth(200);
-            jTableVendas.getColumnModel().getColumn(0).setMaxWidth(200);
+            jTableVendas.getColumnModel().getColumn(0).setMinWidth(250);
+            jTableVendas.getColumnModel().getColumn(0).setPreferredWidth(250);
+            jTableVendas.getColumnModel().getColumn(0).setMaxWidth(250);
             jTableVendas.getColumnModel().getColumn(2).setMinWidth(200);
             jTableVendas.getColumnModel().getColumn(2).setPreferredWidth(200);
             jTableVendas.getColumnModel().getColumn(2).setMaxWidth(200);
@@ -555,7 +579,7 @@ public class Vendas extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 1211, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 1212, Short.MAX_VALUE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
@@ -593,6 +617,104 @@ public class Vendas extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Consultar/Excluir/Alterar", jPanel2);
 
+        jLabel12.setFont(new java.awt.Font("Maiandra GD", 0, 24)); // NOI18N
+        jLabel12.setText("Pesquisar:");
+
+        jTextFieldPesquisarOrcamento.setFont(new java.awt.Font("Maiandra GD", 0, 24)); // NOI18N
+        jTextFieldPesquisarOrcamento.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldPesquisarOrcamentoKeyReleased(evt);
+            }
+        });
+
+        jButtonPesquisarOrcamento.setFont(new java.awt.Font("Maiandra GD", 0, 24)); // NOI18N
+        jButtonPesquisarOrcamento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/24x24/pesquisa.png"))); // NOI18N
+        jButtonPesquisarOrcamento.setText("Pesquisar");
+        jButtonPesquisarOrcamento.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonPesquisarOrcamento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonPesquisarOrcamentoActionPerformed(evt);
+            }
+        });
+
+        jTableOrcamento.setFont(new java.awt.Font("Maiandra GD", 0, 24)); // NOI18N
+        jTableOrcamento.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Código Orçamento", "Nome do Cliente", "Data Orçamento"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jTableOrcamento.setRowHeight(30);
+        jScrollPane3.setViewportView(jTableOrcamento);
+        if (jTableOrcamento.getColumnModel().getColumnCount() > 0) {
+            jTableOrcamento.getColumnModel().getColumn(0).setMinWidth(250);
+            jTableOrcamento.getColumnModel().getColumn(0).setPreferredWidth(250);
+            jTableOrcamento.getColumnModel().getColumn(0).setMaxWidth(250);
+            jTableOrcamento.getColumnModel().getColumn(2).setMinWidth(200);
+            jTableOrcamento.getColumnModel().getColumn(2).setPreferredWidth(200);
+            jTableOrcamento.getColumnModel().getColumn(2).setMaxWidth(200);
+        }
+
+        jButtonPesquisarOrcamento1.setFont(new java.awt.Font("Maiandra GD", 0, 24)); // NOI18N
+        jButtonPesquisarOrcamento1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/24x24/pesquisa.png"))); // NOI18N
+        jButtonPesquisarOrcamento1.setText("Imprimir");
+        jButtonPesquisarOrcamento1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonPesquisarOrcamento1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonPesquisarOrcamento1ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 1212, Short.MAX_VALUE)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(jLabel12)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(jTextFieldPesquisarOrcamento))
+                        .addGap(18, 18, 18)
+                        .addComponent(jButtonPesquisarOrcamento))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jButtonPesquisarOrcamento1)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jButtonPesquisarOrcamento, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabel12)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldPesquisarOrcamento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 636, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButtonPesquisarOrcamento1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18))
+        );
+
+        jTabbedPane1.addTab("Orçamento", jPanel3);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -606,6 +728,390 @@ public class Vendas extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jTabbedPane1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTabbedPane1MouseClicked
+        // TODO add your handling code here:
+        jTextFieldPesquisarVendas.requestFocus();
+    }//GEN-LAST:event_jTabbedPane1MouseClicked
+
+    private void jButtonAlterarVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlterarVendaActionPerformed
+        int linha = jTableVendas.getSelectedRow();
+        if (linha > -1) {
+            alterarSalvar = "ALTERAR";
+            habilitaDesabilitaCampos(true);
+            int codigoVenda = (int) jTableVendas.getValueAt(linha, 0);
+            listaModelProdutosVendasProdutoses = controllerProdutosVendasProdutos.getListaProdutosVendasProdutosController(codigoVenda);
+            uJComboBoxNomeClienteProdutosVenda.setSelectedItem(jTableVendas.getValueAt(linha, 1));
+            carregarCodigoDoCliente();
+            DefaultTableModel modelo = (DefaultTableModel) jTableProdutosVenda.getModel();
+            modelo.setNumRows(0);
+            for (int i = 0; i < listaModelProdutosVendasProdutoses.size(); i++) {
+                jTextFieldNumeroVenda.setText(String.valueOf(listaModelProdutosVendasProdutoses.get(i).getModelVendasProdutos().getVendas()));
+                modelo.addRow(new Object[]{
+                    listaModelProdutosVendasProdutoses.get(i).getModelProdutos().getIdProduto(),
+                    listaModelProdutosVendasProdutoses.get(i).getModelProdutos().getProdNome(),
+                    listaModelProdutosVendasProdutoses.get(i).getModelVendasProdutos().getVenProQuantidade(),
+                    listaModelProdutosVendasProdutoses.get(i).getModelVendasProdutos().getVenProValor(),
+                    listaModelProdutosVendasProdutoses.get(i).getModelVendasProdutos().getVenProQuantidade()
+                    * listaModelProdutosVendasProdutoses.get(i).getModelVendasProdutos().getVenProValor()
+                });
+            }
+            somarValorToralProdutos();
+            jTabbedPane1.setSelectedIndex(0);//move entre as abas
+        } else {
+            JOptionPane.showMessageDialog(this, "Erro ao Alterar a Venda, Selecione um Registro na Tabela", "ERRO", JOptionPane.ERROR_MESSAGE);
+        }
+
+    }//GEN-LAST:event_jButtonAlterarVendaActionPerformed
+
+    private void jButtonExcluirVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirVendaActionPerformed
+        //Excluir uma venda no banco
+        int linha = jTableVendas.getSelectedRow();//pega a linha selecionada na tabela
+        try {
+            int codigoVenda = (int) jTableVendas.getValueAt(linha, 0);//pega a coluna 0 a linha selecionada
+            listaModelProdutos = new ArrayList<>();
+            listaModelProdutosVendasProdutoses = new ArrayList<>();
+            listaModelProdutosVendasProdutoses = controllerProdutosVendasProdutos.getListaProdutosVendasProdutosController(codigoVenda);
+
+            for (int i = 0; i < listaModelProdutosVendasProdutoses.size(); i++) {
+                modelProdutos = new ModelProdutos();
+                modelProdutos.setIdProduto(listaModelProdutosVendasProdutoses.get(i).getModelProdutos().getIdProduto());
+                modelProdutos.setProdEstoque(
+                        listaModelProdutosVendasProdutoses.get(i).getModelProdutos().getProdEstoque()
+                        + listaModelProdutosVendasProdutoses.get(i).getModelVendasProdutos().getVenProQuantidade()
+                );
+                listaModelProdutos.add(modelProdutos);
+            }
+
+            if (controllerProdutos.alterarEstoqueProdutoControler(listaModelProdutos)) {
+                controllerVendasProdutos.excluirVendasProdutosController(codigoVenda);
+                if (controllerVendas.excluirVendasController(codigoVenda)) {
+                    JOptionPane.showMessageDialog(this, "Venda Excluida com SUCESSO", "ERRO", JOptionPane.WARNING_MESSAGE);
+                    carregarVendas();
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "Erro ao Excluir a Venda", "ERRO", JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Erro ao Excluir a Venda, Selecione um Registro na tabela", "ERRO", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_jButtonExcluirVendaActionPerformed
+
+    private void jButtonPesquisarVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPesquisarVendaActionPerformed
+        // TODO add your handling code here:
+        pesquisarVendas();
+    }//GEN-LAST:event_jButtonPesquisarVendaActionPerformed
+
+    private void jTextFieldPesquisarVendasKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldPesquisarVendasKeyReleased
+        // TODO add your handling code here:
+        pesquisarVendas();
+    }//GEN-LAST:event_jTextFieldPesquisarVendasKeyReleased
+
+    private void uJComboBoxNomeProdutosVendaPopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_uJComboBoxNomeProdutosVendaPopupMenuWillBecomeInvisible
+        // TODO add your handling code here:
+        if (uJComboBoxNomeProdutosVenda.isPopupVisible()) {
+            modelProdutos = controllerProdutos.retornarProdutoController(uJComboBoxNomeProdutosVenda.getSelectedItem().toString());
+            jTextFieldCodigoProdutoVenda.setText(String.valueOf(modelProdutos.getIdProduto()));
+            carregarValorProduto();
+        }
+    }//GEN-LAST:event_uJComboBoxNomeProdutosVendaPopupMenuWillBecomeInvisible
+
+    private void uJComboBoxNomeClienteProdutosVendaPopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_uJComboBoxNomeClienteProdutosVendaPopupMenuWillBecomeInvisible
+        // TODO add your handling code here:
+        if (uJComboBoxNomeClienteProdutosVenda.isPopupVisible()) {
+            modelCliente = controllerCliente.getClienteController(uJComboBoxNomeClienteProdutosVenda.getSelectedItem().toString());
+            jTextFieldCodigoClienteVenda.setText(String.valueOf(modelCliente.getIdCliente()));
+        }
+    }//GEN-LAST:event_uJComboBoxNomeClienteProdutosVendaPopupMenuWillBecomeInvisible
+
+    private void jButtonRemoverProdutoVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRemoverProdutoVendaActionPerformed
+        int linha = jTableProdutosVenda.getSelectedRow();
+        DefaultTableModel modelo = (DefaultTableModel) jTableProdutosVenda.getModel();
+        modelo.removeRow(linha);
+        somarValorToralProdutos();
+    }//GEN-LAST:event_jButtonRemoverProdutoVendaActionPerformed
+
+    private void jTextFieldValorBrutoVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldValorBrutoVendaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldValorBrutoVendaActionPerformed
+
+    private void jTextFieldTotalLiquidoVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldTotalLiquidoVendaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldTotalLiquidoVendaActionPerformed
+
+    private void jTextFieldDescontoVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldDescontoVendaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldDescontoVendaActionPerformed
+
+    private void jTextFieldDescontoVendaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldDescontoVendaFocusLost
+        // TODO add your handling code here:
+        somarValorToralProdutos();
+    }//GEN-LAST:event_jTextFieldDescontoVendaFocusLost
+
+    @SuppressWarnings("empty-statement")
+    private void jButtonSalvarVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarVendaActionPerformed
+        //try catch para verificar se a tabela é vazia e mostrar uma mensagem
+        try {
+            Object[] options = {alterarSalvar, "ORÇAR"};//arrey para mostrar as opções no JOptionPane.showOptionDialog
+            int x = JOptionPane.showOptionDialog(null, "O Que Deseja Fazer ?",
+                    "Venda ou Orçamento ?",
+                    JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options, options[0]);
+            if (x == 0) {
+                int codigoVenda, codigoProduto = 0, qtdVenda = 0;
+                listaModelVendasProdutoses = new ArrayList<>();
+                modelVendasProdutos = new ModelVendasProdutos();
+                modelProdutos = new ModelProdutos();
+                /*
+                 IF para ver se o numero da venda nao é vazio para nao dar erro quando for alterar a venda
+                 pois para alterar precisa do ID da Venda
+                 */
+                if (!jTextFieldNumeroVenda.equals("")) {
+                    modelVendas.setIdVenda(Integer.parseInt(jTextFieldNumeroVenda.getText()));
+                }
+                modelVendas.setCliente(Integer.parseInt(jTextFieldCodigoClienteVenda.getText()));
+                /*
+                 try catch para tratar a data, pois no banco só aceita no formato americano
+                 */
+                try {
+                    modelVendas.setVenDataVenda(bLDatas.converterDataParaDateUS(new java.util.Date(System.currentTimeMillis())));
+                } catch (Exception e) {
+                    //Logger.getLogger(Vendas.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                modelVendas.setVenValorLiquido(bLMascaras.arredondamentoComPontoDuasCasasDouble(Double.parseDouble(jTextFieldTotalLiquidoVenda.getText())));
+                modelVendas.setVenValorBruto(bLMascaras.arredondamentoComPontoDuasCasasDouble(Double.parseDouble(jTextFieldValorBrutoVenda.getText())));
+                modelVendas.setVenDesconto(Double.parseDouble(jTextFieldDescontoVenda.getText()));
+
+                /*
+                 Aqui é onde entro no metodo de salvar ou alterar
+                 */
+                if (alterarSalvar.equals("SALVAR")) {
+                    //SALVAR UMA NOVA VENDA NO BANCO
+                    codigoVenda = controllerVendas.salvarVendasController(modelVendas);
+                    if (codigoVenda > 0) {
+                        JOptionPane.showMessageDialog(this, "Venda Concluida com SUCESSO", "SUCESSO", JOptionPane.INFORMATION_MESSAGE);
+                    } else {
+                        JOptionPane.showMessageDialog(this, "Erro ao Concluir a Venda", "ERRO", JOptionPane.ERROR_MESSAGE);
+                    }
+
+                    //Apenas percorrer o vetor para pegar os dados do produto
+                    int cont = jTableProdutosVenda.getRowCount();//pega quantas linhas tem na tabela
+                    for (int i = 0; i < cont; i++) {
+                        codigoProduto = (int) jTableProdutosVenda.getValueAt(i, 0);
+                        qtdVenda = Integer.parseInt(jTableProdutosVenda.getValueAt(i, 2).toString());
+                        modelVendasProdutos = new ModelVendasProdutos();
+                        modelProdutos = new ModelProdutos();
+                        modelVendasProdutos.setProduto(codigoProduto);
+                        modelVendasProdutos.setVendas(codigoVenda);
+                        modelVendasProdutos.setVenProValor((double) jTableProdutosVenda.getValueAt(i, 3));
+                        modelVendasProdutos.setVenProQuantidade(qtdVenda);
+                        listaModelVendasProdutoses.add(modelVendasProdutos);
+                        //subtrai a quantidade vendida no estoque
+                        modelProdutos.setIdProduto(codigoProduto);
+                        modelProdutos.setProdEstoque(controllerProdutos.retornarProdutoController(codigoProduto).getProdEstoque()
+                                - qtdVenda);
+                        listaModelProdutos.add(modelProdutos);
+                    }
+
+                    //salvar os produtos da venda na tb_vendas_produtos
+                    if (controllerVendasProdutos.salvarVendasProdutosController(listaModelVendasProdutoses)) {
+                        controllerProdutos.alterarEstoqueProdutoControler(listaModelProdutos);//Alterar o estoque no banco
+                        limparVendas();
+                        carregarVendas();
+                        habilitaDesabilitaCampos(false);
+                        // INICIO - Mensagem com a opção para imprimir a venda
+                        Object[] opt = {"SIM", "NÃO"};//arrey para mostrar as opções no JOptionPane.showOptionDialog
+                        int y = JOptionPane.showOptionDialog(null, "Deseja Imprimir a Venda ?",
+                                "O Que Deseja Fazer ?",
+                                JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, opt, opt[0]);
+                        if (y == 0) {
+                            int codigo = Integer.parseInt(jTextFieldCodigoClienteVenda.getText());
+                            String data = String.valueOf(modelVendas.getVenDataVenda());
+                            //Chamar a função que vai imprimir a venda, passando o codigo do cliente, data da venda e codigo da venda
+                            controllerRelatorioVenda.gerarRelatorioUmaVendaPorClienteController(codigo, data, codigoVenda);
+                        }
+                        // FIM - Mensagem com a opção para imprimir a venda
+                    }
+                } //ALTERAR UMA VENDA JA CONCLUIDA
+                else if (alterarSalvar.equals("ALTERAR")) {
+                    try {
+                        modelVendasProdutos = new ModelVendasProdutos();
+                        //INICIO -> retornar os produtos para o estoque e excluir os produtos da venda
+                        codigoVenda = Integer.parseInt(jTextFieldNumeroVenda.getText());
+                        listaModelProdutos = new ArrayList<>();
+                        listaModelProdutosVendasProdutoses = new ArrayList<>();
+                        listaModelProdutosVendasProdutoses = controllerProdutosVendasProdutos.getListaProdutosVendasProdutosController(codigoVenda);
+
+                        for (int i = 0; i < listaModelProdutosVendasProdutoses.size(); i++) {
+                            modelProdutos = new ModelProdutos();
+                            modelProdutos.setIdProduto(listaModelProdutosVendasProdutoses.get(i).getModelProdutos().getIdProduto());
+                            modelProdutos.setProdEstoque(
+                                    listaModelProdutosVendasProdutoses.get(i).getModelProdutos().getProdEstoque()
+                                    + listaModelProdutosVendasProdutoses.get(i).getModelVendasProdutos().getVenProQuantidade()
+                            );
+                            listaModelProdutos.add(modelProdutos);
+                        }
+
+                        if (controllerProdutos.alterarEstoqueProdutoControler(listaModelProdutos)) {
+                            controllerVendasProdutos.excluirVendasProdutosController(codigoVenda);
+                            carregarVendas();
+                        }
+                        //FIM -> retornar os produtos para o estoque e excluir os produtos da venda
+
+                        controllerVendas.atualizarVendasController(modelVendas);
+
+                        int cont = jTableProdutosVenda.getRowCount();//pega quantas linhas tem na tabela
+                        for (int i = 0; i < cont; i++) {
+                            codigoProduto = (int) jTableProdutosVenda.getValueAt(i, 0);
+                            qtdVenda = Integer.parseInt(jTableProdutosVenda.getValueAt(i, 2).toString());
+                            modelVendasProdutos = new ModelVendasProdutos();
+                            modelProdutos = new ModelProdutos();
+                            modelVendasProdutos.setProduto(codigoProduto);
+                            modelVendasProdutos.setVendas(codigoVenda);
+                            modelVendasProdutos.setVenProValor((double) jTableProdutosVenda.getValueAt(i, 3));
+                            modelVendasProdutos.setVenProQuantidade(qtdVenda);
+                            //subtrai a quantidade vendida no estoque
+                            modelProdutos.setIdProduto(codigoProduto);
+                            modelProdutos.setProdEstoque(controllerProdutos.retornarProdutoController(codigoProduto).getProdEstoque()
+                                    - qtdVenda);
+                            listaModelVendasProdutoses.add(modelVendasProdutos);
+                            listaModelProdutos.add(modelProdutos);
+                        }
+                        //Salvar os produtos da alteração da venda
+                        controllerVendasProdutos.salvarVendasProdutosController(listaModelVendasProdutoses);//Salva as vendas na tb_vendas_produtos
+                        controllerProdutos.alterarEstoqueProdutoControler(listaModelProdutos);// atualiza o estoque na tb_produto
+                        carregarVendas();
+                        limparVendas();
+                        habilitaDesabilitaCampos(false);
+                        JOptionPane.showMessageDialog(this, "Venda Alterada com SUCESSO", "SUCESSO", JOptionPane.WARNING_MESSAGE);
+                        Object[] opt = {"SIM", "NÃO"};//arrey para mostrar as opções no JOptionPane.showOptionDialog
+                        int y = JOptionPane.showOptionDialog(null, "Deseja Imprimir a Venda ?",
+                                "O Que Deseja Fazer ?",
+                                JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, opt, opt[0]);
+                        if (y == 0) {
+                            int codigo = Integer.parseInt(jTextFieldCodigoClienteVenda.getText());
+                            String data = String.valueOf(modelVendas.getVenDataVenda());
+                            //Chamar a função que vai imprimir a venda, passando o codigo do cliente, data da venda e codigo da venda
+                            controllerRelatorioVenda.gerarRelatorioUmaVendaPorClienteController(codigo, data, codigoVenda);
+                            System.err.println("codigoVenda: " + codigoVenda + "/ndata: " + data + "/ncodigo cliente:" + codigo);
+                        }
+                        // FIM - Mensagem com a opção para imprimir a venda
+                    } catch (Exception e) {
+                        JOptionPane.showMessageDialog(this, "Erro ao Alterar a Venda", "ERRO", JOptionPane.ERROR_MESSAGE);
+                    }
+                }
+            } else {//else pertencente ao JOptionPane.showOptionDialog
+                int codigoOrcamento;
+                modelOrcamento = new ModelOrcamento();
+                //Inicio - Salvando os dados do orçamento na tb_orcamento
+                modelOrcamento.setIdCliente(Integer.parseInt(String.valueOf(jTextFieldCodigoClienteVenda.getText())));
+                //try catch para tratar a data, pois no banco só aceita no formato americano
+                try {
+                    modelOrcamento.setDataOrcamento(bLDatas.converterDataParaDateUS(new java.util.Date(System.currentTimeMillis())));
+                } catch (Exception e) {
+                    //Logger.getLogger(Vendas.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                modelOrcamento.setValorLiquidoOrcamento(Double.parseDouble(String.valueOf(jTextFieldTotalLiquidoVenda.getText())));
+                modelOrcamento.setValorBrutoOrcamento(Double.parseDouble(String.valueOf(jTextFieldValorBrutoVenda.getText())));
+                modelOrcamento.setDescontoOrcamento(Integer.parseInt(String.valueOf(jTextFieldDescontoVenda.getText())));
+                //SALVAR UM NOVO OÇAMENTO NA tb_orcamento
+                codigoOrcamento = controllerOrcamento.salvarOrcamentoController(modelOrcamento); //Salva os Dados do orçamento e se for maior que zero está salvo
+                if (codigoOrcamento > 0) {
+                    JOptionPane.showMessageDialog(this, "Orçamento Salvo com SUCESSO", "SUCESSO", JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                    JOptionPane.showMessageDialog(this, "Erro ao Salvar Orçamento", "ERRO", JOptionPane.ERROR_MESSAGE);
+                }
+                //FIM - Salvando os dados do orçamento na tb_orcamento
+                //Inicio - Percorrer o vetor para pegar os dados do produtos para salvar na tb_orcamento_produtos
+                int cont = jTableProdutosVenda.getRowCount();//pega quantas linhas tem na tabela
+                for (int i = 0; i < cont; i++) {
+                    int codigoProduto = (int) jTableProdutosVenda.getValueAt(i, 0);
+                    int qtdProduto = Integer.parseInt(jTableProdutosVenda.getValueAt(i, 2).toString());
+                    modelOrcamentoProdutos = new ModelOrcamentoProdutos();
+                    modelOrcamentoProdutos.setIdProduto(codigoProduto);
+                    modelOrcamentoProdutos.setIdOrcamento(codigoOrcamento);
+                    modelOrcamentoProdutos.setValorProduto(Double.parseDouble(String.valueOf(jTableProdutosVenda.getValueAt(i, 3))));
+                    modelOrcamentoProdutos.setQtdProduto(qtdProduto);
+                    listaModelOrcamentoProdutoses.add(modelOrcamentoProdutos);
+                }
+                controllerOrcamentoProdutos.salvarOrcamentoProdutosController(listaModelOrcamentoProdutoses);
+                limparVendas();
+                carregarVendas();
+                habilitaDesabilitaCampos(false);
+
+                carregarOrçamentos();
+                controllerRelatorioOrcamento.gerarRelatorioOrcamentoController(codigoOrcamento);
+            }
+
+        } catch (Exception e) {//try catch para verificar se a tabela é vazia e mostrar uma mensagem
+            JOptionPane.showMessageDialog(this, "Nenhum Produto na Tabela", "ERRO", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_jButtonSalvarVendaActionPerformed
+
+    private void jButtonCancelarVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarVendaActionPerformed
+        habilitaDesabilitaCampos(false);
+        limparVendas();
+    }//GEN-LAST:event_jButtonCancelarVendaActionPerformed
+
+    private void jButtonNovoVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNovoVendaActionPerformed
+        alterarSalvar = "SALVAR";
+        jButtonSalvarVenda.setEnabled(true);
+        limparVendas();
+        habilitaDesabilitaCampos(true);
+        carregarValorProduto();
+    }//GEN-LAST:event_jButtonNovoVendaActionPerformed
+
+    private void jButtonAdicionarVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAdicionarVendaActionPerformed
+        adicionarVenda();
+    }//GEN-LAST:event_jButtonAdicionarVendaActionPerformed
+
+    private void jTextFieldCodigoProdutoVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldCodigoProdutoVendaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldCodigoProdutoVendaActionPerformed
+
+    private void jTextFieldCodigoProdutoVendaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldCodigoProdutoVendaFocusLost
+        // TODO add your handling code here:.
+        modelProdutos = controllerProdutos.retornarProdutoController(Integer.parseInt(jTextFieldCodigoProdutoVenda.getText()));
+        uJComboBoxNomeProdutosVenda.setSelectedItem(modelProdutos.getProdNome());
+        carregarValorProduto();
+    }//GEN-LAST:event_jTextFieldCodigoProdutoVendaFocusLost
+
+    private void jTextFieldQuantidadeVendaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldQuantidadeVendaKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
+            adicionarVenda();
+        }
+    }//GEN-LAST:event_jTextFieldQuantidadeVendaKeyPressed
+
+    private void jTextFieldCodigoClienteVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldCodigoClienteVendaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldCodigoClienteVendaActionPerformed
+
+    private void jTextFieldCodigoClienteVendaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldCodigoClienteVendaFocusLost
+        // TODO add your handling code here:
+        modelCliente = controllerCliente.getClienteController(Integer.parseInt(jTextFieldCodigoClienteVenda.getText()));
+        uJComboBoxNomeClienteProdutosVenda.setSelectedItem(modelCliente.getCliNome());
+    }//GEN-LAST:event_jTextFieldCodigoClienteVendaFocusLost
+
+    private void jButtonPesquisarOrcamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPesquisarOrcamentoActionPerformed
+        // TODO add your handling code here:
+        pesquisarOrcamento();
+    }//GEN-LAST:event_jButtonPesquisarOrcamentoActionPerformed
+
+    private void jTextFieldPesquisarOrcamentoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldPesquisarOrcamentoKeyReleased
+        // TODO add your handling code here:
+        pesquisarOrcamento();
+    }//GEN-LAST:event_jTextFieldPesquisarOrcamentoKeyReleased
+
+    private void jButtonPesquisarOrcamento1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPesquisarOrcamento1ActionPerformed
+        // TODO add your handling code here:
+        try {
+            int linha = jTableOrcamento.getSelectedRow();
+            int codigo = (int) jTableOrcamento.getValueAt(linha, 0);
+            controllerRelatorioOrcamento.gerarRelatorioOrcamentoController(codigo);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Selecione um Orçamento!", "ATENÇÃO", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_jButtonPesquisarOrcamento1ActionPerformed
 
     private void adicionarVenda() {
         if (jTextFieldQuantidadeVenda.getText().equals("")) {
@@ -663,12 +1169,39 @@ public class Vendas extends javax.swing.JFrame {
         }
     }
 
+    private void carregarOrçamentos() {
+        DefaultTableModel modelo = (DefaultTableModel) jTableOrcamento.getModel();
+        listaModelOrcamentoClientes = controllerOrcamentoCliente.getListaOrcamentoClienteController();
+        modelo.setNumRows(0);//seta o numero de linhas em ZERO para nao duplicar na tabela
+        //insere as vendas na tabela
+        int cont = listaModelOrcamentoClientes.size();
+        for (int i = 0; i < cont; i++) {
+            modelo.addRow(new Object[]{
+                listaModelOrcamentoClientes.get(i).getModelOrcamento().getIdOrcamento(),
+                listaModelOrcamentoClientes.get(i).getModelCliente().getCliNome(),
+                bLDatas.formatarData(listaModelOrcamentoClientes.get(i).getModelOrcamento().getDataOrcamento())
+            });
+        }
+    }
+
+    private void habilitaDesabilitaCampos(boolean condicao) {
+        jTextFieldCodigoClienteVenda.setEnabled(condicao);
+        jTextFieldCodigoProdutoVenda.setEnabled(condicao);
+        jTextFieldValorDoProdutoVenda.setEnabled(condicao);
+        jTextFieldQuantidadeVenda.setEnabled(condicao);
+        uJComboBoxNomeClienteProdutosVenda.setEnabled(condicao);
+        uJComboBoxNomeProdutosVenda.setEnabled(condicao);
+        jButtonSalvarVenda.setEnabled(condicao);
+        jButtonAdicionarVenda.setEnabled(condicao);
+    }
+
     private void limparVendas() {
         jTextFieldQuantidadeVenda.setText("");
         jTextFieldDescontoVenda.setText("0");
         jTextFieldValorBrutoVenda.setText("");
         jTextFieldTotalLiquidoVenda.setText("");
         jTextFieldNumeroVenda.setText("0");
+        jTextFieldValorDoProdutoVenda.setText("");
         DefaultTableModel modelo = (DefaultTableModel) jTableProdutosVenda.getModel();
         modelo.setNumRows(0);
     }
@@ -682,7 +1215,7 @@ public class Vendas extends javax.swing.JFrame {
             valor = (double) jTableProdutosVenda.getValueAt(i, 4);
             soma = soma + valor;
         }
-        jTextFieldValorBrutoVenda.setText(String.valueOf(soma));
+        jTextFieldValorBrutoVenda.setText(String.valueOf(bLMascaras.arredondamentoComPontoDuasCasasDouble(soma)));
         aplicarDesconto();
     }
 
@@ -693,7 +1226,7 @@ public class Vendas extends javax.swing.JFrame {
         double valorBruto = Double.parseDouble(jTextFieldValorBrutoVenda.getText());
         double valorLiquido = valorBruto - ((desconto / 100) * valorBruto);
         //jTextFieldTotalPagarVenda.setText("R$: " + String.valueOf(df.format(totalDesconto)));
-        jTextFieldTotalLiquidoVenda.setText(String.valueOf(valorLiquido));
+        jTextFieldTotalLiquidoVenda.setText(String.valueOf(bLMascaras.arredondamentoComPontoDuasCasasDouble(valorLiquido)));
     }
 
     //carregar o código do produto assim que iniciar o programa
@@ -721,304 +1254,22 @@ public class Vendas extends javax.swing.JFrame {
         classificador.setRowFilter(RowFilter.regexFilter(texto, 1));
     }
 
+    private void pesquisarOrcamento() {
+        DefaultTableModel modelo = (DefaultTableModel) this.jTableOrcamento.getModel();
+        final TableRowSorter<DefaultTableModel> classificador = new TableRowSorter<>(modelo);
+        this.jTableOrcamento.setRowSorter(classificador);
+        String texto = jTextFieldPesquisarOrcamento.getText().toUpperCase();
+        classificador.setRowFilter(RowFilter.regexFilter(texto, 1));
+    }
+
     private void mudarFonteTabela() {// muda a fonte da tabela de vendas
         JTableHeader cabecalho = jTableProdutosVenda.getTableHeader();
         cabecalho.setFont(new Font("Maiandra GD", Font.PLAIN, 24));
         JTableHeader cabecalho2 = jTableVendas.getTableHeader();
         cabecalho2.setFont(new Font("Maiandra GD", Font.PLAIN, 24));
+        JTableHeader cabecalho3 = jTableOrcamento.getTableHeader();
+        cabecalho3.setFont(new Font("Maiandra GD", Font.PLAIN, 24));
     }
-
-    private void jButtonPesquisarVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPesquisarVendaActionPerformed
-        // TODO add your handling code here:
-        pesquisarVendas();
-    }//GEN-LAST:event_jButtonPesquisarVendaActionPerformed
-
-    private void jButtonExcluirVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirVendaActionPerformed
-        //Excluir uma venda no banco
-        int linha = jTableVendas.getSelectedRow();//pega a linha selecionada na tabela
-        try {
-            int codigoVenda = (int) jTableVendas.getValueAt(linha, 0);//pega a coluna 0 a linha selecionada
-            listaModelProdutos = new ArrayList<>();
-            listaModelProdutosVendasProdutoses = new ArrayList<>();
-            listaModelProdutosVendasProdutoses = controllerProdutosVendasProdutos.getListaProdutosVendasProdutosController(codigoVenda);
-
-            for (int i = 0; i < listaModelProdutosVendasProdutoses.size(); i++) {
-                modelProdutos = new ModelProdutos();
-                modelProdutos.setIdProduto(listaModelProdutosVendasProdutoses.get(i).getModelProdutos().getIdProduto());
-                modelProdutos.setProdEstoque(
-                        listaModelProdutosVendasProdutoses.get(i).getModelProdutos().getProdEstoque()
-                        + listaModelProdutosVendasProdutoses.get(i).getModelVendasProdutos().getVenProQuantidade()
-                );
-                listaModelProdutos.add(modelProdutos);
-            }
-
-            if (controllerProdutos.alterarEstoqueProdutoControler(listaModelProdutos)) {
-                controllerVendasProdutos.excluirVendasProdutosController(codigoVenda);
-                if (controllerVendas.excluirVendasController(codigoVenda)) {
-                    JOptionPane.showMessageDialog(this, "Venda Excluida com SUCESSO", "ERRO", JOptionPane.WARNING_MESSAGE);
-                    carregarVendas();
-                }
-            } else {
-                JOptionPane.showMessageDialog(this, "Erro ao Excluir a Venda", "ERRO", JOptionPane.ERROR_MESSAGE);
-            }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Erro ao Excluir a Venda, Selecione um Registro na tabela", "ERRO", JOptionPane.ERROR_MESSAGE);
-        }
-    }//GEN-LAST:event_jButtonExcluirVendaActionPerformed
-
-    private void jButtonAlterarVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlterarVendaActionPerformed
-        alterarSalvar = 1;
-        jButtonSalvarVenda.setEnabled(true);
-        System.out.println(alterarSalvar);
-        try {
-            int linha = jTableVendas.getSelectedRow();
-            int codigoVenda = (int) jTableVendas.getValueAt(linha, 0);
-            listaModelProdutosVendasProdutoses = controllerProdutosVendasProdutos.getListaProdutosVendasProdutosController(codigoVenda);
-            uJComboBoxNomeClienteProdutosVenda.setSelectedItem(jTableVendas.getValueAt(linha, 1));
-            carregarCodigoDoCliente();
-            DefaultTableModel modelo = (DefaultTableModel) jTableProdutosVenda.getModel();
-            modelo.setNumRows(0);
-            for (int i = 0; i < listaModelProdutosVendasProdutoses.size(); i++) {
-                jTextFieldNumeroVenda.setText(String.valueOf(listaModelProdutosVendasProdutoses.get(i).getModelVendasProdutos().getVendas()));
-                modelo.addRow(new Object[]{
-                    listaModelProdutosVendasProdutoses.get(i).getModelProdutos().getIdProduto(),
-                    listaModelProdutosVendasProdutoses.get(i).getModelProdutos().getProdNome(),
-                    listaModelProdutosVendasProdutoses.get(i).getModelVendasProdutos().getVenProQuantidade(),
-                    listaModelProdutosVendasProdutoses.get(i).getModelVendasProdutos().getVenProValor(),
-                    listaModelProdutosVendasProdutoses.get(i).getModelVendasProdutos().getVenProQuantidade()
-                    * listaModelProdutosVendasProdutoses.get(i).getModelVendasProdutos().getVenProValor()
-
-                });
-            }
-            somarValorToralProdutos();
-            jTabbedPane1.setSelectedIndex(0);//move entre as abas 
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Erro ao Alterar a Venda, Selecione um Registro na tabela", "ERRO", JOptionPane.ERROR_MESSAGE);
-        }
-    }//GEN-LAST:event_jButtonAlterarVendaActionPerformed
-
-    private void uJComboBoxNomeProdutosVendaPopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_uJComboBoxNomeProdutosVendaPopupMenuWillBecomeInvisible
-        // TODO add your handling code here:
-        if (uJComboBoxNomeProdutosVenda.isPopupVisible()) {
-            modelProdutos = controllerProdutos.retornarProdutoController(uJComboBoxNomeProdutosVenda.getSelectedItem().toString());
-            jTextFieldCodigoProdutoVenda.setText(String.valueOf(modelProdutos.getIdProduto()));
-            carregarValorProduto();
-        }
-    }//GEN-LAST:event_uJComboBoxNomeProdutosVendaPopupMenuWillBecomeInvisible
-
-    private void uJComboBoxNomeClienteProdutosVendaPopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_uJComboBoxNomeClienteProdutosVendaPopupMenuWillBecomeInvisible
-        // TODO add your handling code here:
-        if (uJComboBoxNomeClienteProdutosVenda.isPopupVisible()) {
-            modelCliente = controllerCliente.getClienteController(uJComboBoxNomeClienteProdutosVenda.getSelectedItem().toString());
-            jTextFieldCodigoClienteVenda.setText(String.valueOf(modelCliente.getIdCliente()));
-        }
-    }//GEN-LAST:event_uJComboBoxNomeClienteProdutosVendaPopupMenuWillBecomeInvisible
-
-    private void jButtonRemoverProdutoVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRemoverProdutoVendaActionPerformed
-        int linha = jTableProdutosVenda.getSelectedRow();
-        DefaultTableModel modelo = (DefaultTableModel) jTableProdutosVenda.getModel();
-        modelo.removeRow(linha);
-        somarValorToralProdutos();
-    }//GEN-LAST:event_jButtonRemoverProdutoVendaActionPerformed
-
-    private void jTextFieldValorBrutoVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldValorBrutoVendaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldValorBrutoVendaActionPerformed
-
-    private void jTextFieldTotalLiquidoVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldTotalLiquidoVendaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldTotalLiquidoVendaActionPerformed
-
-    private void jTextFieldDescontoVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldDescontoVendaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldDescontoVendaActionPerformed
-
-    private void jTextFieldDescontoVendaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldDescontoVendaFocusLost
-        // TODO add your handling code here:
-        somarValorToralProdutos();
-    }//GEN-LAST:event_jTextFieldDescontoVendaFocusLost
-
-    @SuppressWarnings("empty-statement")
-    private void jButtonSalvarVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarVendaActionPerformed
-        int codigoVenda, codigoProduto = 0, qtdVenda = 0;
-        listaModelVendasProdutoses = new ArrayList<>();
-        modelVendasProdutos = new ModelVendasProdutos();
-        modelProdutos = new ModelProdutos();
-        /*
-         IF para ver se o numero da venda nao é vazio para nao dar erro quando for alterar a venda
-         pois para alterar precisa do ID da Venda
-         */
-        if (!jTextFieldNumeroVenda.equals("")) {
-            modelVendas.setIdVenda(Integer.parseInt(jTextFieldNumeroVenda.getText()));
-        }
-        modelVendas.setCliente(Integer.parseInt(jTextFieldCodigoClienteVenda.getText()));
-        /*
-         try catch para tratar a data, pois no banco só aceita no formato americano
-         */
-        try {
-            modelVendas.setVenDataVenda(bLDatas.converterDataParaDateUS(new java.util.Date(System.currentTimeMillis())));
-        } catch (Exception e) {
-            //Logger.getLogger(Vendas.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        modelVendas.setVenValorLiquido(Double.parseDouble(jTextFieldTotalLiquidoVenda.getText()));
-        modelVendas.setVenValorBruto(Double.parseDouble(jTextFieldValorBrutoVenda.getText()));
-        modelVendas.setVenDesconto(Double.parseDouble(jTextFieldDescontoVenda.getText()));
-
-        /*
-         Aqui é onde entro no metodo de salvar ou alterar
-         */
-        if (alterarSalvar == 0) {
-            //SALVAR UMA NOVA VENDA NO BANCO
-            codigoVenda = controllerVendas.salvarVendasController(modelVendas);
-            if (codigoVenda > 0) {
-                JOptionPane.showMessageDialog(this, "Venda Concluida com SUCESSO", "SUCESSO", JOptionPane.INFORMATION_MESSAGE);
-            } else {
-                JOptionPane.showMessageDialog(this, "Erro ao Concluir a Venda", "ERRO", JOptionPane.ERROR_MESSAGE);
-            }
-
-            int cont = jTableProdutosVenda.getRowCount();//pega quantas linhas tem na tabela
-            for (int i = 0; i < cont; i++) {
-                codigoProduto = (int) jTableProdutosVenda.getValueAt(i, 0);
-                qtdVenda = Integer.parseInt(jTableProdutosVenda.getValueAt(i, 2).toString());
-                modelVendasProdutos = new ModelVendasProdutos();
-                modelProdutos = new ModelProdutos();
-                modelVendasProdutos.setProduto(codigoProduto);
-                modelVendasProdutos.setVendas(codigoVenda);
-                modelVendasProdutos.setVenProValor((double) jTableProdutosVenda.getValueAt(i, 3));
-                modelVendasProdutos.setVenProQuantidade(qtdVenda);
-                listaModelVendasProdutoses.add(modelVendasProdutos);
-                //subtrai a quantidade vendida no estoque
-                modelProdutos.setIdProduto(codigoProduto);
-                modelProdutos.setProdEstoque(controllerProdutos.retornarProdutoController(codigoProduto).getProdEstoque()
-                        - qtdVenda);
-                listaModelProdutos.add(modelProdutos);
-            }
-
-            //salvar os produtos da venda
-            if (controllerVendasProdutos.salvarVendasProdutosController(listaModelVendasProdutoses)) {
-                //JOptionPane.showMessageDialog(this, "Venda Concluida com SUCESSO", "SUCESSO", JOptionPane.INFORMATION_MESSAGE);
-                controllerProdutos.alterarEstoqueProdutoControler(listaModelProdutos);//Alterar o estoque no banco
-                limparVendas();
-                carregarVendas();
-            } else {
-                //JOptionPane.showMessageDialog(this, "Erro ao Concluir a Venda", "ERRO", JOptionPane.ERROR_MESSAGE);
-            };
-
-        } //ALTERAR UMA VENDA JA CONCLUIDA
-        else if (alterarSalvar == 1) {
-            try {
-                modelVendasProdutos = new ModelVendasProdutos();
-                //INICIO -> retornar os produtos para o estoque e excluir os produtos da venda
-                codigoVenda = Integer.parseInt(jTextFieldNumeroVenda.getText());
-                listaModelProdutos = new ArrayList<>();
-                listaModelProdutosVendasProdutoses = new ArrayList<>();
-                listaModelProdutosVendasProdutoses = controllerProdutosVendasProdutos.getListaProdutosVendasProdutosController(codigoVenda);
-
-                for (int i = 0; i < listaModelProdutosVendasProdutoses.size(); i++) {
-                    modelProdutos = new ModelProdutos();
-                    modelProdutos.setIdProduto(listaModelProdutosVendasProdutoses.get(i).getModelProdutos().getIdProduto());
-                    modelProdutos.setProdEstoque(
-                            listaModelProdutosVendasProdutoses.get(i).getModelProdutos().getProdEstoque()
-                            + listaModelProdutosVendasProdutoses.get(i).getModelVendasProdutos().getVenProQuantidade()
-                    );
-                    listaModelProdutos.add(modelProdutos);
-                }
-
-                if (controllerProdutos.alterarEstoqueProdutoControler(listaModelProdutos)) {
-                    controllerVendasProdutos.excluirVendasProdutosController(codigoVenda);
-                    carregarVendas();
-                }
-                //FIM -> retornar os produtos para o estoque e excluir os produtos da venda
-
-                controllerVendas.atualizarVendasController(modelVendas);
-
-                int cont = jTableProdutosVenda.getRowCount();//pega quantas linhas tem na tabela
-                for (int i = 0; i < cont; i++) {
-                    codigoProduto = (int) jTableProdutosVenda.getValueAt(i, 0);
-                    qtdVenda = Integer.parseInt(jTableProdutosVenda.getValueAt(i, 2).toString());
-                    modelVendasProdutos = new ModelVendasProdutos();
-                    modelProdutos = new ModelProdutos();
-                    modelVendasProdutos.setProduto(codigoProduto);
-                    modelVendasProdutos.setVendas(codigoVenda);
-                    modelVendasProdutos.setVenProValor((double) jTableProdutosVenda.getValueAt(i, 3));
-                    modelVendasProdutos.setVenProQuantidade(qtdVenda);
-                    //subtrai a quantidade vendida no estoque
-                    modelProdutos.setIdProduto(codigoProduto);
-                    modelProdutos.setProdEstoque(controllerProdutos.retornarProdutoController(codigoProduto).getProdEstoque()
-                            - qtdVenda);
-                    listaModelVendasProdutoses.add(modelVendasProdutos);
-                    listaModelProdutos.add(modelProdutos);
-                }
-                //Salvar os produtos da alteração da venda
-                controllerVendasProdutos.salvarVendasProdutosController(listaModelVendasProdutoses);//Salva as vendas na tb_vendas_produtos
-                controllerProdutos.alterarEstoqueProdutoControler(listaModelProdutos);// atualiza o estoque na tb_produto
-                carregarVendas();
-                limparVendas();
-                JOptionPane.showMessageDialog(this, "Venda Alterada com SUCESSO", "ERRO", JOptionPane.WARNING_MESSAGE);
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(this, "Erro ao Alterar a Venda", "ERRO", JOptionPane.ERROR_MESSAGE);
-            }
-        }
-        jButtonSalvarVenda.setEnabled(true);
-    }//GEN-LAST:event_jButtonSalvarVendaActionPerformed
-
-    private void jButtonCancelarVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarVendaActionPerformed
-
-    }//GEN-LAST:event_jButtonCancelarVendaActionPerformed
-
-    private void jButtonNovoVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNovoVendaActionPerformed
-        alterarSalvar = 0;
-        jButtonSalvarVenda.setEnabled(true);
-        limparVendas();
-    }//GEN-LAST:event_jButtonNovoVendaActionPerformed
-
-    private void jButtonAdicionarVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAdicionarVendaActionPerformed
-        adicionarVenda();
-    }//GEN-LAST:event_jButtonAdicionarVendaActionPerformed
-
-    private void jTextFieldCodigoProdutoVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldCodigoProdutoVendaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldCodigoProdutoVendaActionPerformed
-
-    private void jTextFieldCodigoProdutoVendaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldCodigoProdutoVendaFocusLost
-        // TODO add your handling code here:.
-        modelProdutos = controllerProdutos.retornarProdutoController(Integer.parseInt(jTextFieldCodigoProdutoVenda.getText()));
-        uJComboBoxNomeProdutosVenda.setSelectedItem(modelProdutos.getProdNome());
-    }//GEN-LAST:event_jTextFieldCodigoProdutoVendaFocusLost
-
-    private void jTextFieldCodigoClienteVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldCodigoClienteVendaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldCodigoClienteVendaActionPerformed
-
-    private void jTextFieldCodigoClienteVendaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldCodigoClienteVendaFocusLost
-        // TODO add your handling code here:
-        modelCliente = controllerCliente.getClienteController(Integer.parseInt(jTextFieldCodigoClienteVenda.getText()));
-        uJComboBoxNomeClienteProdutosVenda.setSelectedItem(modelCliente.getCliNome());
-    }//GEN-LAST:event_jTextFieldCodigoClienteVendaFocusLost
-
-    private void jTabbedPane1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTabbedPane1MouseClicked
-        // TODO add your handling code here:
-        jTextFieldPesquisarVendas.requestFocus();
-    }//GEN-LAST:event_jTabbedPane1MouseClicked
-
-    private void jTextFieldPesquisarVendasKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldPesquisarVendasKeyPressed
-        // TODO add your handling code here:
-        if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
-            pesquisarVendas();
-        }
-    }//GEN-LAST:event_jTextFieldPesquisarVendasKeyPressed
-
-    private void jTextFieldPesquisarVendasKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldPesquisarVendasKeyReleased
-        // TODO add your handling code here:
-        pesquisarVendas();
-    }//GEN-LAST:event_jTextFieldPesquisarVendasKeyReleased
-
-    private void jTextFieldQuantidadeVendaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldQuantidadeVendaKeyPressed
-        // TODO add your handling code here:
-        if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
-            adicionarVenda();
-        }
-    }//GEN-LAST:event_jTextFieldQuantidadeVendaKeyPressed
 
     /**
      * @param args the command line arguments
@@ -1061,12 +1312,15 @@ public class Vendas extends javax.swing.JFrame {
     private javax.swing.JButton jButtonCancelarVenda;
     private javax.swing.JButton jButtonExcluirVenda;
     private javax.swing.JButton jButtonNovoVenda;
+    private javax.swing.JButton jButtonPesquisarOrcamento;
+    private javax.swing.JButton jButtonPesquisarOrcamento1;
     private javax.swing.JButton jButtonPesquisarVenda;
     private javax.swing.JButton jButtonRemoverProdutoVenda;
     private javax.swing.JButton jButtonSalvarVenda;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -1077,15 +1331,19 @@ public class Vendas extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTable jTableOrcamento;
     private javax.swing.JTable jTableProdutosVenda;
     private javax.swing.JTable jTableVendas;
     private javax.swing.JTextField jTextFieldCodigoClienteVenda;
     private javax.swing.JTextField jTextFieldCodigoProdutoVenda;
     private javax.swing.JTextField jTextFieldDescontoVenda;
     private javax.swing.JTextField jTextFieldNumeroVenda;
+    private javax.swing.JTextField jTextFieldPesquisarOrcamento;
     private javax.swing.JTextField jTextFieldPesquisarVendas;
     private javax.swing.JTextField jTextFieldQuantidadeVenda;
     private javax.swing.JTextField jTextFieldTotalLiquidoVenda;

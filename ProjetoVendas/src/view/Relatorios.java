@@ -15,8 +15,11 @@ import java.awt.Font;
 import java.awt.Toolkit;
 import java.util.ArrayList;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.plaf.FontUIResource;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
 import model.ModelCliente;
 import model.ModelProdutos;
 import model.ModelVendas;
@@ -40,6 +43,7 @@ public class Relatorios extends javax.swing.JFrame {
     ModelVendas modelVendas = new ModelVendas();
     ArrayList<ModelVendas> listaModelVendas = new ArrayList<>();
     int codigo;
+    private Object bLDatas;
 
     /**
      * Creates new form Relatorios
@@ -49,6 +53,8 @@ public class Relatorios extends javax.swing.JFrame {
         listarClientes();
         listarVendasPorCliente();
         listarProdutos();
+        carregarVendas();
+        mudarFonteTabela();
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("../imagens/carrinho-de-compras.png")));
         UIManager.put("OptionPane.messageFont", new FontUIResource(new Font("Maiandra GD", Font.PLAIN, 35)));
@@ -87,6 +93,11 @@ public class Relatorios extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         uJComboBoxListarClientesVendas = new componentes.UJComboBox();
         jButtonRelatorioVendaPorCliente = new javax.swing.JButton();
+        jPanel9 = new javax.swing.JPanel();
+        jLabel9 = new javax.swing.JLabel();
+        jButtonRelatorioUmaVendaPorCliente = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTableVendaCliente = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Sistema de Vendas - Emissão de Relatórios");
@@ -264,7 +275,7 @@ public class Relatorios extends javax.swing.JFrame {
             .addComponent(uJComboBoxListarClientes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addGap(101, 101, 101)
-                .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 197, Short.MAX_VALUE)
+                .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(140, 140, 140))
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addGap(144, 144, 144)
@@ -351,6 +362,11 @@ public class Relatorios extends javax.swing.JFrame {
         uJComboBoxListarClientesVendas.setMaximumRowCount(20);
         uJComboBoxListarClientesVendas.setAutocompletar(true);
         uJComboBoxListarClientesVendas.setFont(new java.awt.Font("Maiandra GD", 0, 24)); // NOI18N
+        uJComboBoxListarClientesVendas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                uJComboBoxListarClientesVendasActionPerformed(evt);
+            }
+        });
 
         jButtonRelatorioVendaPorCliente.setFont(new java.awt.Font("Maiandra GD", 0, 24)); // NOI18N
         jButtonRelatorioVendaPorCliente.setText("Gerar");
@@ -368,7 +384,7 @@ public class Relatorios extends javax.swing.JFrame {
             .addComponent(uJComboBoxListarClientesVendas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGap(126, 126, 126)
-                .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, 189, Short.MAX_VALUE)
+                .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(123, 123, 123))
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGap(166, 166, 166)
@@ -382,8 +398,74 @@ public class Relatorios extends javax.swing.JFrame {
                 .addComponent(jLabel8)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(uJComboBoxListarClientesVendas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jButtonRelatorioVendaPorCliente)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jPanel9.setBackground(new java.awt.Color(204, 255, 204));
+
+        jLabel9.setFont(new java.awt.Font("Maiandra GD", 0, 24)); // NOI18N
+        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel9.setText("Uma Venda por Cliente");
+        jLabel9.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+
+        jButtonRelatorioUmaVendaPorCliente.setFont(new java.awt.Font("Maiandra GD", 0, 24)); // NOI18N
+        jButtonRelatorioUmaVendaPorCliente.setText("Gerar");
+        jButtonRelatorioUmaVendaPorCliente.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButtonRelatorioUmaVendaPorCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRelatorioUmaVendaPorClienteActionPerformed(evt);
+            }
+        });
+
+        jTableVendaCliente.setFont(new java.awt.Font("Maiandra GD", 0, 24)); // NOI18N
+        jTableVendaCliente.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Codigo da Venda", "Data da Venda"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jTableVendaCliente.setMinimumSize(new java.awt.Dimension(15, 0));
+        jTableVendaCliente.setRowHeight(30);
+        jScrollPane1.setViewportView(jTableVendaCliente);
+
+        javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
+        jPanel9.setLayout(jPanel9Layout);
+        jPanel9Layout.setHorizontalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
+                .addGap(103, 103, 103)
+                .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, 262, Short.MAX_VALUE)
+                .addGap(87, 87, 87))
+            .addGroup(jPanel9Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(jPanel9Layout.createSequentialGroup()
+                .addGap(159, 159, 159)
+                .addComponent(jButtonRelatorioUmaVendaPorCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addGap(167, 167, 167))
+        );
+        jPanel9Layout.setVerticalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel9Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel9)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jButtonRelatorioUmaVendaPorCliente)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -391,16 +473,19 @@ public class Relatorios extends javax.swing.JFrame {
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 438, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 452, Short.MAX_VALUE)
             .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(437, Short.MAX_VALUE))
+                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(121, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -408,23 +493,27 @@ public class Relatorios extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 450, Short.MAX_VALUE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 448, Short.MAX_VALUE)
                 .addGap(20, 20, 20)
-                .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 450, Short.MAX_VALUE)
+                .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 464, Short.MAX_VALUE)
                 .addGap(20, 20, 20)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 450, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 758, Short.MAX_VALUE)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 758, Short.MAX_VALUE)
-            .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 758, Short.MAX_VALUE)
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 796, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 796, Short.MAX_VALUE)
+            .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 796, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-
+        private void mudarFonteTabela() {// muda a fonte da tabela de vendas
+        JTableHeader cabecalho = jTableVendaCliente.getTableHeader();
+        cabecalho.setFont(new Font("Maiandra GD", Font.PLAIN, 24));
+    }
+    
     //Lista os clientes para preencher o uJComboBoxNomeClienteProdutosVenda
     private void listarClientes() {
         listaModelClientes = controllerCliente.getListaClienteController();
@@ -450,6 +539,20 @@ public class Relatorios extends javax.swing.JFrame {
         }
     }
 
+    private void carregarVendas() {
+        DefaultTableModel modelo = (DefaultTableModel) jTableVendaCliente.getModel();
+        modelCliente = controllerCliente.getClienteController(uJComboBoxListarClientesVendas.getSelectedItem().toString());
+        codigo = modelCliente.getIdCliente();
+        listaModelVendas = controllerRelatorioVenda.getVendasPorClienteController(codigo);
+        modelo.setNumRows(0);//seta o numero de linhas em ZERO para nao duplicar na tabela
+        int cont = listaModelVendas.size();
+        for (int i = 0; i < cont; i++) {
+            modelo.addRow(new Object[]{
+                listaModelVendas.get(i).getIdVenda(),
+                listaModelVendas.get(i).getVenDataVenda()
+            });
+        }
+    }
 
     private void jButtonRelatorioUmProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRelatorioUmProdutoActionPerformed
         // TODO add your handling code here:
@@ -486,6 +589,22 @@ public class Relatorios extends javax.swing.JFrame {
         codigo = modelCliente.getIdCliente();
         controllerRelatorioVenda.gerarRelatorioVendasPorClienteController(codigo);
     }//GEN-LAST:event_jButtonRelatorioVendaPorClienteActionPerformed
+
+    private void jButtonRelatorioUmaVendaPorClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRelatorioUmaVendaPorClienteActionPerformed
+        // TODO add your handling code here:
+        modelCliente = controllerCliente.getClienteController(uJComboBoxListarClientesVendas.getSelectedItem().toString());
+        codigo = modelCliente.getIdCliente();
+        int linha = jTableVendaCliente.getSelectedRow();
+        String data = jTableVendaCliente.getValueAt(linha, 1).toString();
+        int idVenda = (int) jTableVendaCliente.getValueAt(linha, 0);
+        //Chamar a função que vai imprimir a venda, passando o codigo do cliente, data da venda e codigo da venda
+        controllerRelatorioVenda.gerarRelatorioUmaVendaPorClienteController(codigo, data, idVenda);
+    }//GEN-LAST:event_jButtonRelatorioUmaVendaPorClienteActionPerformed
+
+    private void uJComboBoxListarClientesVendasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_uJComboBoxListarClientesVendasActionPerformed
+        // TODO add your handling code here:
+        carregarVendas();
+    }//GEN-LAST:event_uJComboBoxListarClientesVendasActionPerformed
 
     /**
      * @param args the command line arguments
@@ -528,6 +647,7 @@ public class Relatorios extends javax.swing.JFrame {
     private javax.swing.JButton jButtonRelatorioTodosVendas;
     private javax.swing.JButton jButtonRelatorioUmCliente;
     private javax.swing.JButton jButtonRelatorioUmProduto;
+    private javax.swing.JButton jButtonRelatorioUmaVendaPorCliente;
     private javax.swing.JButton jButtonRelatorioVendaPorCliente;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -535,6 +655,7 @@ public class Relatorios extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel2;
@@ -544,6 +665,9 @@ public class Relatorios extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
+    private javax.swing.JPanel jPanel9;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTableVendaCliente;
     private componentes.UJComboBox uJComboBoxListarClientes;
     private componentes.UJComboBox uJComboBoxListarClientesVendas;
     private componentes.UJComboBox uJComboBoxListarProdutos;

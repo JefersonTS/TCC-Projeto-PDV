@@ -117,9 +117,9 @@ public class Usuario extends javax.swing.JFrame {
         jTableUsuario.setRowHeight(30);
         jScrollPane1.setViewportView(jTableUsuario);
         if (jTableUsuario.getColumnModel().getColumnCount() > 0) {
-            jTableUsuario.getColumnModel().getColumn(0).setMinWidth(90);
-            jTableUsuario.getColumnModel().getColumn(0).setPreferredWidth(90);
-            jTableUsuario.getColumnModel().getColumn(0).setMaxWidth(90);
+            jTableUsuario.getColumnModel().getColumn(0).setMinWidth(150);
+            jTableUsuario.getColumnModel().getColumn(0).setPreferredWidth(150);
+            jTableUsuario.getColumnModel().getColumn(0).setMaxWidth(150);
         }
 
         jButtonNovoUsuario.setFont(new java.awt.Font("Maiandra GD", 0, 24)); // NOI18N
