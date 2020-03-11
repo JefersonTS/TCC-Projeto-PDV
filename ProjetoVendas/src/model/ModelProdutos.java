@@ -1,68 +1,93 @@
-
 package model;
-
+/**
+*
+* @author Jeferson
+*/
 public class ModelProdutos {
-    
-    private int idProduto;
-    private String prodNome;
-    private Double prodValor;
-    private int prodEstoque;
+
+    private int IdProduto;
+    private int Fornecedor;
+    private String ProdNome;
+    private Double ProdValor;
+    private int ProdEstoque;
 
     /**
-     * @return the idProduto
-     */
-    public int getIdProduto() {
-        return idProduto;
+    * Construtor
+    */
+    public ModelProdutos(){}
+
+    /**
+    * seta o valor de IdProduto
+    * @param pIdProduto
+    */
+    public void setIdProduto(int pIdProduto){
+        this.IdProduto = pIdProduto;
+    }
+    /**
+    * @return pk_IdProduto
+    */
+    public int getIdProduto(){
+        return this.IdProduto;
     }
 
     /**
-     * @param idProduto the idProduto to set
-     */
-    public void setIdProduto(int idProduto) {
-        this.idProduto = idProduto;
+    * seta o valor de Fornecedor
+    * @param pFornecedor
+    */
+    public void setFornecedor(int pFornecedor){
+        this.Fornecedor = pFornecedor;
+    }
+    /**
+    * @return Fornecedor
+    */
+    public int getFornecedor(){
+        return this.Fornecedor;
     }
 
     /**
-     * @return the prodNome
-     */
-    public String getProdNome() {
-        return prodNome;
+    * seta o valor de ProdNome
+    * @param pProdNome
+    */
+    public void setProdNome(String pProdNome){
+        this.ProdNome = pProdNome;
+    }
+    /**
+    * @return ProdNome
+    */
+    public String getProdNome(){
+        return this.ProdNome;
     }
 
     /**
-     * @param prodNome the prodNome to set
-     */
-    public void setProdNome(String prodNome) {
-        this.prodNome = prodNome;
+    * seta o valor de ProdValor
+    * @param pProdValor
+    */
+    public void setProdValor(Double pProdValor){
+        this.ProdValor = pProdValor;
+    }
+    /**
+    * @return ProdValor
+    */
+    public Double getProdValor(){
+        return this.ProdValor;
     }
 
     /**
-     * @return the prodValor
-     */
-    public Double getProdValor() {
-        return prodValor;
+    * seta o valor de ProdEstoque
+    * @param pProdEstoque
+    */
+    public void setProdEstoque(int pProdEstoque){
+        this.ProdEstoque = pProdEstoque;
+    }
+    /**
+    * @return ProdEstoque
+    */
+    public int getProdEstoque(){
+        return this.ProdEstoque;
     }
 
-    /**
-     * @param prodValor the prodValor to set
-     */
-    public void setProdValor(Double prodValor) {
-        this.prodValor = prodValor;
+    @Override
+    public String toString(){
+        return "ModelProdutos {" + "::IdProduto = " + this.IdProduto + "::Fornecedor = " + this.Fornecedor + "::ProdNome = " + this.ProdNome + "::ProdValor = " + this.ProdValor + "::ProdEstoque = " + this.ProdEstoque +  "}";
     }
-
-    /**
-     * @return the prodEstoque
-     */
-    public int getProdEstoque() {
-        return prodEstoque;
-    }
-
-    /**
-     * @param prodEstoque the prodEstoque to set
-     */
-    public void setProdEstoque(int prodEstoque) {
-        this.prodEstoque = prodEstoque;
-    }
-    
-    
 }

@@ -516,7 +516,7 @@ public class PDV extends javax.swing.JFrame {
         if (e.getKeyCode() == java.awt.event.KeyEvent.VK_F1) {
             try {
                 System.out.println("Entrou no try");
-                modelProdutos = controllerProdutos.retornarProdutoController(Integer.parseInt(jTextFieldCodigoProdutoPDV.getText()));
+                modelProdutos = controllerProdutos.getProdutosController(Integer.parseInt(jTextFieldCodigoProdutoPDV.getText()));
                 System.err.println("Pressionando ENTER: " + qtd);
                 modelo.addRow(new Object[]{
                     modelo.getRowCount() + 1,
@@ -563,7 +563,7 @@ public class PDV extends javax.swing.JFrame {
             listaModelVendasProdutoses.add(modelVendasProdutos);
             //subtrai a quantidade vendida no estoque
             modelProdutos.setIdProduto(codigoProduto);
-            modelProdutos.setProdEstoque(controllerProdutos.retornarProdutoController(codigoProduto).getProdEstoque()
+            modelProdutos.setProdEstoque(controllerProdutos.getProdutosController(codigoProduto).getProdEstoque()
                     - qtdVenda);
             listaModelProdutos.add(modelProdutos);
         }
@@ -571,7 +571,7 @@ public class PDV extends javax.swing.JFrame {
         //salvar os produtos da venda e alterar o estoque
         if (controllerVendasProdutos.salvarVendasProdutosController(listaModelVendasProdutoses)) {
             //JOptionPane.showMessageDialog(this, "Venda Concluida com SUCESSO", "SUCESSO", JOptionPane.INFORMATION_MESSAGE);
-            controllerProdutos.alterarEstoqueProdutoControler(listaModelProdutos);//Alterar o estoque no banco;
+            controllerProdutos.alterarEstoqueProdutosController(listaModelProdutos);//Alterar o estoque no banco;
             limparVendas();
         } else {
             //JOptionPane.showMessageDialog(this, "Erro ao Concluir a Venda", "ERRO", JOptionPane.ERROR_MESSAGE);
@@ -610,7 +610,8 @@ public class PDV extends javax.swing.JFrame {
 
     private void jMenuItemFinalizarVendaPDVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemFinalizarVendaPDVActionPerformed
         // TODO add your handling code here:
-        try {
+        int cont = jTableListaProdutosPDV.getRowCount();
+        if(cont > 0){
             viewPagamentoPDV.setValorTotal(Float.parseFloat(totalBrutoVendaPDV.toString()));
             viewPagamentoPDV.preencherCampos();
             viewPagamentoPDV.setVisible(true);
@@ -629,7 +630,8 @@ public class PDV extends javax.swing.JFrame {
                 jFormattedTextFieldValorLiquidoVendaPDV.setText("R$: " + String.valueOf(df.format(totalLiquidoVendaPDV)));//pega o valor do total A PAGAR na variavel global
                 JOptionPane.showMessageDialog(this, "Você nao concluiu o Pagamento", "ERRO", JOptionPane.ERROR_MESSAGE);
             }
-        } catch (Exception e) {
+        } else {
+            JOptionPane.showMessageDialog(this, "Nenhum Produto na Tabela", "ERRO", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jMenuItemFinalizarVendaPDVActionPerformed
 

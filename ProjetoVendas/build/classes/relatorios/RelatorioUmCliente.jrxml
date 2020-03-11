@@ -146,7 +146,7 @@ from
 				<textFieldExpression><![CDATA[$F{cli_cidade}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="3" y="28" width="83" height="40" uuid="f8b7ed1c-7d33-4f3c-af7e-41b472bc4cea"/>
+				<reportElement mode="Opaque" x="3" y="28" width="83" height="40" backcolor="#DFDFDF" uuid="f8b7ed1c-7d33-4f3c-af7e-41b472bc4cea"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{pk_id_cliente}]]></textFieldExpression>
 			</textField>

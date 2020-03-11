@@ -524,7 +524,7 @@ public class Relatorios extends javax.swing.JFrame {
     }
 
     private void listarProdutos() {
-        listaModelProdutos = controllerProdutos.retornarListaProdutoController();
+        listaModelProdutos = controllerProdutos.getListaProdutosController();
         uJComboBoxListarProdutos.removeAllItems();
         for (int i = 0; i < listaModelProdutos.size(); i++) {
             uJComboBoxListarProdutos.addItem(listaModelProdutos.get(i).getProdNome());
@@ -556,7 +556,7 @@ public class Relatorios extends javax.swing.JFrame {
 
     private void jButtonRelatorioUmProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRelatorioUmProdutoActionPerformed
         // TODO add your handling code here:
-        modelProdutos = controllerProdutos.retornarProdutoController(uJComboBoxListarProdutos.getSelectedItem().toString());
+        modelProdutos = controllerProdutos.getProdutoController(uJComboBoxListarProdutos.getSelectedItem().toString());
         codigo = modelProdutos.getIdProduto();
         controllerRelatorioProduto.gerarRelatorioUmProdutoController(codigo);
     }//GEN-LAST:event_jButtonRelatorioUmProdutoActionPerformed

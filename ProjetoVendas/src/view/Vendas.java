@@ -739,6 +739,7 @@ public class Vendas extends javax.swing.JFrame {
         if (linha > -1) {
             alterarSalvar = "ALTERAR";
             habilitaDesabilitaCampos(true);
+            carregarValorProduto();
             int codigoVenda = (int) jTableVendas.getValueAt(linha, 0);
             listaModelProdutosVendasProdutoses = controllerProdutosVendasProdutos.getListaProdutosVendasProdutosController(codigoVenda);
             uJComboBoxNomeClienteProdutosVenda.setSelectedItem(jTableVendas.getValueAt(linha, 1));
@@ -783,7 +784,7 @@ public class Vendas extends javax.swing.JFrame {
                 listaModelProdutos.add(modelProdutos);
             }
 
-            if (controllerProdutos.alterarEstoqueProdutoControler(listaModelProdutos)) {
+            if (controllerProdutos.alterarEstoqueProdutosController(listaModelProdutos)) {
                 controllerVendasProdutos.excluirVendasProdutosController(codigoVenda);
                 if (controllerVendas.excluirVendasController(codigoVenda)) {
                     JOptionPane.showMessageDialog(this, "Venda Excluida com SUCESSO", "ERRO", JOptionPane.WARNING_MESSAGE);
@@ -810,7 +811,7 @@ public class Vendas extends javax.swing.JFrame {
     private void uJComboBoxNomeProdutosVendaPopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_uJComboBoxNomeProdutosVendaPopupMenuWillBecomeInvisible
         // TODO add your handling code here:
         if (uJComboBoxNomeProdutosVenda.isPopupVisible()) {
-            modelProdutos = controllerProdutos.retornarProdutoController(uJComboBoxNomeProdutosVenda.getSelectedItem().toString());
+            modelProdutos = controllerProdutos.getProdutoController(uJComboBoxNomeProdutosVenda.getSelectedItem().toString());
             jTextFieldCodigoProdutoVenda.setText(String.valueOf(modelProdutos.getIdProduto()));
             carregarValorProduto();
         }
@@ -850,8 +851,8 @@ public class Vendas extends javax.swing.JFrame {
 
     @SuppressWarnings("empty-statement")
     private void jButtonSalvarVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarVendaActionPerformed
-        //try catch para verificar se a tabela é vazia e mostrar uma mensagem
-        try {
+        //else if para verificar se a tabela é vazia e mostrar uma mensagem
+        if(jTableProdutosVenda.getRowCount() > 0) {
             Object[] options = {alterarSalvar, "ORÇAR"};//arrey para mostrar as opções no JOptionPane.showOptionDialog
             int x = JOptionPane.showOptionDialog(null, "O Que Deseja Fazer ?",
                     "Venda ou Orçamento ?",
@@ -907,14 +908,14 @@ public class Vendas extends javax.swing.JFrame {
                         listaModelVendasProdutoses.add(modelVendasProdutos);
                         //subtrai a quantidade vendida no estoque
                         modelProdutos.setIdProduto(codigoProduto);
-                        modelProdutos.setProdEstoque(controllerProdutos.retornarProdutoController(codigoProduto).getProdEstoque()
+                        modelProdutos.setProdEstoque(controllerProdutos.getProdutosController(codigoProduto).getProdEstoque()
                                 - qtdVenda);
                         listaModelProdutos.add(modelProdutos);
                     }
 
                     //salvar os produtos da venda na tb_vendas_produtos
                     if (controllerVendasProdutos.salvarVendasProdutosController(listaModelVendasProdutoses)) {
-                        controllerProdutos.alterarEstoqueProdutoControler(listaModelProdutos);//Alterar o estoque no banco
+                        controllerProdutos.alterarEstoqueProdutosController(listaModelProdutos);//Alterar o estoque no banco
                         limparVendas();
                         carregarVendas();
                         habilitaDesabilitaCampos(false);
@@ -951,7 +952,7 @@ public class Vendas extends javax.swing.JFrame {
                             listaModelProdutos.add(modelProdutos);
                         }
 
-                        if (controllerProdutos.alterarEstoqueProdutoControler(listaModelProdutos)) {
+                        if (controllerProdutos.alterarEstoqueProdutosController(listaModelProdutos)) {
                             controllerVendasProdutos.excluirVendasProdutosController(codigoVenda);
                             carregarVendas();
                         }
@@ -971,14 +972,14 @@ public class Vendas extends javax.swing.JFrame {
                             modelVendasProdutos.setVenProQuantidade(qtdVenda);
                             //subtrai a quantidade vendida no estoque
                             modelProdutos.setIdProduto(codigoProduto);
-                            modelProdutos.setProdEstoque(controllerProdutos.retornarProdutoController(codigoProduto).getProdEstoque()
+                            modelProdutos.setProdEstoque(controllerProdutos.getProdutosController(codigoProduto).getProdEstoque()
                                     - qtdVenda);
                             listaModelVendasProdutoses.add(modelVendasProdutos);
                             listaModelProdutos.add(modelProdutos);
                         }
                         //Salvar os produtos da alteração da venda
                         controllerVendasProdutos.salvarVendasProdutosController(listaModelVendasProdutoses);//Salva as vendas na tb_vendas_produtos
-                        controllerProdutos.alterarEstoqueProdutoControler(listaModelProdutos);// atualiza o estoque na tb_produto
+                        controllerProdutos.alterarEstoqueProdutosController(listaModelProdutos);// atualiza o estoque na tb_produto
                         carregarVendas();
                         limparVendas();
                         habilitaDesabilitaCampos(false);
@@ -1042,7 +1043,7 @@ public class Vendas extends javax.swing.JFrame {
                 controllerRelatorioOrcamento.gerarRelatorioOrcamentoController(codigoOrcamento);
             }
 
-        } catch (Exception e) {//try catch para verificar se a tabela é vazia e mostrar uma mensagem
+        } else {//else ir para verificar se a tabela é vazia e mostrar uma mensagem
             JOptionPane.showMessageDialog(this, "Nenhum Produto na Tabela", "ERRO", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jButtonSalvarVendaActionPerformed
@@ -1070,7 +1071,7 @@ public class Vendas extends javax.swing.JFrame {
 
     private void jTextFieldCodigoProdutoVendaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldCodigoProdutoVendaFocusLost
         // TODO add your handling code here:.
-        modelProdutos = controllerProdutos.retornarProdutoController(Integer.parseInt(jTextFieldCodigoProdutoVenda.getText()));
+        modelProdutos = controllerProdutos.getProdutosController(Integer.parseInt(jTextFieldCodigoProdutoVenda.getText()));
         uJComboBoxNomeProdutosVenda.setSelectedItem(modelProdutos.getProdNome());
         carregarValorProduto();
     }//GEN-LAST:event_jTextFieldCodigoProdutoVendaFocusLost
@@ -1117,7 +1118,7 @@ public class Vendas extends javax.swing.JFrame {
         if (jTextFieldQuantidadeVenda.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "ERRO ao adicionar a Venda, QUANTIDADE vazio!", "ATENÇÃO", JOptionPane.ERROR_MESSAGE);
         } else {
-            modelProdutos = controllerProdutos.retornarProdutoController(Integer.parseInt(jTextFieldCodigoProdutoVenda.getText()));
+            modelProdutos = controllerProdutos.getProdutosController(Integer.parseInt(jTextFieldCodigoProdutoVenda.getText()));
             //adiciona uma linha na tabela
             DefaultTableModel modelo = (DefaultTableModel) jTableProdutosVenda.getModel();
             int cont = 0;
@@ -1147,7 +1148,7 @@ public class Vendas extends javax.swing.JFrame {
 
     //Lista os clientes para preencher o uJComboBoxNomeProdutosVenda
     private void listarProdutos() {
-        listaModelProdutos = controllerProdutos.retornarListaProdutoController();
+        listaModelProdutos = controllerProdutos.getListaProdutosController();
         uJComboBoxNomeProdutosVenda.removeAllItems();
         for (int i = 0; i < listaModelProdutos.size(); i++) {
             uJComboBoxNomeProdutosVenda.addItem(listaModelProdutos.get(i).getProdNome());
@@ -1231,7 +1232,7 @@ public class Vendas extends javax.swing.JFrame {
 
     //carregar o código do produto assim que iniciar o programa
     private void carregarCodigoDoProduto() {
-        modelProdutos = controllerProdutos.retornarProdutoController(uJComboBoxNomeProdutosVenda.getSelectedItem().toString());
+        modelProdutos = controllerProdutos.getProdutoController(uJComboBoxNomeProdutosVenda.getSelectedItem().toString());
         jTextFieldCodigoProdutoVenda.setText(String.valueOf(modelProdutos.getIdProduto()));
     }
 

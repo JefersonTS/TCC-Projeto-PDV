@@ -5,6 +5,7 @@
  */
 package view;
 
+import controller.ControllerFornecedor;
 import controller.ControllerProdutos;
 import java.awt.Font;
 import java.awt.Toolkit;
@@ -16,6 +17,7 @@ import javax.swing.plaf.FontUIResource;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableRowSorter;
+import model.ModelFornecedor;
 import model.ModelProdutos;
 import util.Formatador;
 
@@ -28,8 +30,12 @@ public class Produto extends javax.swing.JFrame {
     ArrayList<ModelProdutos> listaModelProdutos = new ArrayList<>();
     ControllerProdutos controllerProdutos = new ControllerProdutos();
     ModelProdutos modelProdutos = new ModelProdutos();
+    ArrayList<ModelFornecedor> listaModelFornecedores = new ArrayList<>();
+    ControllerFornecedor controllerFornecedor = new ControllerFornecedor();
+    ModelFornecedor modelFornecedor = new ModelFornecedor();
     Formatador formatador = new Formatador();
     String salvarAlterar; //Varilavel global que vai ser usada no if do botao salvar para determinar se é para alterar ou salvar um novo produto
+    int codigoFornecedor; //Variavel global que recebe o id do fornecedor
 
     /**
      * Creates new form Produto
@@ -41,6 +47,7 @@ public class Produto extends javax.swing.JFrame {
         setExtendedState(MAXIMIZED_BOTH);
         habilitarDesabilitarProdutos(false);
         habilitarDesabilitarSalvar(false);
+        listarfornecedores();
         jButtonExcluirProduto.setEnabled(false);
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("../imagens/carrinho-de-compras.png")));
         UIManager.put("OptionPane.messageFont", new FontUIResource(new Font("Maiandra GD", Font.PLAIN, 35)));
@@ -100,6 +107,8 @@ public class Produto extends javax.swing.JFrame {
         jTextFieldEstoqueProduto = new javax.swing.JFormattedTextField();
         jTextFieldValorProduto = new javax.swing.JFormattedTextField();
         jTextFieldNomeProduto = new javax.swing.JFormattedTextField();
+        jLabel14 = new javax.swing.JLabel();
+        uJComboBoxFornecedor = new componentes.UJComboBox();
 
         jFrame1.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -391,14 +400,14 @@ public class Produto extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Código", "Nome", "Quantidade", "Valor"
+                "Código", "Nome", "Quantidade", "Valor", "Fornecedor"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class, java.lang.Double.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class, java.lang.Double.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -415,13 +424,16 @@ public class Produto extends javax.swing.JFrame {
             jTableProduto.getColumnModel().getColumn(0).setMinWidth(100);
             jTableProduto.getColumnModel().getColumn(0).setPreferredWidth(100);
             jTableProduto.getColumnModel().getColumn(0).setMaxWidth(100);
-            jTableProduto.getColumnModel().getColumn(1).setPreferredWidth(280);
+            jTableProduto.getColumnModel().getColumn(1).setPreferredWidth(200);
             jTableProduto.getColumnModel().getColumn(2).setMinWidth(150);
             jTableProduto.getColumnModel().getColumn(2).setPreferredWidth(150);
             jTableProduto.getColumnModel().getColumn(2).setMaxWidth(150);
             jTableProduto.getColumnModel().getColumn(3).setMinWidth(200);
             jTableProduto.getColumnModel().getColumn(3).setPreferredWidth(200);
             jTableProduto.getColumnModel().getColumn(3).setMaxWidth(200);
+            jTableProduto.getColumnModel().getColumn(4).setMinWidth(150);
+            jTableProduto.getColumnModel().getColumn(4).setPreferredWidth(150);
+            jTableProduto.getColumnModel().getColumn(4).setMaxWidth(150);
         }
 
         jLabel13.setFont(new java.awt.Font("Maiandra GD", 0, 24)); // NOI18N
@@ -530,6 +542,12 @@ public class Produto extends javax.swing.JFrame {
             }
         });
 
+        jLabel14.setFont(new java.awt.Font("Maiandra GD", 0, 24)); // NOI18N
+        jLabel14.setText("Fornecedor:");
+
+        uJComboBoxFornecedor.setEditable(true);
+        uJComboBoxFornecedor.setFont(new java.awt.Font("Maiandra GD", 0, 24)); // NOI18N
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -551,11 +569,9 @@ public class Produto extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jTextFieldValorProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(jLabel13)
-                                .addGap(18, 18, 18)
-                                .addComponent(jTextFieldPesquisarProduto)
-                                .addGap(18, 18, 18)
-                                .addComponent(jButtonPesquisarProduto))
+                                .addComponent(jLabel14)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(uJComboBoxFornecedor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jTextFieldCodigoProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
@@ -572,7 +588,13 @@ public class Produto extends javax.swing.JFrame {
                         .addComponent(jButtonCancelarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jButtonExcluirProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 412, Short.MAX_VALUE)))
+                        .addGap(0, 412, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel13)
+                        .addGap(18, 18, 18)
+                        .addComponent(jTextFieldPesquisarProduto)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButtonPesquisarProduto)))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -585,16 +607,21 @@ public class Produto extends javax.swing.JFrame {
                     .addComponent(jTextFieldCodigoProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextFieldNomeProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel11)
+                        .addComponent(jTextFieldEstoqueProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel10)
+                        .addComponent(jTextFieldValorProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel14))
+                    .addComponent(uJComboBoxFornecedor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(16, 16, 16)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel11)
-                    .addComponent(jTextFieldEstoqueProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel10)
-                    .addComponent(jTextFieldValorProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextFieldPesquisarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel13)
                     .addComponent(jButtonPesquisarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 644, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 606, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonExcluirProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -660,7 +687,7 @@ public class Produto extends javax.swing.JFrame {
         int linha = jTableProduto.getSelectedRow();
         try {
             int codigoProduto = (int) jTableProduto.getValueAt(linha, 0);
-            if (controllerProdutos.excluirProdutoController(codigoProduto)) {
+            if (controllerProdutos.excluirProdutosController(codigoProduto)) {
                 JOptionPane.showMessageDialog(this, "Produto Excluido com Sucesso!", "ATENÇÃO", JOptionPane.WARNING_MESSAGE);
                 this.carregarProdutos();
                 this.habilitarDesabilitarProdutos(false);
@@ -676,6 +703,8 @@ public class Produto extends javax.swing.JFrame {
         habilitarDesabilitarProdutos(true);
         salvarAlterar = "salvar";
         jTextFieldNomeProduto.requestFocus();
+        jTextFieldPesquisarProduto.setEnabled(false);
+        jButtonPesquisarProduto.setEnabled(false);
     }//GEN-LAST:event_jButtonNovoProdutoActionPerformed
 
     private void jTextFieldCodigoProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldCodigoProdutoActionPerformed
@@ -693,9 +722,13 @@ public class Produto extends javax.swing.JFrame {
             if (salvarAlterar.equals("salvar")) {
                 this.salvarProduto();
                 this.habilitarDesabilitarSalvar(false);
-            } else if (salvarAlterar.equals("alterar")) {
-                this.alterarProduto();
+                jTextFieldPesquisarProduto.setEnabled(true);
+                jButtonPesquisarProduto.setEnabled(true);
                 this.habilitarDesabilitarSalvar(false);
+            } else if (salvarAlterar.equals("alterar")) {
+                jTextFieldPesquisarProduto.setEnabled(true);
+                jButtonPesquisarProduto.setEnabled(true);
+                this.alterarProduto();
             }
         } else {
             JOptionPane.showMessageDialog(this, "Erro ao " + salvarAlterar + " o Produto!\nAlgum campo Vazio", "ERRO", JOptionPane.ERROR_MESSAGE);
@@ -716,8 +749,8 @@ public class Produto extends javax.swing.JFrame {
     private void jButtonAlterarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlterarProdutoActionPerformed
         // TODO add your handling code here:
         int linha = this.jTableProduto.getSelectedRow();
+        codigoFornecedor = (int) jTableProduto.getValueAt(linha, 4);
         salvarAlterar = "alterar";
-
         try {
             jTextFieldPesquisarProduto.setEnabled(false);
             jButtonPesquisarProduto.setEnabled(false);
@@ -725,13 +758,15 @@ public class Produto extends javax.swing.JFrame {
             this.habilitarDesabilitarProdutos(true);
 
             // Recupera os dados do banco
-            modelProdutos = controllerProdutos.retornarProdutoController(codigoProduto);
+            modelProdutos = controllerProdutos.getProdutosController(codigoProduto);
 
             //Jogar na interface
             this.jTextFieldCodigoProduto.setText(String.valueOf(modelProdutos.getIdProduto()));
             this.jTextFieldNomeProduto.setText(modelProdutos.getProdNome());
             this.jTextFieldValorProduto.setText(String.valueOf(modelProdutos.getProdValor()));
             this.jTextFieldEstoqueProduto.setText(String.valueOf(modelProdutos.getProdEstoque()));
+            modelFornecedor = controllerFornecedor.getFornecedorController(codigoFornecedor);
+            this.uJComboBoxFornecedor.setSelectedItem(modelFornecedor.getNome_fantasia());
             this.habilitarDesabilitarSalvar(true);
 
         } catch (Exception e) {
@@ -798,11 +833,13 @@ public class Produto extends javax.swing.JFrame {
 
     private void salvarProduto() {
         // Salva um novo produto no banco e mostra na tabela
+        modelFornecedor = controllerFornecedor.getFornecedorController(uJComboBoxFornecedor.getSelectedItem().toString());
+        modelProdutos.setFornecedor(modelFornecedor.getId_fornecedor());
         modelProdutos.setProdNome(this.jTextFieldNomeProduto.getText().toUpperCase());
         modelProdutos.setProdEstoque(Integer.parseInt(this.jTextFieldEstoqueProduto.getText()));
         modelProdutos.setProdValor(formatador.converterVirgulaParaPonto(this.jTextFieldValorProduto.getText()));
 
-        if (controllerProdutos.salvarProdutoController(modelProdutos) > 0) {
+        if (controllerProdutos.salvarProdutosController(modelProdutos) > 0) {
             JOptionPane.showMessageDialog(this, "Produto Cadastrado com Sucesso!", "ATENÇÃO", JOptionPane.WARNING_MESSAGE);
             this.carregarProdutos();
             this.limparCampos();
@@ -813,13 +850,23 @@ public class Produto extends javax.swing.JFrame {
         }
     }
 
+    private void listarfornecedores() {
+        listaModelFornecedores = controllerFornecedor.getListaFornecedorController();
+        uJComboBoxFornecedor.removeAllItems();
+        for (int i = 0; i < listaModelFornecedores.size(); i++) {
+            uJComboBoxFornecedor.addItem(listaModelFornecedores.get(i).getNome_fantasia());
+        }
+    }
+
     private void alterarProduto() {
         // Altera um produto selecionado na tabela
+        modelFornecedor = controllerFornecedor.getFornecedorController(uJComboBoxFornecedor.getSelectedItem().toString());
+        modelProdutos.setFornecedor(modelFornecedor.getId_fornecedor());
         modelProdutos.setProdNome(this.jTextFieldNomeProduto.getText().toUpperCase());
         modelProdutos.setProdEstoque(Integer.parseInt(this.jTextFieldEstoqueProduto.getText()));
         modelProdutos.setProdValor(formatador.converterVirgulaParaPonto(this.jTextFieldValorProduto.getText()));
 
-        if (controllerProdutos.alterarProdutoControler(modelProdutos)) {
+        if (controllerProdutos.atualizarProdutosController(modelProdutos)) {
             JOptionPane.showMessageDialog(this, "Produto Alterado com Sucesso!", "ATENÇÃO", JOptionPane.WARNING_MESSAGE);
             this.carregarProdutos();
             this.limparCampos();
@@ -835,6 +882,7 @@ public class Produto extends javax.swing.JFrame {
         jTextFieldValorProduto.setEnabled(condicao);
         jTextFieldEstoqueProduto.setEnabled(condicao);
         jButtonSalvarProduto.setEnabled(condicao);
+        uJComboBoxFornecedor.setEnabled(condicao);
     }
 
     //Habilita ou Desabilita os jTextField
@@ -852,7 +900,7 @@ public class Produto extends javax.swing.JFrame {
 
     //Preenche a tabela de produtos com os produtos cadastrados no banco
     private void carregarProdutos() {
-        listaModelProdutos = controllerProdutos.retornarListaProdutoController();
+        listaModelProdutos = controllerProdutos.getListaProdutosController();
         DefaultTableModel modelo = (DefaultTableModel) jTableProduto.getModel();
         modelo.setNumRows(0); //seta o numero de linhas em ZERO para nao duplicar na tabela
 
@@ -863,7 +911,8 @@ public class Produto extends javax.swing.JFrame {
                 listaModelProdutos.get(i).getIdProduto(),
                 listaModelProdutos.get(i).getProdNome(),
                 listaModelProdutos.get(i).getProdEstoque(),
-                listaModelProdutos.get(i).getProdValor()
+                listaModelProdutos.get(i).getProdValor(),
+                listaModelProdutos.get(i).getFornecedor()
             });
         }
         JTableHeader cabecalho = jTableProduto.getTableHeader();
@@ -897,6 +946,7 @@ public class Produto extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -923,5 +973,6 @@ public class Produto extends javax.swing.JFrame {
     private javax.swing.JTextField jTextFieldPesquisarProduto;
     private javax.swing.JTextField jTextFieldTelefone;
     private javax.swing.JFormattedTextField jTextFieldValorProduto;
+    private componentes.UJComboBox uJComboBoxFornecedor;
     // End of variables declaration//GEN-END:variables
 }

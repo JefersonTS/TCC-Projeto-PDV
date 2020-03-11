@@ -1,44 +1,67 @@
 package controller;
 
-import DAO.DaoProdutos;
-import java.util.ArrayList;
 import model.ModelProdutos;
+import DAO.DAOProdutos;
+import java.util.ArrayList;
 
+/**
+*
+* @author Jeferson
+*/
 public class ControllerProdutos {
-    private DaoProdutos daoProdutos = new DaoProdutos();
-    
-    //Salvar Produtos Controller
-    public int salvarProdutoController(ModelProdutos pModelProdutos){
+
+    private DAOProdutos daoProdutos = new DAOProdutos();
+
+    /**
+    * grava Produtos
+    * @param pModelProdutos
+    * @return int
+    */
+    public int salvarProdutosController(ModelProdutos pModelProdutos){
         return this.daoProdutos.salvarProdutosDAO(pModelProdutos);
     }
-    
-    //Excluir produto Controller
-    public boolean excluirProdutoController(int pCodigo){
-        return this.daoProdutos.excluirProdutoDAO(pCodigo);
-    }
-    
-    //Alterar Produto Controller 
-    public boolean alterarProdutoControler(ModelProdutos pModelProdutos){
-        return this.daoProdutos.alterarProdutoDAO(pModelProdutos);
-    }
-    
-    //Retornar Produto controller (Pelo Código)
-    public ModelProdutos retornarProdutoController(int pCodigo){
-        return this.daoProdutos.retornarProdutoDAO(pCodigo);
+
+    /**
+    * recupera Produtos
+    * @param pIdProduto
+    * @return ModelProdutos
+    */
+    public ModelProdutos getProdutosController(int pIdProduto){
+        return this.daoProdutos.getProdutosDAO(pIdProduto);
     }
 
-    //Retornar Produto controller (Pelo Nome)
-    public ModelProdutos retornarProdutoController(String pNomeProduto){
-        return this.daoProdutos.retornarProdutoDAO(pNomeProduto);
-    }
-    
-    //retornar uma lista de produtos
-    public ArrayList<ModelProdutos> retornarListaProdutoController(){
-        return this.daoProdutos.retornarListaProdutosDAO();
+    /**
+    * recupera uma lista deProdutos
+    * @param pIdProduto
+    * @return ArrayList
+    */
+    public ArrayList<ModelProdutos> getListaProdutosController(){
+        return this.daoProdutos.getListaProdutosDAO();
     }
 
-    //Alterar o estoque do procuto no banco
-    public boolean alterarEstoqueProdutoControler(ArrayList<ModelProdutos> plistaModelProdutos) {
-        return this.daoProdutos.alterarEstoqueProdutoDAO(plistaModelProdutos);
+    /**
+    * atualiza Produtos
+    * @param pModelProdutos
+    * @return boolean
+    */
+    public boolean atualizarProdutosController(ModelProdutos pModelProdutos){
+        return this.daoProdutos.atualizarProdutosDAO(pModelProdutos);
+    }
+
+    /**
+    * exclui Produtos
+    * @param pIdProduto
+    * @return boolean
+    */
+    public boolean excluirProdutosController(int pIdProduto){
+        return this.daoProdutos.excluirProdutosDAO(pIdProduto);
+    }
+
+    public ModelProdutos getProdutoController(String pNomeProduto) {
+        return this.daoProdutos.getProdutoProdutosDAO(pNomeProduto);
+    }
+
+    public boolean alterarEstoqueProdutosController(ArrayList<ModelProdutos> plistaModelProdutos) {
+        return this.daoProdutos.alterarEstoqueProdutosDAO(plistaModelProdutos);
     }
 }

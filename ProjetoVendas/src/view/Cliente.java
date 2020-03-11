@@ -501,6 +501,8 @@ public class Cliente extends javax.swing.JFrame {
                     carregarCliente(); //aqui carrega os clientes na tabela
                     habilitaDesabilita(false);
                     limparCampos();
+                    jTextFieldPesquisarCliente.setEnabled(true);
+                    jButtonPesquisarCliente.setEnabled(true);
                 } else {
                     JOptionPane.showMessageDialog(this, "Erro ao Salvar o Cliente!", "ERRO", JOptionPane.ERROR_MESSAGE);
                 }
@@ -510,6 +512,8 @@ public class Cliente extends javax.swing.JFrame {
                     carregarCliente(); //aqui carrega os clientes na tabela
                     habilitaDesabilita(false);
                     limparCampos();
+                    jTextFieldPesquisarCliente.setEnabled(true);
+                    jButtonPesquisarCliente.setEnabled(true);
                 } else {
                     JOptionPane.showMessageDialog(this, "Erro ao Alterar o Cliente!", "ERRO", JOptionPane.ERROR_MESSAGE);
                 }
@@ -518,19 +522,19 @@ public class Cliente extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Erro ao " + salvarAlterar + " o Cliente!\nNome ou Algum campo de endereço VAZIO", "ERRO", JOptionPane.ERROR_MESSAGE);
 
         }
-        jTextFieldPesquisarCliente.setEnabled(true);
-        jButtonPesquisarCliente.setEnabled(true);
     }//GEN-LAST:event_jButtonSalvarClienteActionPerformed
 
     private void jButtonAlterarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlterarClienteActionPerformed
         // TODO add your handling code here:
-        int linha = jTableClientes.getSelectedRow(); /* pega o valor da linha selecionada*/
+        int linha = jTableClientes.getSelectedRow();
+        /* pega o valor da linha selecionada*/
 
         salvarAlterar = "alterar";
         try {
             jTextFieldPesquisarCliente.setEnabled(false);
             jButtonPesquisarCliente.setEnabled(false);
-            int codigoCliente = (int) jTableClientes.getValueAt(linha, 0); /* Pega o valor da coluna da linha selecionada*/
+            int codigoCliente = (int) jTableClientes.getValueAt(linha, 0);
+            /* Pega o valor da coluna da linha selecionada*/
 
             this.habilitaDesabilita(true);
 
@@ -558,6 +562,8 @@ public class Cliente extends javax.swing.JFrame {
         this.habilitaDesabilita(true);
         this.limparCampos();
         jTextFieldNomeCliente.requestFocus();
+        jTextFieldPesquisarCliente.setEnabled(false);
+        jButtonPesquisarCliente.setEnabled(false);
     }//GEN-LAST:event_jButtonNovoClienteActionPerformed
 
     private void jTextFieldCidadeClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldCidadeClienteActionPerformed

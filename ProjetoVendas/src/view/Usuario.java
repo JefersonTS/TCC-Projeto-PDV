@@ -195,6 +195,11 @@ public class Usuario extends javax.swing.JFrame {
         });
 
         jTextFieldSenhaUsuario.setFont(new java.awt.Font("Maiandra GD", 0, 24)); // NOI18N
+        jTextFieldSenhaUsuario.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTextFieldSenhaUsuarioKeyPressed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -319,44 +324,7 @@ public class Usuario extends javax.swing.JFrame {
         jButtonSalvarUsuario.setEnabled(condicao);
     }
 
-    private void jTextFieldNomeUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNomeUsuarioActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldNomeUsuarioActionPerformed
-
-    private void jTextFieldCodigoUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldCodigoUsuarioActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldCodigoUsuarioActionPerformed
-
-    private void jButtonNovoUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNovoUsuarioActionPerformed
-        salvarAlterar = "salvar";
-        habilitarDesabilitar(true);
-        limparCampos();
-        jTextFieldNomeUsuario.requestFocus();
-    }//GEN-LAST:event_jButtonNovoUsuarioActionPerformed
-
-    private void jButtonAlterarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlterarUsuarioActionPerformed
-        int linha = jTableUsuario.getSelectedRow(); /* pega o valor da linha selecionada*/
-
-        salvarAlterar = "alterar";
-
-        try {
-            int codigoUsuario = (int) jTableUsuario.getValueAt(linha, 0); /* Pega o valor da coluna da linha selecionada*/
-
-            habilitarDesabilitar(true);
-
-            // Recupera os dados do banco
-            modelUsuario = controllerUsuario.getUsuarioController(codigoUsuario);
-            //Jogar na interface
-            jTextFieldCodigoUsuario.setText(String.valueOf(modelUsuario.getIdUsuario()));
-            jTextFieldNomeUsuario.setText(modelUsuario.getUsNome());
-            jTextFieldLoginUsuario.setText(modelUsuario.getUsLogin());
-            jTextFieldSenhaUsuario.setText(modelUsuario.getUsSenha());
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Erro ao Alterar o Cliente, Selecione um Registro na tabela", "AVISO", JOptionPane.ERROR_MESSAGE);
-        }
-    }//GEN-LAST:event_jButtonAlterarUsuarioActionPerformed
-
-    private void jButtonSalvarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarUsuarioActionPerformed
+    private void salvarAlterar() {
         try {
             modelUsuario.setIdUsuario(Integer.parseInt(jTextFieldCodigoUsuario.getText()));
         } catch (NumberFormatException e) {
@@ -390,6 +358,49 @@ public class Usuario extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(this, "Erro ao " + salvarAlterar + " o Usuario!\nAlgum campo VAZIO", "ERRO", JOptionPane.ERROR_MESSAGE);
         }
+    }
+
+    private void jTextFieldNomeUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNomeUsuarioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldNomeUsuarioActionPerformed
+
+    private void jTextFieldCodigoUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldCodigoUsuarioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldCodigoUsuarioActionPerformed
+
+    private void jButtonNovoUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNovoUsuarioActionPerformed
+        salvarAlterar = "salvar";
+        habilitarDesabilitar(true);
+        limparCampos();
+        jTextFieldNomeUsuario.requestFocus();
+    }//GEN-LAST:event_jButtonNovoUsuarioActionPerformed
+
+    private void jButtonAlterarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlterarUsuarioActionPerformed
+        int linha = jTableUsuario.getSelectedRow();
+        /* pega o valor da linha selecionada*/
+
+        salvarAlterar = "alterar";
+
+        try {
+            int codigoUsuario = (int) jTableUsuario.getValueAt(linha, 0);
+            /* Pega o valor da coluna da linha selecionada*/
+
+            habilitarDesabilitar(true);
+
+            // Recupera os dados do banco
+            modelUsuario = controllerUsuario.getUsuarioController(codigoUsuario);
+            //Jogar na interface
+            jTextFieldCodigoUsuario.setText(String.valueOf(modelUsuario.getIdUsuario()));
+            jTextFieldNomeUsuario.setText(modelUsuario.getUsNome());
+            jTextFieldLoginUsuario.setText(modelUsuario.getUsLogin());
+            jTextFieldSenhaUsuario.setText(modelUsuario.getUsSenha());
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Erro ao Alterar o Cliente, Selecione um Registro na tabela", "AVISO", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_jButtonAlterarUsuarioActionPerformed
+
+    private void jButtonSalvarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarUsuarioActionPerformed
+        salvarAlterar();
     }//GEN-LAST:event_jButtonSalvarUsuarioActionPerformed
 
     private void jButtonCancelarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarUsuarioActionPerformed
@@ -413,6 +424,13 @@ public class Usuario extends javax.swing.JFrame {
     private void jTextFieldLoginUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldLoginUsuarioActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldLoginUsuarioActionPerformed
+
+    private void jTextFieldSenhaUsuarioKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldSenhaUsuarioKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
+            salvarAlterar();
+        }
+    }//GEN-LAST:event_jTextFieldSenhaUsuarioKeyPressed
 
     /**
      * @param args the command line arguments
