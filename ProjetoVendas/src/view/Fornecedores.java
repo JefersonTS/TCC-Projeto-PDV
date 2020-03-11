@@ -5,19 +5,11 @@
  */
 package view;
 
-import controller.ControllerCliente;
 import java.awt.Font;
 import java.awt.Toolkit;
-import java.util.ArrayList;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
-import javax.swing.RowFilter;
 import javax.swing.UIManager;
 import javax.swing.plaf.FontUIResource;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.JTableHeader;
-import javax.swing.table.TableRowSorter;
-import model.ModelCliente;
 
 /**
  *
@@ -25,15 +17,13 @@ import model.ModelCliente;
  */
 public class Fornecedores extends javax.swing.JFrame {
 
-    ControllerCliente controllerCliente = new ControllerCliente();
-    ModelCliente modelCliente = new ModelCliente();
-    ArrayList<ModelCliente> listaModelCliente = new ArrayList<>();
     String salvarAlterar; //Varilavel global que vai ser usada no if do botao salvar para determinar se é para alterar ou salvar um novo produto
 
     public Fornecedores() {
         initComponents();
         setAlwaysOnTop(true);
         setExtendedState(JFrame.MAXIMIZED_BOTH);
+        habilitaDesabilita(false);
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("../imagens/carrinho-de-compras.png")));
         UIManager.put("OptionPane.messageFont", new FontUIResource(new Font("Maiandra GD", Font.PLAIN, 35)));
     }
@@ -54,21 +44,21 @@ public class Fornecedores extends javax.swing.JFrame {
         jTextFieldCodigoFornecedor = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jTextFieldRazaoSocial = new javax.swing.JTextField();
-        jTextFieldEndereco = new javax.swing.JTextField();
+        jTextFieldEnderecoFornecedor = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jComboBoxUFCliente = new javax.swing.JComboBox();
+        jComboBoxUFFornecedor = new javax.swing.JComboBox();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableFornecedores = new javax.swing.JTable();
-        jButtonNovoCliente = new javax.swing.JButton();
-        jButtonAlterarCliente = new javax.swing.JButton();
-        jButtonSalvarCliente = new javax.swing.JButton();
-        jButtonCancelarCliente = new javax.swing.JButton();
-        jTextFieldCEPCliente = new javax.swing.JFormattedTextField();
-        jTextFieldTelefoneCliente = new javax.swing.JFormattedTextField();
+        jButtonNovoFornecedor = new javax.swing.JButton();
+        jButtonAlterarFornecedor = new javax.swing.JButton();
+        jButtonSalvarFornecedor = new javax.swing.JButton();
+        jButtonCancelarFornecedor = new javax.swing.JButton();
+        jTextFieldCEPFornecedor = new javax.swing.JFormattedTextField();
+        jTextFieldTelefoneFornecedor = new javax.swing.JFormattedTextField();
         jButtonPesquisarFornecedor = new javax.swing.JButton();
         jTextFieldPesquisarFornecedor = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
@@ -76,13 +66,13 @@ public class Fornecedores extends javax.swing.JFrame {
         jTextFieldNomeFantasia = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
         jTextFieldCNPJ = new javax.swing.JFormattedTextField();
-        jTextFieldIncrocaoEstadual = new javax.swing.JFormattedTextField();
+        jTextFieldInscricaoEstadual = new javax.swing.JFormattedTextField();
         jLabel12 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField1 = new javax.swing.JTextField();
+        jTextFieldBairroFornecedor = new javax.swing.JTextField();
+        jTextFieldCidadeFornecedor = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
+        jTextFieldEMailFornecedor = new javax.swing.JTextField();
 
         jLabel3.setText("Nome");
 
@@ -119,11 +109,11 @@ public class Fornecedores extends javax.swing.JFrame {
             }
         });
 
-        jTextFieldEndereco.setFont(new java.awt.Font("Maiandra GD", 0, 24)); // NOI18N
-        jTextFieldEndereco.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        jTextFieldEndereco.addActionListener(new java.awt.event.ActionListener() {
+        jTextFieldEnderecoFornecedor.setFont(new java.awt.Font("Maiandra GD", 0, 24)); // NOI18N
+        jTextFieldEnderecoFornecedor.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        jTextFieldEnderecoFornecedor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldEnderecoActionPerformed(evt);
+                jTextFieldEnderecoFornecedorActionPerformed(evt);
             }
         });
 
@@ -133,9 +123,9 @@ public class Fornecedores extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Maiandra GD", 0, 24)); // NOI18N
         jLabel5.setText("Bairro:");
 
-        jComboBoxUFCliente.setFont(new java.awt.Font("Maiandra GD", 0, 24)); // NOI18N
-        jComboBoxUFCliente.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO" }));
-        jComboBoxUFCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jComboBoxUFFornecedor.setFont(new java.awt.Font("Maiandra GD", 0, 24)); // NOI18N
+        jComboBoxUFFornecedor.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO" }));
+        jComboBoxUFFornecedor.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jLabel7.setFont(new java.awt.Font("Maiandra GD", 0, 24)); // NOI18N
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -187,79 +177,79 @@ public class Fornecedores extends javax.swing.JFrame {
             jTableFornecedores.getColumnModel().getColumn(4).setPreferredWidth(80);
         }
 
-        jButtonNovoCliente.setFont(new java.awt.Font("Maiandra GD", 0, 24)); // NOI18N
-        jButtonNovoCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/24x24/papel-de-texto.png"))); // NOI18N
-        jButtonNovoCliente.setText("Novo");
-        jButtonNovoCliente.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jButtonNovoCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButtonNovoCliente.setMaximumSize(new java.awt.Dimension(100, 40));
-        jButtonNovoCliente.setMinimumSize(new java.awt.Dimension(100, 40));
-        jButtonNovoCliente.addActionListener(new java.awt.event.ActionListener() {
+        jButtonNovoFornecedor.setFont(new java.awt.Font("Maiandra GD", 0, 24)); // NOI18N
+        jButtonNovoFornecedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/24x24/papel-de-texto.png"))); // NOI18N
+        jButtonNovoFornecedor.setText("Novo");
+        jButtonNovoFornecedor.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jButtonNovoFornecedor.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonNovoFornecedor.setMaximumSize(new java.awt.Dimension(100, 40));
+        jButtonNovoFornecedor.setMinimumSize(new java.awt.Dimension(100, 40));
+        jButtonNovoFornecedor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonNovoClienteActionPerformed(evt);
+                jButtonNovoFornecedorActionPerformed(evt);
             }
         });
 
-        jButtonAlterarCliente.setFont(new java.awt.Font("Maiandra GD", 0, 24)); // NOI18N
-        jButtonAlterarCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/24x24/editar.png"))); // NOI18N
-        jButtonAlterarCliente.setText("Alterar");
-        jButtonAlterarCliente.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jButtonAlterarCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButtonAlterarCliente.setMaximumSize(new java.awt.Dimension(100, 40));
-        jButtonAlterarCliente.setMinimumSize(new java.awt.Dimension(100, 40));
-        jButtonAlterarCliente.addActionListener(new java.awt.event.ActionListener() {
+        jButtonAlterarFornecedor.setFont(new java.awt.Font("Maiandra GD", 0, 24)); // NOI18N
+        jButtonAlterarFornecedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/24x24/editar.png"))); // NOI18N
+        jButtonAlterarFornecedor.setText("Alterar");
+        jButtonAlterarFornecedor.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jButtonAlterarFornecedor.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonAlterarFornecedor.setMaximumSize(new java.awt.Dimension(100, 40));
+        jButtonAlterarFornecedor.setMinimumSize(new java.awt.Dimension(100, 40));
+        jButtonAlterarFornecedor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonAlterarClienteActionPerformed(evt);
+                jButtonAlterarFornecedorActionPerformed(evt);
             }
         });
 
-        jButtonSalvarCliente.setFont(new java.awt.Font("Maiandra GD", 0, 24)); // NOI18N
-        jButtonSalvarCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/24x24/disquete.png"))); // NOI18N
-        jButtonSalvarCliente.setText("Salvar");
-        jButtonSalvarCliente.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jButtonSalvarCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButtonSalvarCliente.setMaximumSize(new java.awt.Dimension(100, 40));
-        jButtonSalvarCliente.setMinimumSize(new java.awt.Dimension(100, 40));
-        jButtonSalvarCliente.addActionListener(new java.awt.event.ActionListener() {
+        jButtonSalvarFornecedor.setFont(new java.awt.Font("Maiandra GD", 0, 24)); // NOI18N
+        jButtonSalvarFornecedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/24x24/disquete.png"))); // NOI18N
+        jButtonSalvarFornecedor.setText("Salvar");
+        jButtonSalvarFornecedor.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jButtonSalvarFornecedor.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonSalvarFornecedor.setMaximumSize(new java.awt.Dimension(100, 40));
+        jButtonSalvarFornecedor.setMinimumSize(new java.awt.Dimension(100, 40));
+        jButtonSalvarFornecedor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonSalvarClienteActionPerformed(evt);
+                jButtonSalvarFornecedorActionPerformed(evt);
             }
         });
 
-        jButtonCancelarCliente.setFont(new java.awt.Font("Maiandra GD", 0, 24)); // NOI18N
-        jButtonCancelarCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/24x24/proibido.png"))); // NOI18N
-        jButtonCancelarCliente.setText("Cancelar");
-        jButtonCancelarCliente.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jButtonCancelarCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButtonCancelarCliente.setMaximumSize(new java.awt.Dimension(100, 40));
-        jButtonCancelarCliente.setMinimumSize(new java.awt.Dimension(100, 40));
-        jButtonCancelarCliente.addActionListener(new java.awt.event.ActionListener() {
+        jButtonCancelarFornecedor.setFont(new java.awt.Font("Maiandra GD", 0, 24)); // NOI18N
+        jButtonCancelarFornecedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/24x24/proibido.png"))); // NOI18N
+        jButtonCancelarFornecedor.setText("Cancelar");
+        jButtonCancelarFornecedor.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jButtonCancelarFornecedor.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonCancelarFornecedor.setMaximumSize(new java.awt.Dimension(100, 40));
+        jButtonCancelarFornecedor.setMinimumSize(new java.awt.Dimension(100, 40));
+        jButtonCancelarFornecedor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonCancelarClienteActionPerformed(evt);
-            }
-        });
-
-        try {
-            jTextFieldCEPCliente.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#####-###")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-        jTextFieldCEPCliente.setFont(new java.awt.Font("Maiandra GD", 0, 24)); // NOI18N
-        jTextFieldCEPCliente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldCEPClienteActionPerformed(evt);
+                jButtonCancelarFornecedorActionPerformed(evt);
             }
         });
 
         try {
-            jTextFieldTelefoneCliente.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##)#####-####")));
+            jTextFieldCEPFornecedor.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#####-###")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        jTextFieldTelefoneCliente.setFont(new java.awt.Font("Maiandra GD", 0, 24)); // NOI18N
-        jTextFieldTelefoneCliente.addActionListener(new java.awt.event.ActionListener() {
+        jTextFieldCEPFornecedor.setFont(new java.awt.Font("Maiandra GD", 0, 24)); // NOI18N
+        jTextFieldCEPFornecedor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldTelefoneClienteActionPerformed(evt);
+                jTextFieldCEPFornecedorActionPerformed(evt);
+            }
+        });
+
+        try {
+            jTextFieldTelefoneFornecedor.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##)#####-####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        jTextFieldTelefoneFornecedor.setFont(new java.awt.Font("Maiandra GD", 0, 24)); // NOI18N
+        jTextFieldTelefoneFornecedor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldTelefoneFornecedorActionPerformed(evt);
             }
         });
 
@@ -313,26 +303,26 @@ public class Fornecedores extends javax.swing.JFrame {
         });
 
         try {
-            jTextFieldIncrocaoEstadual.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##.###.####-#")));
+            jTextFieldInscricaoEstadual.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##.###.####-#")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        jTextFieldIncrocaoEstadual.setFont(new java.awt.Font("Maiandra GD", 0, 24)); // NOI18N
-        jTextFieldIncrocaoEstadual.addActionListener(new java.awt.event.ActionListener() {
+        jTextFieldInscricaoEstadual.setFont(new java.awt.Font("Maiandra GD", 0, 24)); // NOI18N
+        jTextFieldInscricaoEstadual.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldIncrocaoEstadualActionPerformed(evt);
+                jTextFieldInscricaoEstadualActionPerformed(evt);
             }
         });
 
         jLabel12.setFont(new java.awt.Font("Maiandra GD", 0, 24)); // NOI18N
         jLabel12.setText("Inscrição Estadual:");
 
-        jTextField2.setFont(new java.awt.Font("Maiandra GD", 0, 24)); // NOI18N
+        jTextFieldBairroFornecedor.setFont(new java.awt.Font("Maiandra GD", 0, 24)); // NOI18N
 
-        jTextField1.setFont(new java.awt.Font("Maiandra GD", 0, 24)); // NOI18N
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        jTextFieldCidadeFornecedor.setFont(new java.awt.Font("Maiandra GD", 0, 24)); // NOI18N
+        jTextFieldCidadeFornecedor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                jTextFieldCidadeFornecedorActionPerformed(evt);
             }
         });
 
@@ -342,7 +332,7 @@ public class Fornecedores extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Maiandra GD", 0, 24)); // NOI18N
         jLabel6.setText("E-Mail:");
 
-        jTextField4.setFont(new java.awt.Font("Maiandra GD", 0, 24)); // NOI18N
+        jTextFieldEMailFornecedor.setFont(new java.awt.Font("Maiandra GD", 0, 24)); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -356,30 +346,29 @@ public class Fornecedores extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jLabel8)
                         .addGap(18, 18, 18)
-                        .addComponent(jTextFieldCEPCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jTextFieldCEPFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel9)
                         .addGap(18, 18, 18)
-                        .addComponent(jTextFieldTelefoneCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jTextFieldTelefoneFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel6)
                         .addGap(18, 18, 18)
-                        .addComponent(jTextField4))
+                        .addComponent(jTextFieldEMailFornecedor))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(12, 12, 12)
-                        .addComponent(jButtonNovoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButtonNovoFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButtonAlterarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButtonAlterarFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButtonSalvarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButtonSalvarFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 588, Short.MAX_VALUE)
-                        .addComponent(jButtonCancelarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0))
+                        .addComponent(jButtonCancelarFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(12, 12, 12)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jComboBoxUFCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jComboBoxUFFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(jLabel13)
                                 .addGap(18, 18, 18)
@@ -408,21 +397,21 @@ public class Fornecedores extends javax.swing.JFrame {
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(jLabel5)
                                         .addGap(18, 18, 18)
-                                        .addComponent(jTextField2))
+                                        .addComponent(jTextFieldBairroFornecedor))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(jLabel4)
                                         .addGap(18, 18, 18)
-                                        .addComponent(jTextFieldEndereco)))
+                                        .addComponent(jTextFieldEnderecoFornecedor)))
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                         .addComponent(jLabel12)
                                         .addGap(18, 18, 18)
-                                        .addComponent(jTextFieldIncrocaoEstadual, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(jTextFieldInscricaoEstadual, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(jLabel14)
                                         .addGap(18, 18, 18)
-                                        .addComponent(jTextField1)))))))
+                                        .addComponent(jTextFieldCidadeFornecedor)))))))
                 .addGap(12, 12, 12))
         );
         jPanel1Layout.setVerticalGroup(
@@ -450,14 +439,14 @@ public class Fornecedores extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(7, 7, 7)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextFieldEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextFieldEnderecoFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(3, 3, 3)
                                 .addComponent(jLabel4))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextFieldIncrocaoEstadual, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextFieldInscricaoEstadual, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel12))))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -465,18 +454,19 @@ public class Fornecedores extends javax.swing.JFrame {
                         .addComponent(jLabel5))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(7, 7, 7)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel14))))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextFieldCidadeFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jTextFieldBairroFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel14)))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel7)
-                    .addComponent(jTextFieldCEPCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextFieldCEPFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jTextFieldTelefoneCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jTextFieldTelefoneFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel6)
-                        .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jTextFieldEMailFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(3, 3, 3)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -495,16 +485,20 @@ public class Fornecedores extends javax.swing.JFrame {
                             .addComponent(jButtonPesquisarFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBoxUFCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jComboBoxUFFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 512, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 501, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButtonNovoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonAlterarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonSalvarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonCancelarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(9, 9, 9))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButtonNovoFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButtonAlterarFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButtonSalvarFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(13, 13, 13))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jButtonCancelarFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -516,47 +510,80 @@ public class Fornecedores extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(0, 0, 0))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void habilitaDesabilita(boolean condicao) {
+        jTextFieldRazaoSocial.setEnabled(condicao);
+        jTextFieldNomeFantasia.setEnabled(condicao);
+        jTextFieldCNPJ.setEnabled(condicao);
+        jTextFieldInscricaoEstadual.setEnabled(condicao);
+        jTextFieldEnderecoFornecedor.setEnabled(condicao);
+        jTextFieldBairroFornecedor.setEnabled(condicao);
+        jTextFieldCidadeFornecedor.setEnabled(condicao);
+        jTextFieldCEPFornecedor.setEnabled(condicao);
+        jTextFieldTelefoneFornecedor.setEnabled(condicao);
+        jTextFieldEMailFornecedor.setEnabled(condicao);
+        jComboBoxUFFornecedor.setEnabled(condicao);
+    }
+
+    private void limparCampos() {
+        jTextFieldRazaoSocial.setText("");
+        jTextFieldNomeFantasia.setText("");
+        jTextFieldCNPJ.setText("");
+        jTextFieldInscricaoEstadual.setText("");
+        jTextFieldEnderecoFornecedor.setText("");
+        jTextFieldBairroFornecedor.setText("");
+        jTextFieldCidadeFornecedor.setText("");
+        jTextFieldCEPFornecedor.setText("");
+        jTextFieldTelefoneFornecedor.setText("");
+        jTextFieldEMailFornecedor.setText("");
+    }
+
     private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField3ActionPerformed
 
-    private void jTextFieldTelefoneClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldTelefoneClienteActionPerformed
+    private void jTextFieldTelefoneFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldTelefoneFornecedorActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldTelefoneClienteActionPerformed
+    }//GEN-LAST:event_jTextFieldTelefoneFornecedorActionPerformed
 
-    private void jTextFieldCEPClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldCEPClienteActionPerformed
+    private void jTextFieldCEPFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldCEPFornecedorActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldCEPClienteActionPerformed
+    }//GEN-LAST:event_jTextFieldCEPFornecedorActionPerformed
 
-    private void jButtonCancelarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarClienteActionPerformed
+    private void jButtonCancelarFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarFornecedorActionPerformed
         // TODO add your handling code here:
+        this.habilitaDesabilita(false);
+        jTextFieldPesquisarFornecedor.setEnabled(true);
+        jButtonPesquisarFornecedor.setEnabled(true);
+    }//GEN-LAST:event_jButtonCancelarFornecedorActionPerformed
 
-    }//GEN-LAST:event_jButtonCancelarClienteActionPerformed
-
-    private void jButtonSalvarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarClienteActionPerformed
+    private void jButtonSalvarFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarFornecedorActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonSalvarClienteActionPerformed
+    }//GEN-LAST:event_jButtonSalvarFornecedorActionPerformed
 
-    private void jButtonAlterarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlterarClienteActionPerformed
-        // TODO add your handling code here:
-
-    }//GEN-LAST:event_jButtonAlterarClienteActionPerformed
-
-    private void jButtonNovoClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNovoClienteActionPerformed
+    private void jButtonAlterarFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlterarFornecedorActionPerformed
         // TODO add your handling code here:
 
-    }//GEN-LAST:event_jButtonNovoClienteActionPerformed
+    }//GEN-LAST:event_jButtonAlterarFornecedorActionPerformed
 
-    private void jTextFieldEnderecoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldEnderecoActionPerformed
+    private void jButtonNovoFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNovoFornecedorActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldEnderecoActionPerformed
+        salvarAlterar = "salvar";
+        this.habilitaDesabilita(true);
+        this.limparCampos();
+        jTextFieldPesquisarFornecedor.setEnabled(false);
+        jButtonPesquisarFornecedor.setEnabled(false);
+    }//GEN-LAST:event_jButtonNovoFornecedorActionPerformed
+
+    private void jTextFieldEnderecoFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldEnderecoFornecedorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldEnderecoFornecedorActionPerformed
 
     private void jTextFieldRazaoSocialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldRazaoSocialActionPerformed
         // TODO add your handling code here:
@@ -588,14 +615,13 @@ public class Fornecedores extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldCNPJActionPerformed
 
-    private void jTextFieldIncrocaoEstadualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldIncrocaoEstadualActionPerformed
+    private void jTextFieldInscricaoEstadualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldInscricaoEstadualActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldIncrocaoEstadualActionPerformed
+    }//GEN-LAST:event_jTextFieldInscricaoEstadualActionPerformed
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void jTextFieldCidadeFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldCidadeFornecedorActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
-
+    }//GEN-LAST:event_jTextFieldCidadeFornecedorActionPerformed
 
     /**
      * @param args the command line arguments
@@ -634,12 +660,12 @@ public class Fornecedores extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButtonAlterarCliente;
-    private javax.swing.JButton jButtonCancelarCliente;
-    private javax.swing.JButton jButtonNovoCliente;
+    private javax.swing.JButton jButtonAlterarFornecedor;
+    private javax.swing.JButton jButtonCancelarFornecedor;
+    private javax.swing.JButton jButtonNovoFornecedor;
     private javax.swing.JButton jButtonPesquisarFornecedor;
-    private javax.swing.JButton jButtonSalvarCliente;
-    private javax.swing.JComboBox jComboBoxUFCliente;
+    private javax.swing.JButton jButtonSalvarFornecedor;
+    private javax.swing.JComboBox jComboBoxUFFornecedor;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -657,18 +683,18 @@ public class Fornecedores extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTableFornecedores;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JFormattedTextField jTextFieldCEPCliente;
+    private javax.swing.JTextField jTextFieldBairroFornecedor;
+    private javax.swing.JFormattedTextField jTextFieldCEPFornecedor;
     private javax.swing.JFormattedTextField jTextFieldCNPJ;
+    private javax.swing.JTextField jTextFieldCidadeFornecedor;
     private javax.swing.JTextField jTextFieldCodigoFornecedor;
-    private javax.swing.JTextField jTextFieldEndereco;
-    private javax.swing.JFormattedTextField jTextFieldIncrocaoEstadual;
+    private javax.swing.JTextField jTextFieldEMailFornecedor;
+    private javax.swing.JTextField jTextFieldEnderecoFornecedor;
+    private javax.swing.JFormattedTextField jTextFieldInscricaoEstadual;
     private javax.swing.JTextField jTextFieldNomeFantasia;
     private javax.swing.JTextField jTextFieldPesquisarFornecedor;
     private javax.swing.JTextField jTextFieldRazaoSocial;
-    private javax.swing.JFormattedTextField jTextFieldTelefoneCliente;
+    private javax.swing.JFormattedTextField jTextFieldTelefoneFornecedor;
     // End of variables declaration//GEN-END:variables
 }
