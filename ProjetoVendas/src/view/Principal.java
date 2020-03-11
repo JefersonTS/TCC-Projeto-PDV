@@ -73,6 +73,7 @@ public class Principal extends javax.swing.JFrame {
         jButtonRelatorios = new javax.swing.JButton();
         jButtonBackup = new javax.swing.JButton();
         jButtonRestore = new javax.swing.JButton();
+        jButtonFornecedor = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -183,6 +184,15 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
+        jButtonFornecedor.setFont(new java.awt.Font("Maiandra GD", 1, 24)); // NOI18N
+        jButtonFornecedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/24x24/adicionar-usuario.png"))); // NOI18N
+        jButtonFornecedor.setText("Fornecedor");
+        jButtonFornecedor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonFornecedorActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -197,7 +207,8 @@ public class Principal extends javax.swing.JFrame {
                     .addComponent(jButtonPDV, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButtonRelatorios, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButtonBackup, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButtonRestore, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jButtonRestore, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButtonFornecedor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -210,6 +221,8 @@ public class Principal extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jButtonUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
+                .addComponent(jButtonFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(jButtonRelatorios, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButtonVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -219,7 +232,7 @@ public class Principal extends javax.swing.JFrame {
                 .addComponent(jButtonBackup, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButtonRestore, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(173, Short.MAX_VALUE))
+                .addContainerGap(105, Short.MAX_VALUE))
         );
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -643,6 +656,11 @@ public class Principal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButtonRestoreActionPerformed
 
+    private void jButtonFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFornecedorActionPerformed
+        // TODO add your handling code here:
+        new Fornecedores().setVisible(true);
+    }//GEN-LAST:event_jButtonFornecedorActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -682,6 +700,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JFileChooser JFC_Salvar_Backup;
     private javax.swing.JButton jButtonBackup;
     private javax.swing.JButton jButtonCliente;
+    private javax.swing.JButton jButtonFornecedor;
     private javax.swing.JButton jButtonPDV;
     private javax.swing.JButton jButtonProduto;
     private javax.swing.JButton jButtonRelatorios;
