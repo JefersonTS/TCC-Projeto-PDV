@@ -71,6 +71,7 @@ public class PagamentoPDV extends javax.swing.JDialog {
         jMenu3 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Sistema de Vendas - Pagamento PDV");
 
         jPanel2.setBackground(new java.awt.Color(204, 255, 153));
 

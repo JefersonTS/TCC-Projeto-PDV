@@ -611,10 +611,7 @@ public class Cliente extends javax.swing.JFrame {
                 listaModelCliente.get(i).getCliNome(),
                 listaModelCliente.get(i).getCliCidade(),
                 listaModelCliente.get(i).getCliUf(),
-                listaModelCliente.get(i).getCliTelefone(),
-                listaModelCliente.get(i).getCliEndereco(),
-                listaModelCliente.get(i).getCliBairro(),
-                listaModelCliente.get(i).getCliCep(),});
+                listaModelCliente.get(i).getCliTelefone()});
         }
         JTableHeader cabecalho = jTableClientes.getTableHeader();
         cabecalho.setFont(new Font("Maiandra GD", Font.PLAIN, 24));

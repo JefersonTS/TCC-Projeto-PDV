@@ -5,11 +5,19 @@
  */
 package view;
 
+import controller.ControllerFornecedor;
 import java.awt.Font;
 import java.awt.Toolkit;
+import java.util.ArrayList;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.RowFilter;
 import javax.swing.UIManager;
 import javax.swing.plaf.FontUIResource;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
+import javax.swing.table.TableRowSorter;
+import model.ModelFornecedor;
 
 /**
  *
@@ -17,6 +25,9 @@ import javax.swing.plaf.FontUIResource;
  */
 public class Fornecedores extends javax.swing.JFrame {
 
+    ControllerFornecedor controllerFornecedor = new ControllerFornecedor();
+    ModelFornecedor modelFornecedor = new ModelFornecedor();
+    ArrayList<ModelFornecedor> listaModelFornecedores = new ArrayList<>();
     String salvarAlterar; //Varilavel global que vai ser usada no if do botao salvar para determinar se é para alterar ou salvar um novo produto
 
     public Fornecedores() {
@@ -24,6 +35,7 @@ public class Fornecedores extends javax.swing.JFrame {
         setAlwaysOnTop(true);
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         habilitaDesabilita(false);
+        carregarFornecedores();
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("../imagens/carrinho-de-compras.png")));
         UIManager.put("OptionPane.messageFont", new FontUIResource(new Font("Maiandra GD", Font.PLAIN, 35)));
     }
@@ -83,7 +95,7 @@ public class Fornecedores extends javax.swing.JFrame {
         });
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Sistema de Vendas - Cadastro e Busca de Clientes");
+        setTitle("Sistema de Vendas - Cadastro e Busca de Fornecedores");
 
         jLabel1.setFont(new java.awt.Font("Maiandra GD", 0, 24)); // NOI18N
         jLabel1.setText("Código:");
@@ -143,14 +155,14 @@ public class Fornecedores extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Código", "Nome", "Cidade", "UF", "Telefone"
+                "Código", "Nome", "Cidade", "UF", "Telefone", "E-Mail", "CNPJ"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
+                java.lang.Integer.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -170,11 +182,21 @@ public class Fornecedores extends javax.swing.JFrame {
             jTableFornecedores.getColumnModel().getColumn(0).setPreferredWidth(100);
             jTableFornecedores.getColumnModel().getColumn(0).setMaxWidth(100);
             jTableFornecedores.getColumnModel().getColumn(1).setPreferredWidth(300);
+            jTableFornecedores.getColumnModel().getColumn(2).setMinWidth(200);
             jTableFornecedores.getColumnModel().getColumn(2).setPreferredWidth(200);
-            jTableFornecedores.getColumnModel().getColumn(3).setMinWidth(100);
-            jTableFornecedores.getColumnModel().getColumn(3).setPreferredWidth(100);
-            jTableFornecedores.getColumnModel().getColumn(3).setMaxWidth(100);
-            jTableFornecedores.getColumnModel().getColumn(4).setPreferredWidth(80);
+            jTableFornecedores.getColumnModel().getColumn(2).setMaxWidth(200);
+            jTableFornecedores.getColumnModel().getColumn(3).setMinWidth(70);
+            jTableFornecedores.getColumnModel().getColumn(3).setPreferredWidth(70);
+            jTableFornecedores.getColumnModel().getColumn(3).setMaxWidth(70);
+            jTableFornecedores.getColumnModel().getColumn(4).setMinWidth(200);
+            jTableFornecedores.getColumnModel().getColumn(4).setPreferredWidth(200);
+            jTableFornecedores.getColumnModel().getColumn(4).setMaxWidth(200);
+            jTableFornecedores.getColumnModel().getColumn(5).setMinWidth(400);
+            jTableFornecedores.getColumnModel().getColumn(5).setPreferredWidth(400);
+            jTableFornecedores.getColumnModel().getColumn(5).setMaxWidth(400);
+            jTableFornecedores.getColumnModel().getColumn(6).setMinWidth(230);
+            jTableFornecedores.getColumnModel().getColumn(6).setPreferredWidth(230);
+            jTableFornecedores.getColumnModel().getColumn(6).setMaxWidth(230);
         }
 
         jButtonNovoFornecedor.setFont(new java.awt.Font("Maiandra GD", 0, 24)); // NOI18N
@@ -529,6 +551,7 @@ public class Fornecedores extends javax.swing.JFrame {
         jTextFieldTelefoneFornecedor.setEnabled(condicao);
         jTextFieldEMailFornecedor.setEnabled(condicao);
         jComboBoxUFFornecedor.setEnabled(condicao);
+        jButtonSalvarFornecedor.setEnabled(condicao);
     }
 
     private void limparCampos() {
@@ -542,6 +565,33 @@ public class Fornecedores extends javax.swing.JFrame {
         jTextFieldCEPFornecedor.setText("");
         jTextFieldTelefoneFornecedor.setText("");
         jTextFieldEMailFornecedor.setText("");
+    }
+
+    private void carregarFornecedores() {
+        listaModelFornecedores = controllerFornecedor.getListaFornecedorController();
+        DefaultTableModel modelo = (DefaultTableModel) jTableFornecedores.getModel();
+        modelo.setNumRows(0);
+        for (int i = 0; i < listaModelFornecedores.size(); i++) {
+            modelo.addRow(new Object[]{
+                listaModelFornecedores.get(i).getId_fornecedor(),
+                listaModelFornecedores.get(i).getNome_fantasia(),
+                listaModelFornecedores.get(i).getFor_cidade(),
+                listaModelFornecedores.get(i).getFor_uf(),
+                listaModelFornecedores.get(i).getFor_telefone(),
+                listaModelFornecedores.get(i).getFor_email(),
+                listaModelFornecedores.get(i).getCnpj()
+            });
+        }
+        JTableHeader cabecalho = jTableFornecedores.getTableHeader();
+        cabecalho.setFont(new Font("Maiandra GD", Font.PLAIN, 24));
+    }
+
+    private void pesquisarFornecedor() {
+        DefaultTableModel modelo = (DefaultTableModel) this.jTableFornecedores.getModel();
+        final TableRowSorter<DefaultTableModel> classificador = new TableRowSorter<>(modelo);
+        this.jTableFornecedores.setRowSorter(classificador);
+        String texto = jTextFieldPesquisarFornecedor.getText().toUpperCase();
+        classificador.setRowFilter(RowFilter.regexFilter(texto, 1));
     }
 
     private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
@@ -559,24 +609,98 @@ public class Fornecedores extends javax.swing.JFrame {
     private void jButtonCancelarFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarFornecedorActionPerformed
         // TODO add your handling code here:
         this.habilitaDesabilita(false);
+        limparCampos();
         jTextFieldPesquisarFornecedor.setEnabled(true);
         jButtonPesquisarFornecedor.setEnabled(true);
     }//GEN-LAST:event_jButtonCancelarFornecedorActionPerformed
 
     private void jButtonSalvarFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarFornecedorActionPerformed
         // TODO add your handling code here:
+        try {
+            modelFornecedor.setId_fornecedor(Integer.parseInt(jTextFieldCodigoFornecedor.getText()));
+        } catch (Exception e) {
+        }
+        //INICIO - if else para mostrar a mensagem se algum campo for vazio
+        if (!jTextFieldRazaoSocial.getText().isEmpty() && !jTextFieldNomeFantasia.getText().isEmpty()
+                && !jTextFieldEnderecoFornecedor.getText().isEmpty() && !jTextFieldBairroFornecedor.getText().isEmpty()
+                && !jTextFieldCidadeFornecedor.getText().isEmpty() && !jTextFieldCEPFornecedor.getText().isEmpty()
+                && !jTextFieldTelefoneFornecedor.getText().isEmpty() && !jTextFieldEMailFornecedor.getText().isEmpty()
+                && !jTextFieldCNPJ.getText().isEmpty() && !jTextFieldInscricaoEstadual.getText().isEmpty()) {
+            modelFornecedor.setNome_fantasia(jTextFieldNomeFantasia.getText().toUpperCase());
+            modelFornecedor.setRazao_social(jTextFieldRazaoSocial.getText().toUpperCase());
+            modelFornecedor.setFor_endereco(jTextFieldEnderecoFornecedor.getText().toUpperCase());
+            modelFornecedor.setFor_bairro(jTextFieldBairroFornecedor.getText().toUpperCase());
+            modelFornecedor.setFor_cidade(jTextFieldCidadeFornecedor.getText().toUpperCase());
+            modelFornecedor.setFor_cep(jTextFieldCEPFornecedor.getText().toUpperCase());
+            modelFornecedor.setFor_uf(jComboBoxUFFornecedor.getSelectedItem().toString());
+            modelFornecedor.setCnpj(jTextFieldCNPJ.getText());
+            modelFornecedor.setInscricao_estadual(jTextFieldInscricaoEstadual.getText().toUpperCase());
+            modelFornecedor.setFor_telefone(jTextFieldTelefoneFornecedor.getText());
+            modelFornecedor.setFor_email(jTextFieldEMailFornecedor.getText());
+            if (salvarAlterar.equals("SALVAR")) {// If para entrar na função de Salvar
+                if (controllerFornecedor.salvarFornecedorController(modelFornecedor) > 0) {
+                    JOptionPane.showMessageDialog(this, "Fornecedor Salvo com Sucesso!", "ATENÇÃO", JOptionPane.WARNING_MESSAGE);
+                    habilitaDesabilita(false);
+                    limparCampos();
+                    carregarFornecedores();
+                    jTextFieldPesquisarFornecedor.setEnabled(true);
+                    jButtonPesquisarFornecedor.setEnabled(true);
+                } else {
+                    JOptionPane.showMessageDialog(this, "Erro ao " + salvarAlterar + " o Fornecedor!", "ERRO", JOptionPane.ERROR_MESSAGE);
+                }
+            } else { // else para entrar na função de Alterar
+                if (controllerFornecedor.atualizarFornecedorController(modelFornecedor)) {
+                    JOptionPane.showMessageDialog(this, "Fornecedor Alterado com Sucesso!", "ATENÇÃO", JOptionPane.WARNING_MESSAGE);
+                    habilitaDesabilita(false);
+                    limparCampos();
+                    carregarFornecedores();
+                    jTextFieldPesquisarFornecedor.setEnabled(true);
+                    jButtonPesquisarFornecedor.setEnabled(true);
+                } else {
+                    JOptionPane.showMessageDialog(this, "Erro ao " + salvarAlterar + " o Fornecedor!", "ERRO", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        } else {//FIM - if else para mostrar a mensagem se algum campo for vazio
+            JOptionPane.showMessageDialog(this, "Erro ao " + salvarAlterar + " o Fornecedor!\nPreencha todos os campos", "ERRO", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_jButtonSalvarFornecedorActionPerformed
 
     private void jButtonAlterarFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlterarFornecedorActionPerformed
         // TODO add your handling code here:
+        try {
+            salvarAlterar = "ALTERAR";
+            int linha = jTableFornecedores.getSelectedRow();
+            jTextFieldPesquisarFornecedor.setEnabled(false);
+            jButtonPesquisarFornecedor.setEnabled(false);
+            int codigoFornecedor = (int) jTableFornecedores.getValueAt(linha, 0);
+            habilitaDesabilita(true);
+            modelFornecedor = controllerFornecedor.getFornecedorController(codigoFornecedor);//pego os dados do fornecedor passando o codigo do fornecedor
+            jTextFieldCodigoFornecedor.setText(String.valueOf(modelFornecedor.getId_fornecedor()));
+            jTextFieldNomeFantasia.setText(modelFornecedor.getNome_fantasia());
+            jTextFieldRazaoSocial.setText(modelFornecedor.getRazao_social());
+            jTextFieldCNPJ.setText(modelFornecedor.getCnpj());
+            jTextFieldEnderecoFornecedor.setText(modelFornecedor.getFor_endereco());
+            jTextFieldInscricaoEstadual.setText(modelFornecedor.getInscricao_estadual());
+            jTextFieldBairroFornecedor.setText(modelFornecedor.getFor_bairro());
+            jTextFieldCidadeFornecedor.setText(modelFornecedor.getFor_cidade());
+            jComboBoxUFFornecedor.setSelectedItem(modelFornecedor.getFor_uf());
+            jTextFieldCEPFornecedor.setText(modelFornecedor.getFor_cep());
+            jTextFieldTelefoneFornecedor.setText(modelFornecedor.getFor_telefone());
+            jTextFieldEMailFornecedor.setText(modelFornecedor.getFor_email());
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Erro ao Alterar o Fornecedor, Selecione um Registro na tabela", "AVISO", JOptionPane.ERROR_MESSAGE);
+            jTextFieldPesquisarFornecedor.setEnabled(true);
+            jButtonPesquisarFornecedor.setEnabled(true);
+        }
 
     }//GEN-LAST:event_jButtonAlterarFornecedorActionPerformed
 
     private void jButtonNovoFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNovoFornecedorActionPerformed
         // TODO add your handling code here:
-        salvarAlterar = "salvar";
+        salvarAlterar = "SALVAR";
         this.habilitaDesabilita(true);
         this.limparCampos();
+        jTextFieldNomeFantasia.requestFocus();
         jTextFieldPesquisarFornecedor.setEnabled(false);
         jButtonPesquisarFornecedor.setEnabled(false);
     }//GEN-LAST:event_jButtonNovoFornecedorActionPerformed
@@ -595,16 +719,19 @@ public class Fornecedores extends javax.swing.JFrame {
 
     private void jButtonPesquisarFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPesquisarFornecedorActionPerformed
         // TODO add your handling code here:
-
+        pesquisarFornecedor();
     }//GEN-LAST:event_jButtonPesquisarFornecedorActionPerformed
 
     private void jTextFieldPesquisarFornecedorKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldPesquisarFornecedorKeyPressed
         // TODO add your handling code here:
+        if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
+            pesquisarFornecedor();
+        }
     }//GEN-LAST:event_jTextFieldPesquisarFornecedorKeyPressed
 
     private void jTextFieldPesquisarFornecedorKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldPesquisarFornecedorKeyReleased
         // TODO add your handling code here:
-
+        pesquisarFornecedor();
     }//GEN-LAST:event_jTextFieldPesquisarFornecedorKeyReleased
 
     private void jTextFieldNomeFantasiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNomeFantasiaActionPerformed

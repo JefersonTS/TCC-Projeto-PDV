@@ -100,7 +100,7 @@ CREATE TABLE `tb_fornecedor` (
   `for_telefone` varchar(15) NOT NULL,
   `for_email` varchar(200) NOT NULL,
   PRIMARY KEY (`pk_id_fornecedor`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -109,7 +109,7 @@ CREATE TABLE `tb_fornecedor` (
 
 LOCK TABLES `tb_fornecedor` WRITE;
 /*!40000 ALTER TABLE `tb_fornecedor` DISABLE KEYS */;
-INSERT INTO `tb_fornecedor` VALUES (1,'InfoSolutions LTDA','Info Solutions','18.412.847/0001-98','02.332.7894-6','rua alfonso sanches simon, 181','recanto elimar II','Franca','SP','14403306','(16)993010049','info@solutions.com.br'),(2,'Pereira Poços LTDA','Pereira Poços','18.412.847/0001-95','02.332.7894-1','rua Luzia Garcia Gomes, 017','Residencial São Domingos','Franca','SP','14403789','(16)993078445','pereira@poços.com.br');
+INSERT INTO `tb_fornecedor` VALUES (1,'INFOSOLUTIONS LTDA','INFO SOLUTIONS','18.412.847/0001-98','02.332.7894-6','RUA ALFONSO SANCHES SIMON, 181','RECANTO ELIMAR II','FRANCA','SP','14403-306','(16)99301-0049','info@solutions.com.br'),(2,'PEREIRA POÇOS LTDA','PEREIRA POÇOS','18.412.847/0001-95','02.332.7894-1','RUA LUZIA GARCIA GOMES, 017','RESIDENCIAL SÃO DOMINGOS','FRANCA','SP','14403-789','(16)99307-8445','pereira@poços.com.br'),(3,'CENTRO UNIVERSITÁRIO MUNICIPAL DE FRANCA','UNI-FACEF','19.819.819/0001-81','78.954.6606-2','AV. DR. ISMAEL ALONSO Y ALONSO, 2300','SÃO JOSÉ','FRANCA','SP','14403-254','(16)97845-6191','contato@unifacef.edu.br');
 /*!40000 ALTER TABLE `tb_fornecedor` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -250,7 +250,7 @@ CREATE TABLE `tb_vendas` (
 
 LOCK TABLES `tb_vendas` WRITE;
 /*!40000 ALTER TABLE `tb_vendas` DISABLE KEYS */;
-INSERT INTO `tb_vendas` VALUES (1,1,'2020-03-11',4185,4650,10),(2,3,'2020-03-11',4225,4225,0),(3,1,'2020-03-11',405,450,10);
+INSERT INTO `tb_vendas` VALUES (1,1,'2020-03-11',4185,4650,10),(2,3,'2020-03-11',25,25,0),(3,1,'2020-03-11',405,450,10);
 /*!40000 ALTER TABLE `tb_vendas` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -270,7 +270,7 @@ CREATE TABLE `tb_vendas_produtos` (
   PRIMARY KEY (`pk_id_venda_produto`),
   KEY `FKIDPRODUTO` (`fk_produto`),
   KEY `FKIDVENDAS` (`fk_vendas`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -279,7 +279,7 @@ CREATE TABLE `tb_vendas_produtos` (
 
 LOCK TABLES `tb_vendas_produtos` WRITE;
 /*!40000 ALTER TABLE `tb_vendas_produtos` DISABLE KEYS */;
-INSERT INTO `tb_vendas_produtos` VALUES (4,3,2,4200,1),(5,4,2,25,1),(6,1,3,450,1);
+INSERT INTO `tb_vendas_produtos` VALUES (6,1,3,450,1),(7,4,2,25,1);
 /*!40000 ALTER TABLE `tb_vendas_produtos` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -292,4 +292,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-03-11 16:49:11
+-- Dump completed on 2020-03-12 11:28:11
