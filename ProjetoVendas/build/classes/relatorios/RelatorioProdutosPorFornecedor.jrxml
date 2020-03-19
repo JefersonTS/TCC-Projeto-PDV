@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="RelatorioVendaPorCliente" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="b9e76f6e-ef3a-4da6-ae1d-d361b75720c4">
+	<property name="ireport.zoom" value="1.771561000000017"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Alternar Cores da Linha">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style backcolor="#D7D7D7"/>
+		</conditionalStyle>
+	</style>
+	<queryString>
+		<![CDATA[SELECT
+     tb_produto.`pk_id_produto` AS tb_produto_pk_id_produto,
+     tb_produto.`fk_fornecedor` AS tb_produto_fk_fornecedor,
+     tb_produto.`prod_nome` AS tb_produto_prod_nome,
+     tb_produto.`prod_valor` AS tb_produto_prod_valor,
+     tb_produto.`prod_estoque` AS tb_produto_prod_estoque,
+     tb_fornecedor.`pk_id_fornecedor` AS tb_fornecedor_pk_id_fornecedor,
+     tb_fornecedor.`nome_fantasia` AS tb_fornecedor_nome_fantasia,
+     tb_fornecedor.`cnpj` AS tb_fornecedor_cnpj,
+     tb_fornecedor.`for_telefone` AS tb_fornecedor_for_telefone,
+     tb_fornecedor.`for_email` AS tb_fornecedor_for_email
+FROM
+     `tb_produto` tb_produto,
+     `tb_fornecedor` tb_fornecedor
+where
+	fk_fornecedor = pk_id_fornecedor AND pk_id_fornecedor = pk_id_fornecedor]]>
+	</queryString>
+	<field name="tb_produto_pk_id_produto" class="java.lang.Long"/>
+	<field name="tb_produto_fk_fornecedor" class="java.lang.Integer"/>
+	<field name="tb_produto_prod_nome" class="java.lang.String"/>
+	<field name="tb_produto_prod_valor" class="java.lang.Double"/>
+	<field name="tb_produto_prod_estoque" class="java.lang.Integer"/>
+	<field name="tb_fornecedor_pk_id_fornecedor" class="java.lang.Long"/>
+	<field name="tb_fornecedor_nome_fantasia" class="java.lang.String"/>
+	<field name="tb_fornecedor_cnpj" class="java.lang.String"/>
+	<field name="tb_fornecedor_for_telefone" class="java.lang.String"/>
+	<field name="tb_fornecedor_for_email" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="82" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="25" width="147" height="17" uuid="0562069f-3f59-4e04-88c8-04e21bd04415"/>
+				<textElement>
+					<font size="12" isBold="false" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[contato@infosolutions.com]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="42" width="177" height="19" uuid="dd81d519-a02e-4e21-be9c-d90ff5210be8"/>
+				<textElement>
+					<font size="12" isBold="false" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[CNPJ: 16993010049/0001]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="153" y="0" width="252" height="61" uuid="0a806818-26a2-43ad-ac5a-744b60d70824"/>
+				<textElement textAlignment="Center">
+					<font size="18" isBold="true" isUnderline="true" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[Relatorio Produtos Por Fornecedor]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="61" width="229" height="18" uuid="c6d1be99-3394-4621-bc83-66c211bec30d"/>
+				<textElement>
+					<font size="12" isBold="false" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[RUA: Alfonso Sanches Simon, 181]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="81" width="550" height="1" uuid="5a76784f-baec-4c20-b75c-5f062dcaf377"/>
+				<graphicElement>
+					<pen lineStyle="Double"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="229" y="61" width="100" height="18" uuid="b1c2624a-44d6-4f38-9b2b-276a3e6794a9"/>
+				<box topPadding="0" leftPadding="0">
+					<pen lineStyle="Double"/>
+					<topPen lineStyle="Double"/>
+					<leftPen lineStyle="Double"/>
+					<bottomPen lineStyle="Double"/>
+					<rightPen lineStyle="Double"/>
+				</box>
+				<textElement>
+					<font size="12" isBold="false" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[    (16) 3701 0001]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="0" width="120" height="25" uuid="1f242318-bc4d-47d5-99cd-05465c8fcad8"/>
+				<textElement>
+					<font size="16" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[INFO Solutions]]></text>
+			</staticText>
+			<image>
+				<reportElement x="413" y="0" width="153" height="80" uuid="44a3c1bd-5d63-4a2a-897b-e76e400a0d3a"/>
+				<imageExpression><![CDATA["C:\\Users\\jefer\\Desktop\\Jefin\\Projetos-Java\\TCC-Projeto-PDV\\ProjetoVendas\\src\\imagens\\Panfleto PC.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement mode="Transparent" x="231" y="-218" width="23" height="20" uuid="1109a2d2-282c-443d-84db-10181e407261"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[R$:]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="123">
+			<staticText>
+				<reportElement mode="Opaque" x="85" y="1" width="467" height="20" backcolor="#CCCCCC" uuid="9d2bd5e5-90c3-473e-9aed-caed7da113ef"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[DADOS DO FORNECEDOR]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="2" y="1" width="83" height="20" backcolor="#CCCCCC" uuid="392be5b6-e20b-40d8-a086-4da2ad38ac2b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[CODIGO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="85" y="21" width="92" height="20" uuid="d2442e2f-0282-4ddc-b7ea-0dfb21fe8b45"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[NOME FANTASIA:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="85" y="41" width="110" height="20" uuid="57e43ca9-4474-4b28-bff5-40b55ab6eab8"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[TELEFONE/CELULAR:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="2" y="81" width="550" height="20" backcolor="#CCCCCC" uuid="a7c0ea38-e1d2-45cd-bd1f-fada6026aaae"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[DADOS DOS PRODUTOS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="2" y="101" width="83" height="20" backcolor="#DFDFDF" uuid="677cdfb3-518a-49d3-854a-83ae8dd2aafb"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[CODIGO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="450" y="101" width="102" height="20" backcolor="#DFDFDF" uuid="c4873fb2-6e6d-4df4-8d71-1a7c873c0069"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Quantiade]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="350" y="101" width="100" height="20" backcolor="#DFDFDF" uuid="73411cca-d2f1-4b18-a7e1-5aaa8fa092ff"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Preço]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="85" y="101" width="265" height="20" backcolor="#DFDFDF" uuid="433cbb16-32d2-4cb6-a4fb-eb79eff64af5"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Nome]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="313" y="41" width="37" height="20" uuid="9b90727f-d579-4589-a77f-0aa95bef1bf5"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[CNPJ:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="85" y="60" width="39" height="20" uuid="1a9aba6a-d99d-40b3-8558-edda17f7886a"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[E-MAIL:]]></text>
+			</staticText>
+			<textField>
+				<reportElement mode="Opaque" x="2" y="21" width="83" height="60" backcolor="#DFDFDF" uuid="857713ca-aebe-45e1-b3ea-e9c8e7fa2f6d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{tb_fornecedor_pk_id_fornecedor}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="177" y="21" width="373" height="20" uuid="cfb30bb9-4e95-42d4-b83b-1fda1083323f"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{tb_fornecedor_nome_fantasia}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="195" y="41" width="118" height="20" uuid="b6283276-5729-4c34-b445-46e294d6b10d"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{tb_fornecedor_for_telefone}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="124" y="60" width="189" height="20" uuid="484b210b-b643-4699-9b0d-daa82af2d5d2"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{tb_fornecedor_for_email}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="346" y="41" width="200" height="20" uuid="218dab5b-16fa-4af0-9065-67e2bbfece48"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{tb_fornecedor_cnpj}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="21" splitType="Stretch">
+			<frame>
+				<reportElement style="Alternar Cores da Linha" mode="Opaque" x="5" y="0" width="545" height="20" uuid="92db7119-4e91-43d0-812b-2335d98f4728"/>
+				<textField>
+					<reportElement x="80" y="0" width="265" height="20" uuid="14160737-bc63-4d51-a7b7-a7830761ea13"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$F{tb_produto_prod_nome}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="345" y="0" width="100" height="20" uuid="fc626413-6296-45cb-9bde-8341720f4a4c"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$F{tb_produto_prod_valor}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="445" y="0" width="100" height="20" uuid="1f2d4c82-d3d6-4bae-8429-75fa4c30cbd0"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$F{tb_produto_prod_estoque}]]></textFieldExpression>
+				</textField>
+			</frame>
+			<textField>
+				<reportElement x="2" y="1" width="83" height="20" uuid="55246fa8-cc53-4831-826e-ae84ac56fc19"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{tb_produto_pk_id_produto}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="33" splitType="Stretch">
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="0" y="11" width="156" height="20" uuid="ec22577c-309b-41e7-808c-d286cff6a58e"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField pattern="h.mm a">
+				<reportElement x="156" y="11" width="45" height="20" uuid="5fc4a11b-88e8-4941-84d4-1a37a2d01a69"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="515" y="11" width="40" height="20" uuid="0d7011db-f09e-4359-9a4d-34be3bf6e89e"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="435" y="11" width="80" height="20" uuid="b9ed9acd-45ba-4c6b-b5c1-89dc6c1308da"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>

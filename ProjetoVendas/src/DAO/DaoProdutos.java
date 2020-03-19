@@ -22,11 +22,13 @@ public class DAOProdutos extends ConexaoMySql {
             return this.insertSQL(
                     "INSERT INTO tb_produto ("
                     + "fk_fornecedor,"
+                    + "codigo_barras,"
                     + "prod_nome,"
                     + "prod_valor,"
                     + "prod_estoque"
                     + ") VALUES ("
                     + "'" + pModelProdutos.getFornecedor() + "',"
+                    + "'" + pModelProdutos.getCodigoBarras() + "',"
                     + "'" + pModelProdutos.getProdNome() + "',"
                     + "'" + pModelProdutos.getProdValor() + "',"
                     + "'" + pModelProdutos.getProdEstoque() + "'"
@@ -54,6 +56,7 @@ public class DAOProdutos extends ConexaoMySql {
                     "SELECT "
                     + "pk_id_produto,"
                     + "fk_fornecedor,"
+                    + "codigo_barras,"
                     + "prod_nome,"
                     + "prod_valor,"
                     + "prod_estoque"
@@ -67,9 +70,10 @@ public class DAOProdutos extends ConexaoMySql {
             while (this.getResultSet().next()) {
                 modelProdutos.setIdProduto(this.getResultSet().getInt(1));
                 modelProdutos.setFornecedor(this.getResultSet().getInt(2));
-                modelProdutos.setProdNome(this.getResultSet().getString(3));
-                modelProdutos.setProdValor(this.getResultSet().getDouble(4));
-                modelProdutos.setProdEstoque(this.getResultSet().getInt(5));
+                modelProdutos.setCodigoBarras(this.getResultSet().getString(3));
+                modelProdutos.setProdNome(this.getResultSet().getString(4));
+                modelProdutos.setProdValor(this.getResultSet().getDouble(5));
+                modelProdutos.setProdEstoque(this.getResultSet().getInt(6));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -93,6 +97,7 @@ public class DAOProdutos extends ConexaoMySql {
                     "SELECT "
                     + "pk_id_produto,"
                     + "fk_fornecedor,"
+                    + "codigo_barras,"
                     + "prod_nome,"
                     + "prod_valor,"
                     + "prod_estoque"
@@ -105,9 +110,10 @@ public class DAOProdutos extends ConexaoMySql {
                 modelProdutos = new ModelProdutos();
                 modelProdutos.setIdProduto(this.getResultSet().getInt(1));
                 modelProdutos.setFornecedor(this.getResultSet().getInt(2));
-                modelProdutos.setProdNome(this.getResultSet().getString(3));
-                modelProdutos.setProdValor(this.getResultSet().getDouble(4));
-                modelProdutos.setProdEstoque(this.getResultSet().getInt(5));
+                modelProdutos.setCodigoBarras(this.getResultSet().getString(3));
+                modelProdutos.setProdNome(this.getResultSet().getString(4));
+                modelProdutos.setProdValor(this.getResultSet().getDouble(5));
+                modelProdutos.setProdEstoque(this.getResultSet().getInt(6));
                 listamodelProdutos.add(modelProdutos);
             }
         } catch (Exception e) {
@@ -130,6 +136,7 @@ public class DAOProdutos extends ConexaoMySql {
             return this.executarUpdateDeleteSQL(
                     "UPDATE tb_produto SET "
                     + "fk_fornecedor = '" + pModelProdutos.getFornecedor() + "',"
+                    + "codigo_barras = '" + pModelProdutos.getCodigoBarras() + "',"
                     + "prod_nome = '" + pModelProdutos.getProdNome() + "',"
                     + "prod_valor = '" + pModelProdutos.getProdValor() + "',"
                     + "prod_estoque = '" + pModelProdutos.getProdEstoque() + "'"
@@ -182,6 +189,7 @@ public class DAOProdutos extends ConexaoMySql {
                     "SELECT "
                     + "pk_id_produto,"
                     + "fk_fornecedor,"
+                    + "codigo_barras,"
                     + "prod_nome,"
                     + "prod_valor,"
                     + "prod_estoque"
@@ -224,6 +232,41 @@ public class DAOProdutos extends ConexaoMySql {
         } finally {
             this.fecharConexao();
         }
+    }
+
+    public ModelProdutos getProdutosCodigoBarrasDAO(String pCodigoBarras) {
+        ModelProdutos modelProdutos = new ModelProdutos();
+        try {
+            this.conectar();
+            this.executarSQL(
+                    "SELECT "
+                    + "pk_id_produto,"
+                    + "fk_fornecedor,"
+                    + "codigo_barras,"
+                    + "prod_nome,"
+                    + "prod_valor,"
+                    + "prod_estoque"
+                    + " FROM"
+                    + " tb_produto"
+                    + " WHERE"
+                    + " codigo_barras = '" + pCodigoBarras + "'"
+                    + ";"
+            );
+
+            while (this.getResultSet().next()) {
+                modelProdutos.setIdProduto(this.getResultSet().getInt(1));
+                modelProdutos.setFornecedor(this.getResultSet().getInt(2));
+                modelProdutos.setCodigoBarras(this.getResultSet().getString(3));
+                modelProdutos.setProdNome(this.getResultSet().getString(4));
+                modelProdutos.setProdValor(this.getResultSet().getDouble(5));
+                modelProdutos.setProdEstoque(this.getResultSet().getInt(6));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            this.fecharConexao();
+        }
+        return modelProdutos;
     }
 }
 

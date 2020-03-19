@@ -93,7 +93,7 @@ public class Produto extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
-        jTextFieldCodigoProduto = new javax.swing.JTextField();
+        jTextFieldCodigoBarrasProduto = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTableProduto = new javax.swing.JTable();
         jLabel13 = new javax.swing.JLabel();
@@ -374,7 +374,7 @@ public class Produto extends javax.swing.JFrame {
         setPreferredSize(new java.awt.Dimension(1241, 860));
 
         jLabel3.setFont(new java.awt.Font("Maiandra GD", 0, 24)); // NOI18N
-        jLabel3.setText("Código:");
+        jLabel3.setText("Código de Barras:");
 
         jLabel10.setFont(new java.awt.Font("Maiandra GD", 0, 24)); // NOI18N
         jLabel10.setText("Valor:");
@@ -385,12 +385,10 @@ public class Produto extends javax.swing.JFrame {
         jLabel12.setFont(new java.awt.Font("Maiandra GD", 0, 24)); // NOI18N
         jLabel12.setText("Nome:");
 
-        jTextFieldCodigoProduto.setEditable(false);
-        jTextFieldCodigoProduto.setFont(new java.awt.Font("Maiandra GD", 0, 24)); // NOI18N
-        jTextFieldCodigoProduto.setEnabled(false);
-        jTextFieldCodigoProduto.addActionListener(new java.awt.event.ActionListener() {
+        jTextFieldCodigoBarrasProduto.setFont(new java.awt.Font("Maiandra GD", 0, 24)); // NOI18N
+        jTextFieldCodigoBarrasProduto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldCodigoProdutoActionPerformed(evt);
+                jTextFieldCodigoBarrasProdutoActionPerformed(evt);
             }
         });
 
@@ -573,10 +571,10 @@ public class Produto extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(uJComboBoxFornecedor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jTextFieldCodigoProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
+                                .addComponent(jTextFieldCodigoBarrasProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jLabel12)
-                                .addGap(18, 18, 18)
+                                .addGap(11, 11, 11)
                                 .addComponent(jTextFieldNomeProduto))))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jButtonNovoProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -604,7 +602,7 @@ public class Produto extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(jLabel12)
-                    .addComponent(jTextFieldCodigoProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextFieldCodigoBarrasProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextFieldNomeProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -707,9 +705,9 @@ public class Produto extends javax.swing.JFrame {
         jButtonPesquisarProduto.setEnabled(false);
     }//GEN-LAST:event_jButtonNovoProdutoActionPerformed
 
-    private void jTextFieldCodigoProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldCodigoProdutoActionPerformed
+    private void jTextFieldCodigoBarrasProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldCodigoBarrasProdutoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldCodigoProdutoActionPerformed
+    }//GEN-LAST:event_jTextFieldCodigoBarrasProdutoActionPerformed
 
     private void jButtonPesquisarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPesquisarProdutoActionPerformed
         // TODO add your handling code here:
@@ -752,6 +750,7 @@ public class Produto extends javax.swing.JFrame {
         codigoFornecedor = (int) jTableProduto.getValueAt(linha, 4);
         salvarAlterar = "alterar";
         try {
+            jTextFieldCodigoBarrasProduto.requestFocus();
             jTextFieldPesquisarProduto.setEnabled(false);
             jButtonPesquisarProduto.setEnabled(false);
             int codigoProduto = (int) jTableProduto.getValueAt(linha, 0);
@@ -761,7 +760,7 @@ public class Produto extends javax.swing.JFrame {
             modelProdutos = controllerProdutos.getProdutosController(codigoProduto);
 
             //Jogar na interface
-            this.jTextFieldCodigoProduto.setText(String.valueOf(modelProdutos.getIdProduto()));
+            this.jTextFieldCodigoBarrasProduto.setText(String.valueOf(modelProdutos.getCodigoBarras()));
             this.jTextFieldNomeProduto.setText(modelProdutos.getProdNome());
             this.jTextFieldValorProduto.setText(String.valueOf(modelProdutos.getProdValor()));
             this.jTextFieldEstoqueProduto.setText(String.valueOf(modelProdutos.getProdEstoque()));
@@ -835,6 +834,7 @@ public class Produto extends javax.swing.JFrame {
         // Salva um novo produto no banco e mostra na tabela
         modelFornecedor = controllerFornecedor.getFornecedorController(uJComboBoxFornecedor.getSelectedItem().toString());
         modelProdutos.setFornecedor(modelFornecedor.getId_fornecedor());
+        modelProdutos.setCodigoBarras(jTextFieldCodigoBarrasProduto.getText());
         modelProdutos.setProdNome(this.jTextFieldNomeProduto.getText().toUpperCase());
         modelProdutos.setProdEstoque(Integer.parseInt(this.jTextFieldEstoqueProduto.getText()));
         modelProdutos.setProdValor(formatador.converterVirgulaParaPonto(this.jTextFieldValorProduto.getText()));
@@ -862,6 +862,7 @@ public class Produto extends javax.swing.JFrame {
         // Altera um produto selecionado na tabela
         modelFornecedor = controllerFornecedor.getFornecedorController(uJComboBoxFornecedor.getSelectedItem().toString());
         modelProdutos.setFornecedor(modelFornecedor.getId_fornecedor());
+        modelProdutos.setCodigoBarras(jTextFieldCodigoBarrasProduto.getText());
         modelProdutos.setProdNome(this.jTextFieldNomeProduto.getText().toUpperCase());
         modelProdutos.setProdEstoque(Integer.parseInt(this.jTextFieldEstoqueProduto.getText()));
         modelProdutos.setProdValor(formatador.converterVirgulaParaPonto(this.jTextFieldValorProduto.getText()));
@@ -878,6 +879,7 @@ public class Produto extends javax.swing.JFrame {
 
     //Habilita ou Desabilita os jTextField
     private void habilitarDesabilitarProdutos(boolean condicao) {
+        jTextFieldCodigoBarrasProduto.setEnabled(condicao);
         jTextFieldNomeProduto.setEnabled(condicao);
         jTextFieldValorProduto.setEnabled(condicao);
         jTextFieldEstoqueProduto.setEnabled(condicao);
@@ -892,7 +894,7 @@ public class Produto extends javax.swing.JFrame {
 
     //Limpa os campos do jTextField
     private void limparCampos() {
-        jTextFieldCodigoProduto.setText("");
+        jTextFieldCodigoBarrasProduto.setText("");
         jTextFieldNomeProduto.setText("");
         jTextFieldValorProduto.setText("");
         jTextFieldEstoqueProduto.setText("");
@@ -965,7 +967,7 @@ public class Produto extends javax.swing.JFrame {
     private javax.swing.JTextField jTextFieldCEP;
     private javax.swing.JTextField jTextFieldCidade;
     private javax.swing.JTextField jTextFieldCodigo;
-    private javax.swing.JTextField jTextFieldCodigoProduto;
+    private javax.swing.JTextField jTextFieldCodigoBarrasProduto;
     private javax.swing.JTextField jTextFieldEndereco;
     private javax.swing.JFormattedTextField jTextFieldEstoqueProduto;
     private javax.swing.JTextField jTextFieldNome;

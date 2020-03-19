@@ -7,6 +7,7 @@ public class ModelProdutos {
 
     private int IdProduto;
     private int Fornecedor;
+    private String CodigoBarras;
     private String ProdNome;
     private Double ProdValor;
     private int ProdEstoque;
@@ -89,5 +90,19 @@ public class ModelProdutos {
     @Override
     public String toString(){
         return "ModelProdutos {" + "::IdProduto = " + this.IdProduto + "::Fornecedor = " + this.Fornecedor + "::ProdNome = " + this.ProdNome + "::ProdValor = " + this.ProdValor + "::ProdEstoque = " + this.ProdEstoque +  "}";
+    }
+
+    /**
+     * @return the CodigoBarras
+     */
+    public String getCodigoBarras() {
+        return CodigoBarras;
+    }
+
+    /**
+     * @param CodigoBarras the CodigoBarras to set
+     */
+    public void setCodigoBarras(String CodigoBarras) {
+        this.CodigoBarras = CodigoBarras;
     }
 }

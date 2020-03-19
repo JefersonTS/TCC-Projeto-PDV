@@ -18,4 +18,8 @@ public class ControllerRelatorioProduto {
         return this.daoRelatorioProduto.gerarRelatorioUmProduto(pIdProduto);
     }
 
+    public boolean gerarRelatorioProdutosPorFornecedorController(int pIdFornecedor) {
+        return this.daoRelatorioProduto.gerarRelatorioProdutosPorFornecedorDAO(pIdFornecedor);
+    }
+
 }

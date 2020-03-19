@@ -22,12 +22,21 @@ public class ControllerProdutos {
     }
 
     /**
-    * recupera Produtos
+    * recupera Produtos pelo pIdProduto
     * @param pIdProduto
     * @return ModelProdutos
     */
     public ModelProdutos getProdutosController(int pIdProduto){
         return this.daoProdutos.getProdutosDAO(pIdProduto);
+    }
+    
+    /**
+    * recupera Produtos pelo pCodigoBarras
+    * @param pCodigoBarras
+    * @return ModelProdutos
+    */
+    public ModelProdutos getProdutosController(String pCodigoBarras){
+        return this.daoProdutos.getProdutosCodigoBarrasDAO(pCodigoBarras);
     }
 
     /**

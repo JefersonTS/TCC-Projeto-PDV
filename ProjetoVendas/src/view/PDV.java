@@ -507,7 +507,7 @@ public class PDV extends javax.swing.JFrame {
         jFormattedTextFieldValorLiquidoVendaPDV.setText("R$: " + String.valueOf(df.format(liquido)));
     }
 
-    private void pegarCodigo(java.awt.event.KeyEvent e) {
+    private void pegarCodigoF1(java.awt.event.KeyEvent e) {
         jLabelStatus.setText("OCUPADO");
         DefaultTableModel modelo = (DefaultTableModel) jTableListaProdutosPDV.getModel();
         modelProdutos = new ModelProdutos();
@@ -515,9 +515,8 @@ public class PDV extends javax.swing.JFrame {
 
         if (e.getKeyCode() == java.awt.event.KeyEvent.VK_F1) {
             try {
-                System.out.println("Entrou no try");
-                modelProdutos = controllerProdutos.getProdutosController(Integer.parseInt(jTextFieldCodigoProdutoPDV.getText()));
-                System.err.println("Pressionando ENTER: " + qtd);
+                //modelProdutos = controllerProdutos.getProdutosController(Integer.parseInt(jTextFieldCodigoProdutoPDV.getText()));
+                modelProdutos = controllerProdutos.getProdutosController(jTextFieldCodigoProdutoPDV.getText());
                 modelo.addRow(new Object[]{
                     modelo.getRowCount() + 1,
                     modelProdutos.getIdProduto(),
@@ -611,7 +610,7 @@ public class PDV extends javax.swing.JFrame {
     private void jMenuItemFinalizarVendaPDVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemFinalizarVendaPDVActionPerformed
         // TODO add your handling code here:
         int cont = jTableListaProdutosPDV.getRowCount();
-        if(cont > 0){
+        if (cont > 0) {
             viewPagamentoPDV.setValorTotal(Float.parseFloat(totalBrutoVendaPDV.toString()));
             viewPagamentoPDV.preencherCampos();
             viewPagamentoPDV.setVisible(true);
@@ -665,7 +664,7 @@ public class PDV extends javax.swing.JFrame {
 
     private void jTextFieldCodigoProdutoPDVKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldCodigoProdutoPDVKeyReleased
         // TODO add your handling code here:
-        pegarCodigo(evt);
+        pegarCodigoF1(evt);
     }//GEN-LAST:event_jTextFieldCodigoProdutoPDVKeyReleased
 
     private void jMenuItemIncluirProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemIncluirProdutoActionPerformed

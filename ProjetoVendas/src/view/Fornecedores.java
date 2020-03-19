@@ -6,6 +6,7 @@
 package view;
 
 import controller.ControllerFornecedor;
+import controllerRelatorios.ControllerRelatorioFornecedor;
 import java.awt.Font;
 import java.awt.Toolkit;
 import java.util.ArrayList;
@@ -28,6 +29,7 @@ public class Fornecedores extends javax.swing.JFrame {
     ControllerFornecedor controllerFornecedor = new ControllerFornecedor();
     ModelFornecedor modelFornecedor = new ModelFornecedor();
     ArrayList<ModelFornecedor> listaModelFornecedores = new ArrayList<>();
+    ControllerRelatorioFornecedor controllerRelatorioFornecedor = new ControllerRelatorioFornecedor();
     String salvarAlterar; //Varilavel global que vai ser usada no if do botao salvar para determinar se é para alterar ou salvar um novo produto
 
     public Fornecedores() {
@@ -85,6 +87,7 @@ public class Fornecedores extends javax.swing.JFrame {
         jLabel14 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jTextFieldEMailFornecedor = new javax.swing.JTextField();
+        jButtonImprimirFornecedor = new javax.swing.JButton();
 
         jLabel3.setText("Nome");
 
@@ -356,6 +359,19 @@ public class Fornecedores extends javax.swing.JFrame {
 
         jTextFieldEMailFornecedor.setFont(new java.awt.Font("Maiandra GD", 0, 24)); // NOI18N
 
+        jButtonImprimirFornecedor.setFont(new java.awt.Font("Maiandra GD", 0, 24)); // NOI18N
+        jButtonImprimirFornecedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/24x24/impressao.png"))); // NOI18N
+        jButtonImprimirFornecedor.setText("Imprimir");
+        jButtonImprimirFornecedor.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jButtonImprimirFornecedor.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonImprimirFornecedor.setMaximumSize(new java.awt.Dimension(100, 40));
+        jButtonImprimirFornecedor.setMinimumSize(new java.awt.Dimension(100, 40));
+        jButtonImprimirFornecedor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonImprimirFornecedorActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -384,7 +400,9 @@ public class Fornecedores extends javax.swing.JFrame {
                         .addComponent(jButtonAlterarFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jButtonSalvarFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 588, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButtonImprimirFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 420, Short.MAX_VALUE)
                         .addComponent(jButtonCancelarFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(12, 12, 12)
@@ -516,7 +534,9 @@ public class Fornecedores extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jButtonNovoFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButtonAlterarFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButtonSalvarFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jButtonSalvarFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jButtonImprimirFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(13, 13, 13))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jButtonCancelarFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -750,6 +770,18 @@ public class Fornecedores extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldCidadeFornecedorActionPerformed
 
+    private void jButtonImprimirFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonImprimirFornecedorActionPerformed
+        // TODO add your handling code here:
+        try {
+            int linha = jTableFornecedores.getSelectedRow();
+            int codigoFornecedor = (int) jTableFornecedores.getValueAt(linha, 0);
+            controllerRelatorioFornecedor.gerarRelatorioFornecedorController(codigoFornecedor);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Erro ao Imprimir o Fornecedor, Selecione um Registro na tabela", "AVISO", JOptionPane.ERROR_MESSAGE);
+        }
+        
+    }//GEN-LAST:event_jButtonImprimirFornecedorActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -789,6 +821,7 @@ public class Fornecedores extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAlterarFornecedor;
     private javax.swing.JButton jButtonCancelarFornecedor;
+    private javax.swing.JButton jButtonImprimirFornecedor;
     private javax.swing.JButton jButtonNovoFornecedor;
     private javax.swing.JButton jButtonPesquisarFornecedor;
     private javax.swing.JButton jButtonSalvarFornecedor;
