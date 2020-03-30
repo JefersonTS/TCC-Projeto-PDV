@@ -203,9 +203,10 @@ public class DAOProdutos extends ConexaoMySql {
             while (this.getResultSet().next()) {
                 modelProdutos.setIdProduto(this.getResultSet().getInt(1));
                 modelProdutos.setFornecedor(this.getResultSet().getInt(2));
-                modelProdutos.setProdNome(this.getResultSet().getString(3));
-                modelProdutos.setProdValor(this.getResultSet().getDouble(4));
-                modelProdutos.setProdEstoque(this.getResultSet().getInt(5));
+                modelProdutos.setCodigoBarras(this.getResultSet().getString(3));
+                modelProdutos.setProdNome(this.getResultSet().getString(4));
+                modelProdutos.setProdValor(this.getResultSet().getDouble(5));
+                modelProdutos.setProdEstoque(this.getResultSet().getInt(6));
             }
         } catch (Exception e) {
             e.printStackTrace();

@@ -700,7 +700,7 @@ public class Produto extends javax.swing.JFrame {
         this.habilitarDesabilitarSalvar(true);
         habilitarDesabilitarProdutos(true);
         salvarAlterar = "salvar";
-        jTextFieldNomeProduto.requestFocus();
+        jTextFieldCodigoBarrasProduto.requestFocus();
         jTextFieldPesquisarProduto.setEnabled(false);
         jButtonPesquisarProduto.setEnabled(false);
     }//GEN-LAST:event_jButtonNovoProdutoActionPerformed
