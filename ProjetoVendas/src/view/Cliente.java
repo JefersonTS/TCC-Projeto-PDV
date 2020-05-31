@@ -25,6 +25,7 @@ import model.ModelCliente;
  */
 public class Cliente extends javax.swing.JFrame {
 
+    view.Login login;
     ControllerCliente controllerCliente = new ControllerCliente();
     ModelCliente modelCliente = new ModelCliente();
     ArrayList<ModelCliente> listaModelCliente = new ArrayList<>();
@@ -38,7 +39,7 @@ public class Cliente extends javax.swing.JFrame {
         limparCampos();
         setAlwaysOnTop(true);
         setExtendedState(JFrame.MAXIMIZED_BOTH);
-        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("../imagens/carrinho-de-compras.png")));
+        carregarIcone();
         UIManager.put("OptionPane.messageFont", new FontUIResource(new Font("Maiandra GD", Font.PLAIN, 35)));
         jTextFieldPesquisarCliente.requestFocus();
     }
@@ -431,7 +432,11 @@ public class Cliente extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    // Habilita ou desabilita campos e botoes
+    public void carregarIcone() {
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/imagens/carrinho_de_compras.png")));
+    }
+
+// Habilita ou desabilita campos e botoes
     private void habilitaDesabilita(boolean condicao) {
         jTextFieldNomeCliente.setEnabled(condicao);
         jTextFieldEnderecoCliente.setEnabled(condicao);

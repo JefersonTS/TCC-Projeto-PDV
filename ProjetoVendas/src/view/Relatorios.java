@@ -62,7 +62,7 @@ public class Relatorios extends javax.swing.JFrame {
         carregarVendas();
         mudarFonteTabela();
         setExtendedState(JFrame.MAXIMIZED_BOTH);
-        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("../imagens/carrinho-de-compras.png")));
+        carregarIcone();
         UIManager.put("OptionPane.messageFont", new FontUIResource(new Font("Maiandra GD", Font.PLAIN, 35)));
     }
 
@@ -513,7 +513,7 @@ public class Relatorios extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(121, Short.MAX_VALUE))
@@ -539,6 +539,10 @@ public class Relatorios extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    public void carregarIcone() {
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/imagens/carrinho_de_compras.png")));
+    }
 
     private void mudarFonteTabela() {// muda a fonte da tabela de vendas
         JTableHeader cabecalho = jTableVendaCliente.getTableHeader();
@@ -579,17 +583,20 @@ public class Relatorios extends javax.swing.JFrame {
     }
 
     private void carregarVendas() {
-        DefaultTableModel modelo = (DefaultTableModel) jTableVendaCliente.getModel();
-        modelCliente = controllerCliente.getClienteController(uJComboBoxListarClientesVendas.getSelectedItem().toString());
-        codigo = modelCliente.getIdCliente();
-        listaModelVendas = controllerRelatorioVenda.getVendasPorClienteController(codigo);
-        modelo.setNumRows(0);//seta o numero de linhas em ZERO para nao duplicar na tabela
-        int cont = listaModelVendas.size();
-        for (int i = 0; i < cont; i++) {
-            modelo.addRow(new Object[]{
-                listaModelVendas.get(i).getIdVenda(),
-                listaModelVendas.get(i).getVenDataVenda()
-            });
+        try {
+            DefaultTableModel modelo = (DefaultTableModel) jTableVendaCliente.getModel();
+            modelCliente = controllerCliente.getClienteController(uJComboBoxListarClientesVendas.getSelectedItem().toString());
+            codigo = modelCliente.getIdCliente();
+            listaModelVendas = controllerRelatorioVenda.getVendasPorClienteController(codigo);
+            modelo.setNumRows(0);//seta o numero de linhas em ZERO para nao duplicar na tabela
+            int cont = listaModelVendas.size();
+            for (int i = 0; i < cont; i++) {
+                modelo.addRow(new Object[]{
+                    listaModelVendas.get(i).getIdVenda(),
+                    listaModelVendas.get(i).getVenDataVenda()
+                });
+            }
+        } catch (Exception e) {
         }
     }
 

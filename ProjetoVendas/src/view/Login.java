@@ -9,10 +9,14 @@ import controller.ControllerUsuario;
 import de.javasoft.plaf.synthetica.SyntheticaPlainLookAndFeel;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Image;
 import java.awt.Toolkit;
+import java.net.URL;
+import java.text.ParseException;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.plaf.FontUIResource;
 import model.ModelSessaoUsuario;
 import model.ModelUsuario;
@@ -21,7 +25,7 @@ import model.ModelUsuario;
  *
  * @author jefer
  */
-public class Login extends javax.swing.JFrame {
+public final class Login extends javax.swing.JFrame {
 
     ControllerUsuario controllerUsuario = new ControllerUsuario();
     ModelUsuario modelUsuario = new ModelUsuario();
@@ -34,7 +38,8 @@ public class Login extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         jPanel2.setBackground(new Color(255, 255, 255, 50));
-        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("../imagens/carrinho-de-compras.png")));
+        carregarIcone();
+        mudarIcone(this);
         UIManager.put("OptionPane.messageFont", new FontUIResource(new Font("Maiandra GD",Font.PLAIN,35)));
     }
 
@@ -147,7 +152,7 @@ public class Login extends javax.swing.JFrame {
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Sistema de Vendas com Controle de Estoque e PDV");
 
-        uJPanelImagem1.setImagem(new java.io.File("C:\\Users\\jefer\\Desktop\\Jefin\\Projetos-Java\\TCC-Projeto-PDV\\ProjetoVendas\\src\\imagens\\Panfleto PC TRANSP.png"));
+        uJPanelImagem1.setImagem(new java.io.File("C:\\Users\\jefer\\Desktop\\Jefin\\Projetos-Java\\TCC-Projeto-PDV\\ProjetoVendas\\src\\imagens\\Panfleto_PC_TRANSP.png"));
 
         javax.swing.GroupLayout uJPanelImagem1Layout = new javax.swing.GroupLayout(uJPanelImagem1);
         uJPanelImagem1.setLayout(uJPanelImagem1Layout);
@@ -184,7 +189,7 @@ public class Login extends javax.swing.JFrame {
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
                 .addGroup(uJPanelImagem2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(uJPanelImagem1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, uJPanelImagem2Layout.createSequentialGroup()
@@ -219,6 +224,17 @@ public class Login extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public void mudarIcone(JFrame frm){
+        try {
+            frm.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/imagens/carrinho_de_compras.png")));
+        } catch (Exception e) {
+        }
+    }
+    
+    public void carregarIcone() {
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/imagens/carrinho_de_compras.png")));
+    }
+    
     private void fazerLogin() {
         modelUsuario.setUsLogin(jTextFieldLoginUsuario.getText().toUpperCase());
         modelUsuario.setUsSenha(String.valueOf(jPasswordFieldLoginSenha.getPassword()));
@@ -284,8 +300,7 @@ public class Login extends javax.swing.JFrame {
                     UIManager.put("Synthetica.window.decoration", Boolean.TRUE);
                     //Configura qual Look você quer usar no projeto  
                     UIManager.setLookAndFeel(new SyntheticaPlainLookAndFeel());
-                } catch (Exception erro) {
-                    erro.printStackTrace();
+                } catch (ParseException | UnsupportedLookAndFeelException erro) {
                 }
                 //Termina o LookAndFeel
 

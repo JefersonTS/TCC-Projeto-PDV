@@ -60,7 +60,7 @@ public class PDV extends javax.swing.JFrame {
         this.viewPagamentoPDV = new PagamentoPDV(this, true);
         jLabelStatus.setText("ABERTO");
         mudarFonteTabela();
-        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("../imagens/carrinho-de-compras.png")));
+        carregarIcone();
         UIManager.put("OptionPane.messageFont", new FontUIResource(new Font("Maiandra GD", Font.PLAIN, 35)));
     }
 
@@ -483,6 +483,10 @@ public class PDV extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    public void carregarIcone() {
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/imagens/carrinho_de_compras.png")));
+    }
 
     private void mudarFonteTabela() {// muda a fonte da tabela de vendas
         JTableHeader cabecalho = jTableListaProdutosPDV.getTableHeader();

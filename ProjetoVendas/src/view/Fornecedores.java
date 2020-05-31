@@ -38,7 +38,7 @@ public class Fornecedores extends javax.swing.JFrame {
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         habilitaDesabilita(false);
         carregarFornecedores();
-        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("../imagens/carrinho-de-compras.png")));
+        carregarIcone();
         UIManager.put("OptionPane.messageFont", new FontUIResource(new Font("Maiandra GD", Font.PLAIN, 35)));
     }
 
@@ -559,6 +559,10 @@ public class Fornecedores extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public void carregarIcone() {
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/imagens/carrinho_de_compras.png")));
+    }
+
     private void habilitaDesabilita(boolean condicao) {
         jTextFieldRazaoSocial.setEnabled(condicao);
         jTextFieldNomeFantasia.setEnabled(condicao);
@@ -779,7 +783,7 @@ public class Fornecedores extends javax.swing.JFrame {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Erro ao Imprimir o Fornecedor, Selecione um Registro na tabela", "AVISO", JOptionPane.ERROR_MESSAGE);
         }
-        
+
     }//GEN-LAST:event_jButtonImprimirFornecedorActionPerformed
 
     /**

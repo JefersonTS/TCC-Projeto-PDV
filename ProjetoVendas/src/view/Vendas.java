@@ -92,7 +92,7 @@ public class Vendas extends javax.swing.JFrame {
         jTextFieldDescontoVenda.setText("0");
         jTextFieldNumeroVenda.setText("0");
         setExtendedState(JFrame.MAXIMIZED_BOTH);
-        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("../imagens/carrinho-de-compras.png")));
+        carregarIcone();
         UIManager.put("OptionPane.messageFont", new FontUIResource(new Font("Maiandra GD", Font.PLAIN, 35)));
     }
 
@@ -729,6 +729,10 @@ public class Vendas extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public void carregarIcone() {
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/imagens/carrinho_de_compras.png")));
+    }
+
     private void jTabbedPane1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTabbedPane1MouseClicked
         // TODO add your handling code here:
         jTextFieldPesquisarVendas.requestFocus();
@@ -852,7 +856,7 @@ public class Vendas extends javax.swing.JFrame {
     @SuppressWarnings("empty-statement")
     private void jButtonSalvarVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarVendaActionPerformed
         //else if para verificar se a tabela é vazia e mostrar uma mensagem
-        if(jTableProdutosVenda.getRowCount() > 0) {
+        if (jTableProdutosVenda.getRowCount() > 0) {
             Object[] options = {alterarSalvar, "ORÇAR"};//arrey para mostrar as opções no JOptionPane.showOptionDialog
             int x = JOptionPane.showOptionDialog(null, "O Que Deseja Fazer ?",
                     "Venda ou Orçamento ?",
@@ -1232,19 +1236,29 @@ public class Vendas extends javax.swing.JFrame {
 
     //carregar o código do produto assim que iniciar o programa
     private void carregarCodigoDoProduto() {
-        modelProdutos = controllerProdutos.getProdutoController(uJComboBoxNomeProdutosVenda.getSelectedItem().toString());
-        jTextFieldCodigoProdutoVenda.setText(String.valueOf(modelProdutos.getIdProduto()));
+        try {
+            modelProdutos = controllerProdutos.getProdutoController(uJComboBoxNomeProdutosVenda.getSelectedItem().toString());
+            jTextFieldCodigoProdutoVenda.setText(String.valueOf(modelProdutos.getIdProduto()));
+        } catch (Exception e) {
+        }
+
     }
 
     //carregar o código do cliente assim que iniciar o programa
     private void carregarCodigoDoCliente() {
-        modelCliente = controllerCliente.getClienteController(uJComboBoxNomeClienteProdutosVenda.getSelectedItem().toString());
-        jTextFieldCodigoClienteVenda.setText(String.valueOf(modelCliente.getIdCliente()));
+        try {
+            modelCliente = controllerCliente.getClienteController(uJComboBoxNomeClienteProdutosVenda.getSelectedItem().toString());
+            jTextFieldCodigoClienteVenda.setText(String.valueOf(modelCliente.getIdCliente()));
+        } catch (Exception e) {
+        }
     }
 
     //Carrega o valor do produto assim que iniciar o programa ou um produto for selecionado
     private void carregarValorProduto() {
-        jTextFieldValorDoProdutoVenda.setText(String.valueOf("R$: " + modelProdutos.getProdValor()));
+        try {
+            jTextFieldValorDoProdutoVenda.setText(String.valueOf("R$: " + modelProdutos.getProdValor()));
+        } catch (Exception e) {
+        }
     }
 
     private void pesquisarVendas() {

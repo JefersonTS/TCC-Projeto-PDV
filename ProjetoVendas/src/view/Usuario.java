@@ -33,9 +33,10 @@ public class Usuario extends javax.swing.JFrame {
     public Usuario() {
         initComponents();
         setLocationRelativeTo(null);
+        setExtendedState(MAXIMIZED_BOTH);
         carregarUsuarios();
         habilitarDesabilitar(false);
-        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("../imagens/carrinho-de-compras.png")));
+        carregarIcone();
         UIManager.put("OptionPane.messageFont", new FontUIResource(new Font("Maiandra GD", Font.PLAIN, 35)));
     }
 
@@ -290,7 +291,11 @@ public class Usuario extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    //Carregar Usuarios na Tabela
+    public void carregarIcone() {
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/imagens/carrinho_de_compras.png")));
+    }
+
+//Carregar Usuarios na Tabela
     private void carregarUsuarios() {
         listaModelUsuario = controllerUsuario.getListaUsuarioController();
         DefaultTableModel modelo = (DefaultTableModel) jTableUsuario.getModel();

@@ -6,6 +6,7 @@
 package view;
 
 import controller.ControllerFormaPagamento;
+import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -38,6 +39,7 @@ public class PagamentoPDV extends javax.swing.JDialog {
         listaFormaPagamento();
         this.pago = false;
         jComboBoxFormaPagamento.requestFocus();
+        carregarIcone();
     }
 
     /**
@@ -301,6 +303,10 @@ public class PagamentoPDV extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    public void carregarIcone() {
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/imagens/carrinho_de_compras.png")));
+    }
 
     private void listaFormaPagamento() {
         listaModelFormaPagamentos = controllerFormaPagamento.getListaFormaPagamentoController();

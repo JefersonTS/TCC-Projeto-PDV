@@ -41,7 +41,7 @@ public class Principal extends javax.swing.JFrame {
         habilitarDesabilitarBackup();
         setarUsuarioDataHora();
         timer1.start();
-        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("../imagens/carrinho-de-compras.png")));
+        carregarIcone();
         UIManager.put("OptionPane.messageFont", new FontUIResource(new Font("Maiandra GD", Font.PLAIN, 35)));
         //Conexao com o banco para fazer o backup
         try {
@@ -486,6 +486,11 @@ public class Principal extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    public void carregarIcone() {
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/imagens/carrinho_de_compras.png")));
+    }
+
     private void habilitarDesabilitarBackup() {
         String nome = modelSessaoUsuario.nome;
         if (nome.equals("ADMINISTRADOR")) {
