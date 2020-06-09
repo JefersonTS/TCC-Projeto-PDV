@@ -108,8 +108,8 @@ WHERE
 				<text><![CDATA[contato@infosolutions.com]]></text>
 			</staticText>
 			<image>
-				<reportElement x="420" y="1" width="135" height="75" uuid="3477030a-0aeb-4e79-a891-a55d47b882d4"/>
-				<imageExpression><![CDATA["C:\\Users\\jefer\\Desktop\\Jefin\\Projetos-Java\\TCC-Projeto-PDV\\ProjetoVendas\\src\\imagens\\Panfleto PC.png"]]></imageExpression>
+				<reportElement x="423" y="1" width="141" height="77" uuid="7acdeff2-95da-4352-84ad-4f799bc2004a"/>
+				<imageExpression><![CDATA["C:\\Program Files (x86)\\JefersonTomas\\Sistema de Vendas com Controle de Estoque\\src\\imagens\\logo_login.png"]]></imageExpression>
 			</image>
 		</band>
 	</title>

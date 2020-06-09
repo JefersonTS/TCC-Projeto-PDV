@@ -90,12 +90,11 @@ prod_valor
 				</textElement>
 				<text><![CDATA[RUA: Alfonso Sanches Simon, 181]]></text>
 			</staticText>
-			<elementGroup>
-				<image>
-					<reportElement x="420" y="1" width="135" height="75" uuid="483344de-6002-4445-8160-83198222b359"/>
-					<imageExpression><![CDATA["C:\\Users\\jefer\\Desktop\\Jefin\\Projetos-Java\\TCC-Projeto-PDV\\ProjetoVendas\\src\\imagens\\Panfleto PC.png"]]></imageExpression>
-				</image>
-			</elementGroup>
+			<elementGroup/>
+			<image>
+				<reportElement x="415" y="0" width="141" height="77" uuid="4d4fe559-7e97-4878-8160-7ef577f7da51"/>
+				<imageExpression><![CDATA["C:\\Program Files (x86)\\JefersonTomas\\Sistema de Vendas com Controle de Estoque\\src\\imagens\\logo_login.png"]]></imageExpression>
+			</image>
 		</band>
 	</title>
 	<detail>

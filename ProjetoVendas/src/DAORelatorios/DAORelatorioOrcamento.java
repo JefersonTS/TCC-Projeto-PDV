@@ -61,8 +61,8 @@ public class DAORelatorioOrcamento extends ConexaoMySql {
             JRResultSetDataSource jrRS = new JRResultSetDataSource(getResultSet());
             InputStream caminhoRelatorio = this.getClass().getClassLoader().getResourceAsStream("relatorios/RelatorioOrcamento.jasper");
             JasperPrint jasperPrint = JasperFillManager.fillReport(caminhoRelatorio, hashMap, jrRS);
-            JasperExportManager.exportReportToPdfFile(jasperPrint, "C:/Users/jefer/Desktop/Jefin/Projetos-Java/TCC-Projeto-PDV/ProjetoVendas/src/relatorios/RelatorioOrcamento.pdf");
-            File file = new File("C:/Users/jefer/Desktop/Jefin/Projetos-Java/TCC-Projeto-PDV/ProjetoVendas/src/relatorios/RelatorioOrcamento.pdf");
+            JasperExportManager.exportReportToPdfFile(jasperPrint, "C:/Users/Public/RelatorioOrcamento.pdf");
+            File file = new File("C:/Users/Public/RelatorioOrcamento.pdf");
             try {
                 Desktop.getDesktop().open(file);
             } catch (Exception e) {

@@ -99,8 +99,8 @@ ven_desconto
 				<text><![CDATA[INFO Solutions]]></text>
 			</staticText>
 			<image>
-				<reportElement x="413" y="0" width="153" height="80" uuid="44a3c1bd-5d63-4a2a-897b-e76e400a0d3a"/>
-				<imageExpression><![CDATA["C:\\Users\\jefer\\Desktop\\Jefin\\Projetos-Java\\TCC-Projeto-PDV\\ProjetoVendas\\src\\imagens\\Panfleto PC.png"]]></imageExpression>
+				<reportElement x="419" y="0" width="136" height="79" uuid="68cfe18f-fd02-4b9c-84d6-dd740539f43d"/>
+				<imageExpression><![CDATA["C:\\Program Files (x86)\\JefersonTomas\\Sistema de Vendas com Controle de Estoque\\src\\imagens\\logo_login.png"]]></imageExpression>
 			</image>
 		</band>
 	</title>

@@ -5,14 +5,19 @@
  */
 package view;
 
+import componentes.UJPanelImagem;
 import controller.ControllerUsuario;
 import de.javasoft.plaf.synthetica.SyntheticaPlainLookAndFeel;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.net.URL;
 import java.text.ParseException;
+import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
@@ -40,7 +45,8 @@ public final class Login extends javax.swing.JFrame {
         jPanel2.setBackground(new Color(255, 255, 255, 50));
         carregarIcone();
         mudarIcone(this);
-        UIManager.put("OptionPane.messageFont", new FontUIResource(new Font("Maiandra GD",Font.PLAIN,35)));
+        //mudarBackground(uJPanelImagem2);
+        UIManager.put("OptionPane.messageFont", new FontUIResource(new Font("Maiandra GD", Font.PLAIN, 35)));
     }
 
     /**
@@ -69,7 +75,7 @@ public final class Login extends javax.swing.JFrame {
         setTitle("Sistema de Vendas com Controle de Estoque e PDV");
         setResizable(false);
 
-        uJPanelImagem2.setImagem(new java.io.File("C:\\Users\\jefer\\Desktop\\Jefin\\Projetos-Java\\TCC-Projeto-PDV\\ProjetoVendas\\src\\imagens\\background-login.jpg"));
+        uJPanelImagem2.setImagem(new java.io.File("C:\\Program Files (x86)\\JefersonTomas\\Sistema de Vendas com Controle de Estoque\\src\\imagens\\background-login.jpg"));
         uJPanelImagem2.setPreferredSize(new java.awt.Dimension(1000, 600));
 
         jTextFieldLoginUsuario.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
@@ -152,7 +158,7 @@ public final class Login extends javax.swing.JFrame {
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Sistema de Vendas com Controle de Estoque e PDV");
 
-        uJPanelImagem1.setImagem(new java.io.File("C:\\Users\\jefer\\Desktop\\Jefin\\Projetos-Java\\TCC-Projeto-PDV\\ProjetoVendas\\src\\imagens\\Panfleto_PC_TRANSP.png"));
+        uJPanelImagem1.setImagem(new java.io.File("C:\\Program Files (x86)\\JefersonTomas\\Sistema de Vendas com Controle de Estoque\\src\\imagens\\logo_login_transp.png"));
 
         javax.swing.GroupLayout uJPanelImagem1Layout = new javax.swing.GroupLayout(uJPanelImagem1);
         uJPanelImagem1.setLayout(uJPanelImagem1Layout);
@@ -189,7 +195,7 @@ public final class Login extends javax.swing.JFrame {
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(uJPanelImagem2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(uJPanelImagem1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, uJPanelImagem2Layout.createSequentialGroup()
@@ -224,17 +230,27 @@ public final class Login extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    public void mudarIcone(JFrame frm){
+    /*private void mudarBackground(UJPanelImagem jpi) {
+        try {
+            File f = new File("/imagens/backgroundlogin.jpg");
+            //uJPanelImagem2.setImagem(f);
+            jpi.setImagem(f);
+        } catch (Exception e) {
+        }
+
+    }*/
+
+    public void mudarIcone(JFrame frm) {
         try {
             frm.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/imagens/carrinho_de_compras.png")));
         } catch (Exception e) {
         }
     }
-    
+
     public void carregarIcone() {
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/imagens/carrinho_de_compras.png")));
     }
-    
+
     private void fazerLogin() {
         modelUsuario.setUsLogin(jTextFieldLoginUsuario.getText().toUpperCase());
         modelUsuario.setUsSenha(String.valueOf(jPasswordFieldLoginSenha.getPassword()));

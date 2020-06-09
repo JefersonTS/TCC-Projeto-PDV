@@ -42,10 +42,6 @@ ven_desconto
 	</background>
 	<title>
 		<band height="101" splitType="Stretch">
-			<image>
-				<reportElement x="618" y="0" width="184" height="96" uuid="d4d7c57e-895c-40dc-b1d9-352801d650b7"/>
-				<imageExpression><![CDATA["C:\\Users\\jefer\\Desktop\\Jefin\\Projetos-Java\\TCC-Projeto-PDV\\ProjetoVendas\\src\\imagens\\Panfleto PC.png"]]></imageExpression>
-			</image>
 			<staticText>
 				<reportElement x="0" y="0" width="191" height="30" uuid="8c018a66-d215-4957-8b2d-b0606de1d9e0"/>
 				<textElement>
@@ -101,6 +97,10 @@ ven_desconto
 					<pen lineStyle="Double"/>
 				</graphicElement>
 			</line>
+			<image>
+				<reportElement x="673" y="0" width="127" height="96" uuid="520d6bd9-8777-4215-8b44-344ec5d0facd"/>
+				<imageExpression><![CDATA["C:\\Program Files (x86)\\JefersonTomas\\Sistema de Vendas com Controle de Estoque\\src\\imagens\\logo_login.png"]]></imageExpression>
+			</image>
 		</band>
 	</title>
 	<columnHeader>

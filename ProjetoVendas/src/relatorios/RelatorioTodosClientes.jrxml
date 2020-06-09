@@ -45,10 +45,6 @@ tb_cliente]]>
 	</background>
 	<title>
 		<band height="104" splitType="Stretch">
-			<image>
-				<reportElement x="619" y="1" width="184" height="96" uuid="43121176-4494-4236-a7c3-b6fcf4b13d37"/>
-				<imageExpression><![CDATA["C:\\Users\\jefer\\Desktop\\Jefin\\Projetos-Java\\TCC-Projeto-PDV\\ProjetoVendas\\src\\imagens\\Panfleto PC.png"]]></imageExpression>
-			</image>
 			<staticText>
 				<reportElement x="1" y="31" width="171" height="22" uuid="93f3686c-d0dc-447d-ad57-bf3c0a7b751c"/>
 				<textElement>
@@ -104,6 +100,10 @@ tb_cliente]]>
 					<pen lineStyle="Double"/>
 				</graphicElement>
 			</line>
+			<image>
+				<reportElement x="636" y="0" width="185" height="96" uuid="ea90ad6a-9bc3-4a0f-8f07-78407815c167"/>
+				<imageExpression><![CDATA["C:\\Program Files (x86)\\JefersonTomas\\Sistema de Vendas com Controle de Estoque\\src\\imagens\\logo_login.png"]]></imageExpression>
+			</image>
 		</band>
 	</title>
 	<detail>

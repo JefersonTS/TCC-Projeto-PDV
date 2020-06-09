@@ -106,7 +106,7 @@ public class Principal extends javax.swing.JFrame {
         setTitle("Sistema de Vendas - Painel Principal");
         setIconImages(null);
 
-        uJPanelImagem1.setImagem(new java.io.File("C:\\Users\\jefer\\Desktop\\Jefin\\Projetos-Java\\TCC-Projeto-PDV\\ProjetoVendas\\src\\imagens\\fundo.jpg"));
+        uJPanelImagem1.setImagem(new java.io.File("C:\\Program Files (x86)\\JefersonTomas\\Sistema de Vendas com Controle de Estoque\\src\\imagens\\background_principal.jpg"));
 
         jPanel2.setBackground(new java.awt.Color(204, 255, 153));
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED), "MENU", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Maiandra GD", 1, 24))); // NOI18N

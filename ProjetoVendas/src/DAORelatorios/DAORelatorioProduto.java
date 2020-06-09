@@ -32,8 +32,8 @@ public class DAORelatorioProduto extends ConexaoMySql {
             JRResultSetDataSource jrRS = new JRResultSetDataSource(getResultSet());
             InputStream caminhoRelatorio = this.getClass().getClassLoader().getResourceAsStream("relatorios/RelatorioTodosProdutos.jasper");
             JasperPrint jasperPrint = JasperFillManager.fillReport(caminhoRelatorio, hashMap, jrRS);
-            JasperExportManager.exportReportToPdfFile(jasperPrint, "C:/Users/jefer/Desktop/Jefin/Projetos-Java/TCC-Projeto-PDV/ProjetoVendas/src/relatorios/RelatorioTodosProdutos.pdf");
-            File file = new File("C:/Users/jefer/Desktop/Jefin/Projetos-Java/TCC-Projeto-PDV/ProjetoVendas/src/relatorios/RelatorioTodosProdutos.pdf");
+            JasperExportManager.exportReportToPdfFile(jasperPrint, "C:/Users/Public/RelatorioTodosProdutos.pdf");
+            File file = new File("C:/Users/Public/RelatorioTodosProdutos.pdf");
             try {
                 Desktop.getDesktop().open(file);
             } catch (Exception e) {
@@ -66,8 +66,8 @@ public class DAORelatorioProduto extends ConexaoMySql {
             JRResultSetDataSource jrRS = new JRResultSetDataSource(getResultSet());
             InputStream caminhoRelatorio = this.getClass().getClassLoader().getResourceAsStream("relatorios/RelatorioUmProduto.jasper");
             JasperPrint jasperPrint = JasperFillManager.fillReport(caminhoRelatorio, hashMap, jrRS);
-            JasperExportManager.exportReportToPdfFile(jasperPrint, "C:/Users/jefer/Desktop/Jefin/Projetos-Java/TCC-Projeto-PDV/ProjetoVendas/src/relatorios/RelatorioUmProduto.pdf");
-            File file = new File("C:/Users/jefer/Desktop/Jefin/Projetos-Java/TCC-Projeto-PDV/ProjetoVendas/src/relatorios/RelatorioUmProduto.pdf");
+            JasperExportManager.exportReportToPdfFile(jasperPrint, "C:/Users/Public/RelatorioUmProduto.pdf");
+            File file = new File("C:/Users/Public/RelatorioUmProduto.pdf");
             try {
                 Desktop.getDesktop().open(file);
             } catch (Exception e) {
@@ -109,8 +109,8 @@ public class DAORelatorioProduto extends ConexaoMySql {
             JRResultSetDataSource jrRS = new JRResultSetDataSource(getResultSet());
             InputStream caminhoRelatorio = this.getClass().getClassLoader().getResourceAsStream("relatorios/RelatorioProdutosPorFornecedor.jasper");
             JasperPrint jasperPrint = JasperFillManager.fillReport(caminhoRelatorio, hashMap, jrRS);
-            JasperExportManager.exportReportToPdfFile(jasperPrint, "C:/Users/jefer/Desktop/Jefin/Projetos-Java/TCC-Projeto-PDV/ProjetoVendas/src/relatorios/RelatorioProdutosPorFornecedor.pdf");
-            File file = new File("C:/Users/jefer/Desktop/Jefin/Projetos-Java/TCC-Projeto-PDV/ProjetoVendas/src/relatorios/RelatorioProdutosPorFornecedor.pdf");
+            JasperExportManager.exportReportToPdfFile(jasperPrint, "C:/Users/Public/RelatorioProdutosPorFornecedor.pdf");
+            File file = new File("C:/Users/Public/RelatorioProdutosPorFornecedor.pdf");
             try {
                 Desktop.getDesktop().open(file);
             } catch (Exception e) {

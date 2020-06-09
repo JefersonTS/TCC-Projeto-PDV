@@ -42,8 +42,8 @@ public class DAORelatorioCliente extends ConexaoMySql {
             JRResultSetDataSource jrRS = new JRResultSetDataSource(getResultSet());
             InputStream caminhoRelatorio = this.getClass().getClassLoader().getResourceAsStream("relatorios/RelatorioTodosClientes.jasper");
             JasperPrint jasperPrint = JasperFillManager.fillReport(caminhoRelatorio, hashMap, jrRS);
-            JasperExportManager.exportReportToPdfFile(jasperPrint, "C:/Users/jefer/Desktop/Jefin/Projetos-Java/TCC-Projeto-PDV/ProjetoVendas/src/relatorios/RelatorioTodosClientes.pdf");
-            File file = new File("C:/Users/jefer/Desktop/Jefin/Projetos-Java/TCC-Projeto-PDV/ProjetoVendas/src/relatorios/RelatorioTodosClientes.pdf");
+            JasperExportManager.exportReportToPdfFile(jasperPrint, "C:/Users/Public/RelatorioTodosClientes.pdf");
+            File file = new File("C:/Users/Public/RelatorioTodosClientes.pdf");
             try {
                 Desktop.getDesktop().open(file);
             } catch (Exception e) {
@@ -89,8 +89,8 @@ public class DAORelatorioCliente extends ConexaoMySql {
             JRResultSetDataSource jrRS = new JRResultSetDataSource(getResultSet());
             InputStream caminhoRelatorio = this.getClass().getClassLoader().getResourceAsStream("relatorios/RelatorioUmCliente.jasper");
             JasperPrint jasperPrint = JasperFillManager.fillReport(caminhoRelatorio, hashMap, jrRS);
-            JasperExportManager.exportReportToPdfFile(jasperPrint, "C:/Users/jefer/Desktop/Jefin/Projetos-Java/TCC-Projeto-PDV/ProjetoVendas/src/relatorios/RelatorioUmCliente.pdf");
-            File file = new File("C:/Users/jefer/Desktop/Jefin/Projetos-Java/TCC-Projeto-PDV/ProjetoVendas/src/relatorios/RelatorioUmCliente.pdf");
+            JasperExportManager.exportReportToPdfFile(jasperPrint, "C:/Users/Public/RelatorioUmCliente.pdf");
+            File file = new File("C:/Users/Public/RelatorioUmCliente.pdf");
             try {
                 Desktop.getDesktop().open(file);
             } catch (Exception e) {

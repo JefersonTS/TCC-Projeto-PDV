@@ -97,15 +97,15 @@ where
 				</textElement>
 				<text><![CDATA[INFO Solutions]]></text>
 			</staticText>
-			<image>
-				<reportElement x="413" y="0" width="153" height="80" uuid="44a3c1bd-5d63-4a2a-897b-e76e400a0d3a"/>
-				<imageExpression><![CDATA["C:\\Users\\jefer\\Desktop\\Jefin\\Projetos-Java\\TCC-Projeto-PDV\\ProjetoVendas\\src\\imagens\\Panfleto PC.png"]]></imageExpression>
-			</image>
 			<staticText>
 				<reportElement mode="Transparent" x="231" y="-218" width="23" height="20" uuid="1109a2d2-282c-443d-84db-10181e407261"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<text><![CDATA[R$:]]></text>
 			</staticText>
+			<image>
+				<reportElement x="416" y="0" width="139" height="79" uuid="eec08fbf-e999-410d-82d9-94dfb9604fdd"/>
+				<imageExpression><![CDATA["C:\\Program Files (x86)\\JefersonTomas\\Sistema de Vendas com Controle de Estoque\\src\\imagens\\logo_login.png"]]></imageExpression>
+			</image>
 		</band>
 	</title>
 	<pageHeader>

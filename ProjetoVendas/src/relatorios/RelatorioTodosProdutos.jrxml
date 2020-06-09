@@ -85,8 +85,8 @@
 				<text><![CDATA[Relatorio Todos os Produtos]]></text>
 			</staticText>
 			<image>
-				<reportElement x="420" y="1" width="135" height="75" uuid="4949810b-5d6e-45f3-95b3-5bc180366129"/>
-				<imageExpression><![CDATA["C:\\Users\\jefer\\Desktop\\Jefin\\Projetos-Java\\TCC-Projeto-PDV\\ProjetoVendas\\src\\imagens\\Panfleto PC.png"]]></imageExpression>
+				<reportElement x="417" y="0" width="138" height="77" uuid="4735f43d-0a8b-4066-a8c3-781aa55582ae"/>
+				<imageExpression><![CDATA["C:\\Program Files (x86)\\JefersonTomas\\Sistema de Vendas com Controle de Estoque\\src\\imagens\\logo_login.png"]]></imageExpression>
 			</image>
 		</band>
 	</title>
