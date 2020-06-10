@@ -908,6 +908,7 @@ public class Produto extends javax.swing.JFrame {
     //Preenche a tabela de produtos com os produtos cadastrados no banco
     private void carregarProdutos() {
         listaModelProdutos = controllerProdutos.getListaProdutosController();
+        listaModelFornecedores = controllerFornecedor.getListaFornecedorController();
         DefaultTableModel modelo = (DefaultTableModel) jTableProduto.getModel();
         modelo.setNumRows(0); //seta o numero de linhas em ZERO para nao duplicar na tabela
 
@@ -919,7 +920,7 @@ public class Produto extends javax.swing.JFrame {
                 listaModelProdutos.get(i).getProdNome(),
                 listaModelProdutos.get(i).getProdEstoque(),
                 listaModelProdutos.get(i).getProdValor(),
-                listaModelProdutos.get(i).getFornecedor()
+                listaModelFornecedores.get(i).getNome_fantasia()
             });
         }
         JTableHeader cabecalho = jTableProduto.getTableHeader();
