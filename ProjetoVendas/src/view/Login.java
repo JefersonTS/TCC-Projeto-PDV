@@ -5,19 +5,12 @@
  */
 package view;
 
-import componentes.UJPanelImagem;
 import controller.ControllerUsuario;
 import de.javasoft.plaf.synthetica.SyntheticaPlainLookAndFeel;
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.Image;
 import java.awt.Toolkit;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.net.URL;
 import java.text.ParseException;
-import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
@@ -262,6 +255,7 @@ public final class Login extends javax.swing.JFrame {
             new Principal().setVisible(true);
             setExtendedState(JFrame.ICONIFIED);
         } else {
+            jPasswordFieldLoginSenha.setText("");
             JOptionPane.showMessageDialog(this, "Usuario e/ou Senha INCORRETO!", "Aviso", JOptionPane.WARNING_MESSAGE);
         }
     }

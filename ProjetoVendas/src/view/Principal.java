@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.text.SimpleDateFormat;
 import javax.swing.JFileChooser;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.plaf.FontUIResource;
@@ -24,7 +25,7 @@ import util.BLDatas;
  *
  * @author jefer
  */
-public class Principal extends javax.swing.JFrame {
+public final class Principal extends javax.swing.JFrame {
 
     ModelSessaoUsuario modelSessaoUsuario = new ModelSessaoUsuario();
     BLDatas bLDatas = new BLDatas();
@@ -50,6 +51,20 @@ public class Principal extends javax.swing.JFrame {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e, "Erro!", 2);
         }
+        pegarTamandoDaTela();
+    }
+
+    public void pegarTamandoDaTela() {
+        int largura = Toolkit.getDefaultToolkit().getScreenSize().getSize().height;
+        int altura = Toolkit.getDefaultToolkit().getScreenSize().getSize().width;
+        //int altura = Toolkit.getDefaultToolkit().getScreenSize().height;
+        
+        
+        //JFrame quadro = new JFrame("Resolução Mutante, kkkkkk");
+        JFrame quadro = new JFrame();
+
+        quadro.setSize(largura, altura);
+
     }
 
     /**

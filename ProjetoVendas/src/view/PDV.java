@@ -8,6 +8,7 @@ package view;
 import controller.ControllerProdutos;
 import controller.ControllerVendas;
 import controller.ControllerVendasProdutos;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Toolkit;
 import java.text.DecimalFormat;
@@ -61,6 +62,7 @@ public final class PDV extends javax.swing.JFrame {
         jLabelStatus.setText("ABERTO");
         mudarFonteTabela();
         carregarIcone();
+        pegarResolucao();
         UIManager.put("OptionPane.messageFont", new FontUIResource(new Font("Maiandra GD", Font.PLAIN, 35)));
     }
 
@@ -73,12 +75,13 @@ public final class PDV extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        uJPanelImagem1 = new componentes.UJPanelImagem();
+        jScrollPane2 = new javax.swing.JScrollPane();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableListaProdutosPDV = new javax.swing.JTable();
         jTextFieldCodigoProdutoPDV = new javax.swing.JTextField();
+        jPanel6 = new javax.swing.JPanel();
+        uJPanelImagem6 = new componentes.UJPanelImagem();
         jPanel3 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
@@ -88,16 +91,9 @@ public final class PDV extends javax.swing.JFrame {
         jLabelOperador = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
-        jLabel16 = new javax.swing.JLabel();
         jFormattedTextFieldValorBrutoVendaPDV = new javax.swing.JFormattedTextField();
-        jLabel17 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
         jFormattedTextFieldValorLiquidoVendaPDV = new javax.swing.JFormattedTextField();
         jTextFieldDescontoVendaPDV = new javax.swing.JTextField();
@@ -113,37 +109,8 @@ public final class PDV extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Sistema de Vendas - Vendas PDV");
-
-        jPanel1.setBackground(new java.awt.Color(204, 255, 153));
-
-        uJPanelImagem1.setImagem(new java.io.File("C:\\Program Files (x86)\\JefersonTomas\\Sistema de Vendas com Controle de Estoque\\src\\imagens\\logo_pdv.png"));
-
-        javax.swing.GroupLayout uJPanelImagem1Layout = new javax.swing.GroupLayout(uJPanelImagem1);
-        uJPanelImagem1.setLayout(uJPanelImagem1Layout);
-        uJPanelImagem1Layout.setHorizontalGroup(
-            uJPanelImagem1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 171, Short.MAX_VALUE)
-        );
-        uJPanelImagem1Layout.setVerticalGroup(
-            uJPanelImagem1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 113, Short.MAX_VALUE)
-        );
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(uJPanelImagem1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(uJPanelImagem1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
+        setLocationByPlatform(true);
+        setSize(new java.awt.Dimension(0, 0));
 
         jPanel2.setBackground(new java.awt.Color(204, 255, 153));
 
@@ -196,45 +163,53 @@ public final class PDV extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 877, Short.MAX_VALUE)
-                    .addComponent(jTextFieldCodigoProdutoPDV))
-                .addContainerGap())
+        jPanel6.setBackground(new java.awt.Color(204, 255, 153));
+
+        uJPanelImagem6.setImagem(new java.io.File("C:\\Program Files (x86)\\JefersonTomas\\Sistema de Vendas com Controle de Estoque\\src\\imagens\\logo_pdv.png"));
+
+        javax.swing.GroupLayout uJPanelImagem6Layout = new javax.swing.GroupLayout(uJPanelImagem6);
+        uJPanelImagem6.setLayout(uJPanelImagem6Layout);
+        uJPanelImagem6Layout.setHorizontalGroup(
+            uJPanelImagem6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 169, Short.MAX_VALUE)
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextFieldCodigoProdutoPDV, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+        uJPanelImagem6Layout.setVerticalGroup(
+            uJPanelImagem6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 102, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                .addContainerGap(417, Short.MAX_VALUE)
+                .addComponent(uJPanelImagem6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(363, 363, 363))
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(uJPanelImagem6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         jPanel3.setBackground(new java.awt.Color(204, 255, 153));
 
-        jLabel4.setFont(new java.awt.Font("Maiandra GD", 1, 24)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Maiandra GD", 1, 20)); // NOI18N
         jLabel4.setText("OPERADOR: ");
 
-        jLabel3.setFont(new java.awt.Font("Maiandra GD", 1, 24)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Maiandra GD", 1, 20)); // NOI18N
         jLabel3.setText("STATUS: ");
 
-        jLabel2.setFont(new java.awt.Font("Maiandra GD", 1, 24)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Maiandra GD", 1, 20)); // NOI18N
         jLabel2.setText("CAIXA: ");
 
-        jLabelStatus.setFont(new java.awt.Font("Maiandra GD", 1, 24)); // NOI18N
+        jLabelStatus.setFont(new java.awt.Font("Maiandra GD", 1, 20)); // NOI18N
         jLabelStatus.setText("STATUS");
 
-        jLabelOperador.setFont(new java.awt.Font("Maiandra GD", 1, 24)); // NOI18N
+        jLabelOperador.setFont(new java.awt.Font("Maiandra GD", 1, 20)); // NOI18N
         jLabelOperador.setText("OPERADOR");
 
-        jLabel7.setFont(new java.awt.Font("Maiandra GD", 1, 24)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Maiandra GD", 1, 20)); // NOI18N
         jLabel7.setText("01");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -252,12 +227,12 @@ public final class PDV extends javax.swing.JFrame {
                     .addComponent(jLabel7)
                     .addComponent(jLabelStatus)
                     .addComponent(jLabelOperador))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(122, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap(21, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jLabel7))
@@ -272,47 +247,26 @@ public final class PDV extends javax.swing.JFrame {
                 .addGap(24, 24, 24))
         );
 
-        jLabel8.setFont(new java.awt.Font("Maiandra GD", 1, 24)); // NOI18N
-        jLabel8.setText("COMANDOS");
-
-        jLabel10.setFont(new java.awt.Font("Maiandra GD", 0, 18)); // NOI18N
-        jLabel10.setText("F4 - Finalizar Venda");
-
-        jLabel11.setFont(new java.awt.Font("Maiandra GD", 0, 18)); // NOI18N
-        jLabel11.setText("F3 - Alterar Quantidade");
-
-        jLabel12.setFont(new java.awt.Font("Maiandra GD", 0, 18)); // NOI18N
-        jLabel12.setText("F5 - Pesquisar Produto");
-
-        jLabel13.setFont(new java.awt.Font("Maiandra GD", 0, 18)); // NOI18N
-        jLabel13.setText("F9 - Sair");
-
-        jLabel14.setFont(new java.awt.Font("Maiandra GD", 1, 24)); // NOI18N
+        jLabel14.setFont(new java.awt.Font("Maiandra GD", 1, 20)); // NOI18N
         jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel14.setText("DESCONTO (em %)");
 
-        jLabel15.setFont(new java.awt.Font("Maiandra GD", 1, 24)); // NOI18N
+        jLabel15.setFont(new java.awt.Font("Maiandra GD", 1, 20)); // NOI18N
         jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel15.setText("VALOR TOTAL");
 
-        jLabel16.setFont(new java.awt.Font("Maiandra GD", 0, 18)); // NOI18N
-        jLabel16.setText("F2 - Excluir Produto");
-
         jFormattedTextFieldValorBrutoVendaPDV.setEditable(false);
-        jFormattedTextFieldValorBrutoVendaPDV.setFont(new java.awt.Font("Maiandra GD", 0, 24)); // NOI18N
+        jFormattedTextFieldValorBrutoVendaPDV.setFont(new java.awt.Font("Maiandra GD", 0, 20)); // NOI18N
 
-        jLabel17.setFont(new java.awt.Font("Maiandra GD", 0, 18)); // NOI18N
-        jLabel17.setText("F1 - Incluir Produto");
-
-        jLabel18.setFont(new java.awt.Font("Maiandra GD", 1, 24)); // NOI18N
+        jLabel18.setFont(new java.awt.Font("Maiandra GD", 1, 20)); // NOI18N
         jLabel18.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel18.setText("TOTAL A PAGAR");
 
         jFormattedTextFieldValorLiquidoVendaPDV.setEditable(false);
-        jFormattedTextFieldValorLiquidoVendaPDV.setFont(new java.awt.Font("Maiandra GD", 0, 24)); // NOI18N
+        jFormattedTextFieldValorLiquidoVendaPDV.setFont(new java.awt.Font("Maiandra GD", 0, 20)); // NOI18N
 
         jTextFieldDescontoVendaPDV.setEditable(false);
-        jTextFieldDescontoVendaPDV.setFont(new java.awt.Font("Maiandra GD", 0, 24)); // NOI18N
+        jTextFieldDescontoVendaPDV.setFont(new java.awt.Font("Maiandra GD", 0, 20)); // NOI18N
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -326,18 +280,6 @@ public final class PDV extends javax.swing.JFrame {
                     .addComponent(jFormattedTextFieldValorLiquidoVendaPDV, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jTextFieldDescontoVendaPDV, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel14, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel5Layout.createSequentialGroup()
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel5Layout.createSequentialGroup()
-                                .addGap(61, 61, 61)
-                                .addComponent(jLabel8))
-                            .addComponent(jLabel11)
-                            .addComponent(jLabel10)
-                            .addComponent(jLabel12)
-                            .addComponent(jLabel13)
-                            .addComponent(jLabel16)
-                            .addComponent(jLabel17))
-                        .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(jLabel15, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -346,30 +288,16 @@ public final class PDV extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel14)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextFieldDescontoVendaPDV, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jTextFieldDescontoVendaPDV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel15)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jFormattedTextFieldValorBrutoVendaPDV, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(20, 20, 20)
+                .addComponent(jFormattedTextFieldValorBrutoVendaPDV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel18)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jFormattedTextFieldValorLiquidoVendaPDV, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel8)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel17)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel16)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel11)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel10)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel12)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel13)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jFormattedTextFieldValorLiquidoVendaPDV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -380,10 +308,8 @@ public final class PDV extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -393,8 +319,40 @@ public final class PDV extends javax.swing.JFrame {
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(114, 114, 114))
         );
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(23, 23, 23))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1)
+                            .addComponent(jTextFieldCodigoProdutoPDV))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 385, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jTextFieldCodigoProdutoPDV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(39, 39, 39))
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        jScrollPane2.setViewportView(jPanel2);
 
         jMenuBar1.setFont(new java.awt.Font("Maiandra GD", 0, 24)); // NOI18N
 
@@ -475,24 +433,93 @@ public final class PDV extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(7, 7, 7)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 1392, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(7, 7, 7)
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 11, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void pegarResolucao() {
+        Toolkit t = Toolkit.getDefaultToolkit();
+        Dimension dimensao = t.getScreenSize();
+        this.setSize((dimensao.width + 5), (dimensao.height - 38));
+
+ }
+    
+    private void jTextFieldCodigoProdutoPDVKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldCodigoProdutoPDVKeyReleased
+        // TODO add your handling code here:
+        pegarCodigoF1(evt);
+    }//GEN-LAST:event_jTextFieldCodigoProdutoPDVKeyReleased
+
+    private void jTableListaProdutosPDVMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableListaProdutosPDVMouseClicked
+        // TODO add your handling code here:
+        mudarQuantidadeProduto();
+    }//GEN-LAST:event_jTableListaProdutosPDVMouseClicked
+
+    private void jMenuItemFinalizarVendaPDVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemFinalizarVendaPDVActionPerformed
+        // TODO add your handling code here:
+        int cont = jTableListaProdutosPDV.getRowCount();
+        if (cont > 0) {
+            viewPagamentoPDV.setValorTotal(Float.parseFloat(totalBrutoVendaPDV.toString()));
+            viewPagamentoPDV.preencherCampos();
+            viewPagamentoPDV.setVisible(true);
+
+            jTextFieldDescontoVendaPDV.setText(String.valueOf(viewPagamentoPDV.getDesconto()));//pega o valor do desconto na view PagamentoPDV
+            totalLiquidoVendaPDV = bLMascaras.arredondamentoComPontoDuasCasasDouble(Double.parseDouble(String.valueOf(viewPagamentoPDV.getTotalPagar())));//pega o valor do total a pagar na view PagamentoPDV e seta na totalLiquidoVendaPDV
+
+            if (viewPagamentoPDV.isPago()) {
+                salvarVendas();
+                jLabelStatus.setText("ABERTO");
+                limparVendas();
+            } else {
+                jTextFieldDescontoVendaPDV.setText(String.valueOf(viewPagamentoPDV.getDesconto()));//pega o valor do desconto na view PagamentoPDV
+                DecimalFormat df = new DecimalFormat("#,###.00");//formata as casas decimais de um Double
+                jFormattedTextFieldValorBrutoVendaPDV.setText("R$: " + String.valueOf(df.format(totalBrutoVendaPDV)));//pega o valor do total na variavel global
+                jFormattedTextFieldValorLiquidoVendaPDV.setText("R$: " + String.valueOf(df.format(totalLiquidoVendaPDV)));//pega o valor do total A PAGAR na variavel global
+                JOptionPane.showMessageDialog(this, "Você nao concluiu o Pagamento", "ERRO", JOptionPane.ERROR_MESSAGE);
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Nenhum Produto na Tabela", "ERRO", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_jMenuItemFinalizarVendaPDVActionPerformed
+
+    private void jMenuItemAlterarQuantidadePDVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemAlterarQuantidadePDVActionPerformed
+        // TODO add your handling code here:
+        qtd = Integer.parseInt(JOptionPane.showInputDialog("Informe a quantidade desejada: "));
+        System.err.println("Pressionando F3: " + qtd);
+    }//GEN-LAST:event_jMenuItemAlterarQuantidadePDVActionPerformed
+
+    private void jMenuItemExcluirProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemExcluirProdutoActionPerformed
+        // TODO add your handling code here:
+        int qtdLinha = jTableListaProdutosPDV.getRowCount();
+        System.out.println(qtdLinha);
+        if (qtdLinha < 1) {
+            JOptionPane.showMessageDialog(this, "Erro ao Excluir a Venda, Nenhum Item na Tabela", "ERRO", JOptionPane.ERROR_MESSAGE);
+        } else {
+            DefaultTableModel modelo = (DefaultTableModel) jTableListaProdutosPDV.getModel();
+            int linha = Integer.parseInt(JOptionPane.showInputDialog("Informe o ITEM que deseja excluir: "));
+            modelo.removeRow(linha - 1);
+            somaValorTotal();
+            for (int i = 0; i < qtdLinha; i++) {
+                modelo.setValueAt(i + 1, i, 0);
+            }
+        }
+    }//GEN-LAST:event_jMenuItemExcluirProdutoActionPerformed
+
+    private void jMenuItemIncluirProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemIncluirProdutoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItemIncluirProdutoActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        // TODO add your handling code here:
+        dispose();
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
     
     public void carregarIcone() {
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/imagens/carrinho_de_compras.png")));
@@ -616,75 +643,6 @@ public final class PDV extends javax.swing.JFrame {
         jLabelOperador.setText(modelSessaoUsuario.nome);
     }
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        // TODO add your handling code here:
-        dispose();
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
-
-    private void jMenuItemFinalizarVendaPDVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemFinalizarVendaPDVActionPerformed
-        // TODO add your handling code here:
-        int cont = jTableListaProdutosPDV.getRowCount();
-        if (cont > 0) {
-            viewPagamentoPDV.setValorTotal(Float.parseFloat(totalBrutoVendaPDV.toString()));
-            viewPagamentoPDV.preencherCampos();
-            viewPagamentoPDV.setVisible(true);
-
-            jTextFieldDescontoVendaPDV.setText(String.valueOf(viewPagamentoPDV.getDesconto()));//pega o valor do desconto na view PagamentoPDV
-            totalLiquidoVendaPDV = bLMascaras.arredondamentoComPontoDuasCasasDouble(Double.parseDouble(String.valueOf(viewPagamentoPDV.getTotalPagar())));//pega o valor do total a pagar na view PagamentoPDV e seta na totalLiquidoVendaPDV
-
-            if (viewPagamentoPDV.isPago()) {
-                salvarVendas();
-                jLabelStatus.setText("ABERTO");
-                limparVendas();
-            } else {
-                jTextFieldDescontoVendaPDV.setText(String.valueOf(viewPagamentoPDV.getDesconto()));//pega o valor do desconto na view PagamentoPDV
-                DecimalFormat df = new DecimalFormat("#,###.00");//formata as casas decimais de um Double
-                jFormattedTextFieldValorBrutoVendaPDV.setText("R$: " + String.valueOf(df.format(totalBrutoVendaPDV)));//pega o valor do total na variavel global
-                jFormattedTextFieldValorLiquidoVendaPDV.setText("R$: " + String.valueOf(df.format(totalLiquidoVendaPDV)));//pega o valor do total A PAGAR na variavel global
-                JOptionPane.showMessageDialog(this, "Você nao concluiu o Pagamento", "ERRO", JOptionPane.ERROR_MESSAGE);
-            }
-        } else {
-            JOptionPane.showMessageDialog(this, "Nenhum Produto na Tabela", "ERRO", JOptionPane.ERROR_MESSAGE);
-        }
-    }//GEN-LAST:event_jMenuItemFinalizarVendaPDVActionPerformed
-
-    private void jMenuItemAlterarQuantidadePDVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemAlterarQuantidadePDVActionPerformed
-        // TODO add your handling code here:
-        qtd = Integer.parseInt(JOptionPane.showInputDialog("Informe a quantidade desejada: "));
-        System.err.println("Pressionando F3: " + qtd);
-    }//GEN-LAST:event_jMenuItemAlterarQuantidadePDVActionPerformed
-
-    private void jTableListaProdutosPDVMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableListaProdutosPDVMouseClicked
-        // TODO add your handling code here:
-        mudarQuantidadeProduto();
-    }//GEN-LAST:event_jTableListaProdutosPDVMouseClicked
-
-    private void jMenuItemExcluirProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemExcluirProdutoActionPerformed
-        // TODO add your handling code here:
-        int qtdLinha = jTableListaProdutosPDV.getRowCount();
-        System.out.println(qtdLinha);
-        if (qtdLinha < 1) {
-            JOptionPane.showMessageDialog(this, "Erro ao Excluir a Venda, Nenhum Item na Tabela", "ERRO", JOptionPane.ERROR_MESSAGE);
-        } else {
-            DefaultTableModel modelo = (DefaultTableModel) jTableListaProdutosPDV.getModel();
-            int linha = Integer.parseInt(JOptionPane.showInputDialog("Informe o ITEM que deseja excluir: "));
-            modelo.removeRow(linha - 1);
-            somaValorTotal();
-            for (int i = 0; i < qtdLinha; i++) {
-                modelo.setValueAt(i + 1, i, 0);
-            }
-        }
-    }//GEN-LAST:event_jMenuItemExcluirProdutoActionPerformed
-
-    private void jTextFieldCodigoProdutoPDVKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldCodigoProdutoPDVKeyReleased
-        // TODO add your handling code here:
-        pegarCodigoF1(evt);
-    }//GEN-LAST:event_jTextFieldCodigoProdutoPDVKeyReleased
-
-    private void jMenuItemIncluirProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemIncluirProdutoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItemIncluirProdutoActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -723,20 +681,13 @@ public final class PDV extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JFormattedTextField jFormattedTextFieldValorBrutoVendaPDV;
     private javax.swing.JFormattedTextField jFormattedTextFieldValorLiquidoVendaPDV;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabelOperador;
     private javax.swing.JLabel jLabelStatus;
     private javax.swing.JMenuBar jMenuBar1;
@@ -748,15 +699,16 @@ public final class PDV extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItemIncluirProduto;
     private javax.swing.JMenuItem jMenuItemPesquisarProdutosPDV;
     private javax.swing.JMenu jMenuSairPDV;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTableListaProdutosPDV;
     private javax.swing.JTextField jTextFieldCodigoProdutoPDV;
     private javax.swing.JTextField jTextFieldDescontoVendaPDV;
-    private componentes.UJPanelImagem uJPanelImagem1;
+    private componentes.UJPanelImagem uJPanelImagem6;
     // End of variables declaration//GEN-END:variables
 }

@@ -152,7 +152,6 @@ public class Vendas extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Sistema de Vendas - Cadastro e Busca de Vendas");
-        setResizable(false);
 
         jTabbedPane1.setFont(new java.awt.Font("Maiandra GD", 0, 24)); // NOI18N
         jTabbedPane1.addMouseListener(new java.awt.event.MouseAdapter() {

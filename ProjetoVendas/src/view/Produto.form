@@ -515,8 +515,7 @@
                           <Component id="jButtonCancelarProduto" min="-2" pref="150" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="jButtonExcluirProduto" min="-2" pref="150" max="-2" attributes="0"/>
-                          <EmptySpace max="32767" attributes="0"/>
-                          <Component id="jScrollBar1" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -552,19 +551,14 @@
                   <EmptySpace min="-2" max="-2" attributes="0"/>
                   <Component id="jScrollPane2" pref="603" max="32767" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="jButtonExcluirProduto" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
-                              <Component id="jButtonNovoProduto" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
-                              <Component id="jButtonAlterarProduto" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
-                              <Component id="jButtonSalvarProduto" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
-                              <Component id="jButtonCancelarProduto" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace max="-2" attributes="0"/>
-                      </Group>
-                      <Component id="jScrollBar1" alignment="1" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jButtonExcluirProduto" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
+                      <Component id="jButtonNovoProduto" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
+                      <Component id="jButtonAlterarProduto" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
+                      <Component id="jButtonSalvarProduto" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
+                      <Component id="jButtonCancelarProduto" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
                   </Group>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -894,8 +888,6 @@
               <Font name="Maiandra GD" size="24" style="0"/>
             </Property>
           </Properties>
-        </Component>
-        <Component class="javax.swing.JScrollBar" name="jScrollBar1">
         </Component>
       </SubComponents>
     </Container>
