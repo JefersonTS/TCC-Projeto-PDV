@@ -11,6 +11,7 @@ public class ModelProdutos {
     private String ProdNome;
     private Double ProdValor;
     private int ProdEstoque;
+    private String NomeFantasia;
 
     /**
     * Construtor
@@ -89,7 +90,7 @@ public class ModelProdutos {
 
     @Override
     public String toString(){
-        return "ModelProdutos {" + "::IdProduto = " + this.IdProduto + "::Fornecedor = " + this.Fornecedor + "::ProdNome = " + this.ProdNome + "::ProdValor = " + this.ProdValor + "::ProdEstoque = " + this.ProdEstoque +  "}";
+        return "ModelProdutos {" + "::IdProduto = " + this.getIdProduto() + "::Fornecedor = " + this.getFornecedor() + "::ProdNome = " + this.getProdNome() + "::ProdValor = " + this.getProdValor() + "::ProdEstoque = " + this.getProdEstoque() +  "}";
     }
 
     /**
@@ -104,5 +105,19 @@ public class ModelProdutos {
      */
     public void setCodigoBarras(String CodigoBarras) {
         this.CodigoBarras = CodigoBarras;
+    }
+
+    /**
+     * @return the NomeFantasia
+     */
+    public String getNomeFantasia() {
+        return NomeFantasia;
+    }
+
+    /**
+     * @param NomeFantasia the NomeFantasia to set
+     */
+    public void setNomeFantasia(String NomeFantasia) {
+        this.NomeFantasia = NomeFantasia;
     }
 }

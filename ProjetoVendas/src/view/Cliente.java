@@ -38,7 +38,7 @@ public class Cliente extends javax.swing.JFrame {
         habilitaDesabilita(false);
         limparCampos();
         setAlwaysOnTop(true);
-        setExtendedState(JFrame.MAXIMIZED_BOTH);
+        setExtendedState(MAXIMIZED_BOTH);
         carregarIcone();
         UIManager.put("OptionPane.messageFont", new FontUIResource(new Font("Maiandra GD", Font.PLAIN, 35)));
         jTextFieldPesquisarCliente.requestFocus();

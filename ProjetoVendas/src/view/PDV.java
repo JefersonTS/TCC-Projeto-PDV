@@ -53,8 +53,9 @@ public final class PDV extends javax.swing.JFrame {
      */
     public PDV() {
         initComponents();
-        setarOperador();
+        setLocationRelativeTo(null);
         setExtendedState(MAXIMIZED_BOTH);
+        setarOperador();
         jTextFieldDescontoVendaPDV.setText("0");
         jTextFieldCodigoProdutoPDV.requestFocus();//inicia com o foco no jTextFieldCodigoProdutoPDV
         qtd = 1;
@@ -62,7 +63,6 @@ public final class PDV extends javax.swing.JFrame {
         jLabelStatus.setText("ABERTO");
         mudarFonteTabela();
         carregarIcone();
-        pegarResolucao();
         UIManager.put("OptionPane.messageFont", new FontUIResource(new Font("Maiandra GD", Font.PLAIN, 35)));
     }
 
@@ -97,6 +97,10 @@ public final class PDV extends javax.swing.JFrame {
         jLabel18 = new javax.swing.JLabel();
         jFormattedTextFieldValorLiquidoVendaPDV = new javax.swing.JFormattedTextField();
         jTextFieldDescontoVendaPDV = new javax.swing.JTextField();
+        jLabel16 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
+        jLabel20 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenuSairPDV = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -110,6 +114,9 @@ public final class PDV extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Sistema de Vendas - Vendas PDV");
         setLocationByPlatform(true);
+        setMaximumSize(null);
+        setMinimumSize(null);
+        setPreferredSize(null);
         setSize(new java.awt.Dimension(0, 0));
 
         jPanel2.setBackground(new java.awt.Color(204, 255, 153));
@@ -182,14 +189,17 @@ public final class PDV extends javax.swing.JFrame {
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                .addContainerGap(417, Short.MAX_VALUE)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(uJPanelImagem6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(363, 363, 363))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(uJPanelImagem6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addContainerGap(21, Short.MAX_VALUE)
+                .addComponent(uJPanelImagem6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(21, Short.MAX_VALUE))
         );
 
         jPanel3.setBackground(new java.awt.Color(204, 255, 153));
@@ -227,7 +237,7 @@ public final class PDV extends javax.swing.JFrame {
                     .addComponent(jLabel7)
                     .addComponent(jLabelStatus)
                     .addComponent(jLabelOperador))
-                .addContainerGap(122, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -268,19 +278,39 @@ public final class PDV extends javax.swing.JFrame {
         jTextFieldDescontoVendaPDV.setEditable(false);
         jTextFieldDescontoVendaPDV.setFont(new java.awt.Font("Maiandra GD", 0, 20)); // NOI18N
 
+        jLabel16.setFont(new java.awt.Font("Maiandra GD", 1, 20)); // NOI18N
+        jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel16.setText("COMANDOS");
+
+        jLabel17.setFont(new java.awt.Font("Maiandra GD", 1, 15)); // NOI18N
+        jLabel17.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel17.setText("F2 - EXCLUIR PRODUTO");
+
+        jLabel19.setFont(new java.awt.Font("Maiandra GD", 1, 15)); // NOI18N
+        jLabel19.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel19.setText("F3 - ALTERAR QUANTIDADE");
+
+        jLabel20.setFont(new java.awt.Font("Maiandra GD", 1, 15)); // NOI18N
+        jLabel20.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel20.setText("F4 - FINALIZAR VENDA");
+
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+            .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel18, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jFormattedTextFieldValorBrutoVendaPDV, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jFormattedTextFieldValorLiquidoVendaPDV, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextFieldDescontoVendaPDV, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel14, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel15, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel18, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jFormattedTextFieldValorBrutoVendaPDV)
+                    .addComponent(jFormattedTextFieldValorLiquidoVendaPDV)
+                    .addComponent(jTextFieldDescontoVendaPDV)
+                    .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel20, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
@@ -298,6 +328,14 @@ public final class PDV extends javax.swing.JFrame {
                 .addComponent(jLabel18)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jFormattedTextFieldValorLiquidoVendaPDV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel16)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel17)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel19)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel20)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -315,18 +353,17 @@ public final class PDV extends javax.swing.JFrame {
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(114, 114, 114))
+                .addGap(18, 18, 18)
+                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -334,22 +371,24 @@ public final class PDV extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1)
-                            .addComponent(jTextFieldCodigoProdutoPDV))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jTextFieldCodigoProdutoPDV, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1234, Short.MAX_VALUE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 385, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTextFieldCodigoProdutoPDV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(39, 39, 39))
-            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 556, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jTextFieldCodigoProdutoPDV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(10, 10, 10))
         );
 
         jScrollPane2.setViewportView(jPanel2);
@@ -423,6 +462,11 @@ public final class PDV extends javax.swing.JFrame {
         jMenuItemPesquisarProdutosPDV.setFont(new java.awt.Font("Maiandra GD", 0, 18)); // NOI18N
         jMenuItemPesquisarProdutosPDV.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/24x24/pesquisa.png"))); // NOI18N
         jMenuItemPesquisarProdutosPDV.setText("Pesquisar Produtos");
+        jMenuItemPesquisarProdutosPDV.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemPesquisarProdutosPDVActionPerformed(evt);
+            }
+        });
         jMenuComandosPDV.add(jMenuItemPesquisarProdutosPDV);
 
         jMenuBar1.add(jMenuComandosPDV);
@@ -433,34 +477,17 @@ public final class PDV extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 1392, Short.MAX_VALUE)
+            .addComponent(jScrollPane2)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 11, Short.MAX_VALUE))
+            .addComponent(jScrollPane2)
         );
 
-        pack();
+        setSize(new java.awt.Dimension(1587, 865));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void pegarResolucao() {
-        Toolkit t = Toolkit.getDefaultToolkit();
-        Dimension dimensao = t.getScreenSize();
-        this.setSize((dimensao.width + 5), (dimensao.height - 38));
-
- }
-    
-    private void jTextFieldCodigoProdutoPDVKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldCodigoProdutoPDVKeyReleased
-        // TODO add your handling code here:
-        pegarCodigoF1(evt);
-    }//GEN-LAST:event_jTextFieldCodigoProdutoPDVKeyReleased
-
-    private void jTableListaProdutosPDVMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableListaProdutosPDVMouseClicked
-        // TODO add your handling code here:
-        mudarQuantidadeProduto();
-    }//GEN-LAST:event_jTableListaProdutosPDVMouseClicked
 
     private void jMenuItemFinalizarVendaPDVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemFinalizarVendaPDVActionPerformed
         // TODO add your handling code here:
@@ -477,6 +504,7 @@ public final class PDV extends javax.swing.JFrame {
                 salvarVendas();
                 jLabelStatus.setText("ABERTO");
                 limparVendas();
+                qtd = 1;
             } else {
                 jTextFieldDescontoVendaPDV.setText(String.valueOf(viewPagamentoPDV.getDesconto()));//pega o valor do desconto na view PagamentoPDV
                 DecimalFormat df = new DecimalFormat("#,###.00");//formata as casas decimais de um Double
@@ -520,7 +548,21 @@ public final class PDV extends javax.swing.JFrame {
         // TODO add your handling code here:
         dispose();
     }//GEN-LAST:event_jMenuItem1ActionPerformed
-    
+
+    private void jTextFieldCodigoProdutoPDVKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldCodigoProdutoPDVKeyReleased
+        // TODO add your handling code here:
+        pegarCodigoF1(evt);
+    }//GEN-LAST:event_jTextFieldCodigoProdutoPDVKeyReleased
+
+    private void jTableListaProdutosPDVMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableListaProdutosPDVMouseClicked
+        // TODO add your handling code here:
+        mudarQuantidadeProduto();
+    }//GEN-LAST:event_jTableListaProdutosPDVMouseClicked
+
+    private void jMenuItemPesquisarProdutosPDVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemPesquisarProdutosPDVActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItemPesquisarProdutosPDVActionPerformed
+
     public void carregarIcone() {
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/imagens/carrinho_de_compras.png")));
     }
@@ -683,8 +725,12 @@ public final class PDV extends javax.swing.JFrame {
     private javax.swing.JFormattedTextField jFormattedTextFieldValorLiquidoVendaPDV;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel7;

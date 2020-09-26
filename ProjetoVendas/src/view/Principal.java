@@ -58,8 +58,7 @@ public final class Principal extends javax.swing.JFrame {
         int largura = Toolkit.getDefaultToolkit().getScreenSize().getSize().height;
         int altura = Toolkit.getDefaultToolkit().getScreenSize().getSize().width;
         //int altura = Toolkit.getDefaultToolkit().getScreenSize().height;
-        
-        
+
         //JFrame quadro = new JFrame("Resolução Mutante, kkkkkk");
         JFrame quadro = new JFrame();
 
@@ -120,6 +119,9 @@ public final class Principal extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Sistema de Vendas - Painel Principal");
         setIconImages(null);
+        setMaximumSize(null);
+        setMinimumSize(null);
+        setPreferredSize(null);
 
         uJPanelImagem1.setImagem(new java.io.File("C:\\Program Files (x86)\\JefersonTomas\\Sistema de Vendas com Controle de Estoque\\src\\imagens\\background_principal.jpg"));
 

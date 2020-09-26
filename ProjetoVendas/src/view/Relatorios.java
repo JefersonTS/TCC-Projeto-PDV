@@ -301,6 +301,11 @@ public class Relatorios extends javax.swing.JFrame {
         uJComboBoxListarClientes.setMaximumRowCount(20);
         uJComboBoxListarClientes.setAutocompletar(true);
         uJComboBoxListarClientes.setFont(new java.awt.Font("Maiandra GD", 0, 24)); // NOI18N
+        uJComboBoxListarClientes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                uJComboBoxListarClientesActionPerformed(evt);
+            }
+        });
 
         jButtonRelatorioUmCliente.setFont(new java.awt.Font("Maiandra GD", 0, 24)); // NOI18N
         jButtonRelatorioUmCliente.setText("Gerar");
@@ -658,6 +663,10 @@ public class Relatorios extends javax.swing.JFrame {
         codigo = modelFornecedor.getId_fornecedor();
         controllerRelatorioProduto.gerarRelatorioProdutosPorFornecedorController(codigo);
     }//GEN-LAST:event_jButtonRelatorioProdutoPorFornecedorActionPerformed
+
+    private void uJComboBoxListarClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_uJComboBoxListarClientesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_uJComboBoxListarClientesActionPerformed
 
     /**
      * @param args the command line arguments

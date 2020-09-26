@@ -372,7 +372,6 @@ public final class Produto extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Sistema de Vendas - Cadastro e Busca de Produtos");
-        setPreferredSize(new java.awt.Dimension(1241, 860));
 
         jLabel3.setFont(new java.awt.Font("Maiandra GD", 0, 24)); // NOI18N
         jLabel3.setText("Código de Barras:");
@@ -430,9 +429,7 @@ public final class Produto extends javax.swing.JFrame {
             jTableProduto.getColumnModel().getColumn(3).setMinWidth(200);
             jTableProduto.getColumnModel().getColumn(3).setPreferredWidth(200);
             jTableProduto.getColumnModel().getColumn(3).setMaxWidth(200);
-            jTableProduto.getColumnModel().getColumn(4).setMinWidth(150);
             jTableProduto.getColumnModel().getColumn(4).setPreferredWidth(150);
-            jTableProduto.getColumnModel().getColumn(4).setMaxWidth(150);
         }
 
         jLabel13.setFont(new java.awt.Font("Maiandra GD", 0, 24)); // NOI18N
@@ -545,6 +542,7 @@ public final class Produto extends javax.swing.JFrame {
         jLabel14.setText("Fornecedor:");
 
         uJComboBoxFornecedor.setEditable(true);
+        uJComboBoxFornecedor.setAutocompletar(true);
         uJComboBoxFornecedor.setFont(new java.awt.Font("Maiandra GD", 0, 24)); // NOI18N
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -754,18 +752,17 @@ public final class Produto extends javax.swing.JFrame {
 
     private void jButtonAlterarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlterarProdutoActionPerformed
         // TODO add your handling code here:
+        // Recupera os dados do banco
         int linha = this.jTableProduto.getSelectedRow();
-        codigoFornecedor = (int) jTableProduto.getValueAt(linha, 4);
+        int codigoProduto = (int) jTableProduto.getValueAt(linha, 0);
+        modelProdutos = controllerProdutos.getProdutosController(codigoProduto);
+        codigoFornecedor = (int) modelProdutos.getFornecedor();//jTableProduto.getValueAt(linha, 4);
         salvarAlterar = "alterar";
         try {
             jTextFieldCodigoBarrasProduto.requestFocus();
             jTextFieldPesquisarProduto.setEnabled(false);
             jButtonPesquisarProduto.setEnabled(false);
-            int codigoProduto = (int) jTableProduto.getValueAt(linha, 0);
             this.habilitarDesabilitarProdutos(true);
-
-            // Recupera os dados do banco
-            modelProdutos = controllerProdutos.getProdutosController(codigoProduto);
 
             //Jogar na interface
             this.jTextFieldCodigoBarrasProduto.setText(String.valueOf(modelProdutos.getCodigoBarras()));
@@ -846,6 +843,7 @@ public final class Produto extends javax.swing.JFrame {
         modelProdutos.setProdNome(this.jTextFieldNomeProduto.getText().toUpperCase());
         modelProdutos.setProdEstoque(Integer.parseInt(this.jTextFieldEstoqueProduto.getText()));
         modelProdutos.setProdValor(formatador.converterVirgulaParaPonto(this.jTextFieldValorProduto.getText()));
+        modelProdutos.setNomeFantasia(modelFornecedor.getNome_fantasia());
 
         if (controllerProdutos.salvarProdutosController(modelProdutos) > 0) {
             JOptionPane.showMessageDialog(this, "Produto Cadastrado com Sucesso!", "ATENÇÃO", JOptionPane.WARNING_MESSAGE);
@@ -874,6 +872,7 @@ public final class Produto extends javax.swing.JFrame {
         modelProdutos.setProdNome(this.jTextFieldNomeProduto.getText().toUpperCase());
         modelProdutos.setProdEstoque(Integer.parseInt(this.jTextFieldEstoqueProduto.getText()));
         modelProdutos.setProdValor(formatador.converterVirgulaParaPonto(this.jTextFieldValorProduto.getText()));
+        modelProdutos.setNomeFantasia(modelFornecedor.getNome_fantasia());
 
         if (controllerProdutos.atualizarProdutosController(modelProdutos)) {
             JOptionPane.showMessageDialog(this, "Produto Alterado com Sucesso!", "ATENÇÃO", JOptionPane.WARNING_MESSAGE);
@@ -911,20 +910,18 @@ public final class Produto extends javax.swing.JFrame {
     //Preenche a tabela de produtos com os produtos cadastrados no banco
     private void carregarProdutos() {
         listaModelProdutos = controllerProdutos.getListaProdutosController();
-        listaModelFornecedores = controllerFornecedor.getListaFornecedorController();
         DefaultTableModel modelo = (DefaultTableModel) jTableProduto.getModel();
         modelo.setNumRows(0); //seta o numero de linhas em ZERO para nao duplicar na tabela
 
-        //Inserir os produtos na tabela
-        int cont = listaModelProdutos.size();
-        for (int i = 0; i <= 4; i++) {
-            //int cont2 = cont + 1;
+        //Inserir os produtos na tabela  modelProdutos = controllerProdutos.getProdutosController(codigoProduto);
+        for (int i = 0; i < listaModelProdutos.size(); i++) {
+
             modelo.addRow(new Object[]{
                 listaModelProdutos.get(i).getIdProduto(),
                 listaModelProdutos.get(i).getProdNome(),
                 listaModelProdutos.get(i).getProdEstoque(),
                 listaModelProdutos.get(i).getProdValor(),
-                listaModelFornecedores.get(i).getNome_fantasia()
+                listaModelProdutos.get(i).getNomeFantasia()
             });
         }
         JTableHeader cabecalho = jTableProduto.getTableHeader();

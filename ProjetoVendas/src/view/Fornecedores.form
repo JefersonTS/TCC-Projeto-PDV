@@ -438,7 +438,7 @@
                 <Property name="autoscrolls" type="boolean" value="false"/>
                 <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                   <TableColumnModel selectionModel="0">
-                    <Column maxWidth="100" minWidth="100" prefWidth="100" resizable="true">
+                    <Column maxWidth="-1" minWidth="-1" prefWidth="100" resizable="true">
                       <Title/>
                       <Editor/>
                       <Renderer/>
@@ -448,27 +448,27 @@
                       <Editor/>
                       <Renderer/>
                     </Column>
-                    <Column maxWidth="200" minWidth="200" prefWidth="200" resizable="true">
+                    <Column maxWidth="-1" minWidth="-1" prefWidth="200" resizable="true">
                       <Title/>
                       <Editor/>
                       <Renderer/>
                     </Column>
-                    <Column maxWidth="70" minWidth="70" prefWidth="70" resizable="true">
+                    <Column maxWidth="-1" minWidth="-1" prefWidth="70" resizable="true">
                       <Title/>
                       <Editor/>
                       <Renderer/>
                     </Column>
-                    <Column maxWidth="200" minWidth="200" prefWidth="200" resizable="true">
+                    <Column maxWidth="-1" minWidth="-1" prefWidth="200" resizable="true">
                       <Title/>
                       <Editor/>
                       <Renderer/>
                     </Column>
-                    <Column maxWidth="400" minWidth="400" prefWidth="400" resizable="true">
+                    <Column maxWidth="-1" minWidth="-1" prefWidth="400" resizable="true">
                       <Title/>
                       <Editor/>
                       <Renderer/>
                     </Column>
-                    <Column maxWidth="230" minWidth="230" prefWidth="230" resizable="true">
+                    <Column maxWidth="-1" minWidth="-1" prefWidth="230" resizable="true">
                       <Title/>
                       <Editor/>
                       <Renderer/>
@@ -692,7 +692,7 @@
         <Component class="javax.swing.JFormattedTextField" name="jTextFieldCNPJ">
           <Properties>
             <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
-              <Format format="##.###.###/0001-##" subtype="-1" type="5"/>
+              <Format format="##.###.###/####-##" subtype="-1" type="5"/>
             </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Maiandra GD" size="24" style="0"/>

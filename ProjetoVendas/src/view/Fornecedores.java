@@ -181,25 +181,13 @@ public class Fornecedores extends javax.swing.JFrame {
         jTableFornecedores.setRowHeight(30);
         jScrollPane1.setViewportView(jTableFornecedores);
         if (jTableFornecedores.getColumnModel().getColumnCount() > 0) {
-            jTableFornecedores.getColumnModel().getColumn(0).setMinWidth(100);
             jTableFornecedores.getColumnModel().getColumn(0).setPreferredWidth(100);
-            jTableFornecedores.getColumnModel().getColumn(0).setMaxWidth(100);
             jTableFornecedores.getColumnModel().getColumn(1).setPreferredWidth(300);
-            jTableFornecedores.getColumnModel().getColumn(2).setMinWidth(200);
             jTableFornecedores.getColumnModel().getColumn(2).setPreferredWidth(200);
-            jTableFornecedores.getColumnModel().getColumn(2).setMaxWidth(200);
-            jTableFornecedores.getColumnModel().getColumn(3).setMinWidth(70);
             jTableFornecedores.getColumnModel().getColumn(3).setPreferredWidth(70);
-            jTableFornecedores.getColumnModel().getColumn(3).setMaxWidth(70);
-            jTableFornecedores.getColumnModel().getColumn(4).setMinWidth(200);
             jTableFornecedores.getColumnModel().getColumn(4).setPreferredWidth(200);
-            jTableFornecedores.getColumnModel().getColumn(4).setMaxWidth(200);
-            jTableFornecedores.getColumnModel().getColumn(5).setMinWidth(400);
             jTableFornecedores.getColumnModel().getColumn(5).setPreferredWidth(400);
-            jTableFornecedores.getColumnModel().getColumn(5).setMaxWidth(400);
-            jTableFornecedores.getColumnModel().getColumn(6).setMinWidth(230);
             jTableFornecedores.getColumnModel().getColumn(6).setPreferredWidth(230);
-            jTableFornecedores.getColumnModel().getColumn(6).setMaxWidth(230);
         }
 
         jButtonNovoFornecedor.setFont(new java.awt.Font("Maiandra GD", 0, 24)); // NOI18N
@@ -316,7 +304,7 @@ public class Fornecedores extends javax.swing.JFrame {
         jLabel11.setText("CNPJ:");
 
         try {
-            jTextFieldCNPJ.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##.###.###/0001-##")));
+            jTextFieldCNPJ.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##.###.###/####-##")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }

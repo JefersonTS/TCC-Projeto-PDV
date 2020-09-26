@@ -3,6 +3,7 @@ package DAO;
 import model.ModelProdutos;
 import conexoes.ConexaoMySql;
 import java.util.ArrayList;
+import model.ModelFornecedor;
 
 /**
  *
@@ -25,13 +26,15 @@ public class DAOProdutos extends ConexaoMySql {
                     + "codigo_barras,"
                     + "prod_nome,"
                     + "prod_valor,"
-                    + "prod_estoque"
+                    + "prod_estoque,"
+                    + "nome_fornecedor"
                     + ") VALUES ("
                     + "'" + pModelProdutos.getFornecedor() + "',"
                     + "'" + pModelProdutos.getCodigoBarras() + "',"
                     + "'" + pModelProdutos.getProdNome() + "',"
                     + "'" + pModelProdutos.getProdValor() + "',"
-                    + "'" + pModelProdutos.getProdEstoque() + "'"
+                    + "'" + pModelProdutos.getProdEstoque() + "',"
+                    + "'" + pModelProdutos.getNomeFantasia() + "'"
                     + ");"
             );
         } catch (Exception e) {
@@ -100,7 +103,8 @@ public class DAOProdutos extends ConexaoMySql {
                     + "codigo_barras,"
                     + "prod_nome,"
                     + "prod_valor,"
-                    + "prod_estoque"
+                    + "prod_estoque,"
+                    + "nome_fornecedor"
                     + " FROM"
                     + " tb_produto"
                     + ";"
@@ -114,6 +118,7 @@ public class DAOProdutos extends ConexaoMySql {
                 modelProdutos.setProdNome(this.getResultSet().getString(4));
                 modelProdutos.setProdValor(this.getResultSet().getDouble(5));
                 modelProdutos.setProdEstoque(this.getResultSet().getInt(6));
+                modelProdutos.setNomeFantasia(this.getResultSet().getString(7));
                 listamodelProdutos.add(modelProdutos);
             }
         } catch (Exception e) {
@@ -139,7 +144,8 @@ public class DAOProdutos extends ConexaoMySql {
                     + "codigo_barras = '" + pModelProdutos.getCodigoBarras() + "',"
                     + "prod_nome = '" + pModelProdutos.getProdNome() + "',"
                     + "prod_valor = '" + pModelProdutos.getProdValor() + "',"
-                    + "prod_estoque = '" + pModelProdutos.getProdEstoque() + "'"
+                    + "prod_estoque = '" + pModelProdutos.getProdEstoque() + "',"
+                    + "nome_fornecedor = '" + pModelProdutos.getNomeFantasia() + "'"
                     + " WHERE "
                     + "pk_id_produto = '" + pModelProdutos.getIdProduto() + "'"
                     + ";"
